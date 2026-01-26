@@ -16,10 +16,5 @@ void calc_s_ecrire_s_et_r(int, int, int, int**, FILE*);
 //étiquetage des arêtes
 void etiqAr(int, int ,int, int, int*, int, int, int**);
 
-//error_handling
-int fichier_maillage_format_check(float*, float*, float*, float*, int*, int*, int*);
-void t_pas_conforme(int*);
-
-
 float** alloctab(int, int);
-void freetab(void); 
+void freetab(void*); 

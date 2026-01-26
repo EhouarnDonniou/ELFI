@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers.h"
+#include "include/headers.h"
+#include "include/errhandle.h"
 
 void main() {
 
@@ -15,7 +16,7 @@ void main() {
     FILE* pFile;
     pFile = fopen("cad.txt", "w");
     if(pFile == NULL){
-        printf("Erreur d'ouverture du fichier\n");
+        printf("Erreur d'ouverture du fichier pour écriture\n");
     }
 
     //calcul et écriture de n
@@ -35,7 +36,7 @@ void main() {
     int* nrefcot = malloc(4*sizeof(int));
     for(int i=0;i<4;i++) {
         nrefcot[i]=(i+1);
-        printf("nref coté [%d] = %d \n",i+1,nrefcot[i]);
+        //printf("nref coté [%d] = %d \n",i+1,nrefcot[i]);
     }
     //pour les tests
 

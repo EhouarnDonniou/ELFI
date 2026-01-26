@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers.h"
+#include "../include/headers.h"
+#include "../include/errhandle.h"
 
 
 //Fonction qui check le format du fichier de maillage

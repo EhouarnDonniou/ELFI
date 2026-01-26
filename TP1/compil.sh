@@ -1,6 +1,6 @@
 echo "  "
 echo "----Edition de l'éxécutable"
-gcc -o creation.exe creation.c error_handling.c fonctions.c alloctab.c freetab.c
+gcc -g -std=c99 -o creation.exe creation.c fonctions/error_handling.c fonctions/fonctions.c fonctions/alloctab.c fonctions/freetab.c
 echo "  "
 echo "----Execution"
 creation.exe

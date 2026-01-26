@@ -1,16 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "headers.h"
+#include "../include/headers.h"
 
 void lecture_fichier_maillage(float* a,float* b, float* c,float* d, int* n1, int* n2, int* t){
     FILE *pFile;
     char line[1024];
  
     //lecture du fichier qui set up le cadre
-    //à mettre dans une fonction appélée en main
     pFile = fopen("fichier_maillage.txt", "r");
     if(pFile == NULL){
-        printf("Erreur d'ouverture du fichier\n");
+        printf("Erreur d'ouverture du fichier pour lecture.\n");
     }
 
     fscanf(pFile,"%f %f %f %f",a,b,c,d);
