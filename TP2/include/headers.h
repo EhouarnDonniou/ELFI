@@ -1,7 +1,4 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include 
 
-void calFbase(){
-
-}
+void calFbase();
