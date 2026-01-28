@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "../include/headers.h"
 #include "../include/errhandle.h"
 
@@ -17,25 +18,37 @@
 //Appelle la fonction d'affichage d'erreur spécifique à chaque erreur de format sur les variables.
 int fichier_maillage_format_check(float* a, float* b, float* c, float* d, int* n1, int* n2, int* t){
     int check = 0;
-    
-    //ajouter conditions de format sur a,b,c,d ; n1,n2
-    //et créer les fonctions d'affichage de l'erreur
 
     if(*t < 1 || *t > 2){
         check = 1;
-        t_pas_conforme(t);
+        t_pas_conforme(*t);
     }
+
+    //ajouter conditions de format sur a,b,c,d
+
+    if(*n1 < 2 || *n2 <2){
+        check = 1;
+        n1_n2_pas_conforme(*n1,*n2);
+    }
+
     return(check);
 }
 
-void t_pas_conforme(int* t){
+void t_pas_conforme(int t){
     printf("\n");
     printf("ERROR \n");
     printf("/! Le fichier de maillage n'est pas conforme. \n");
-    printf("    t = %d ne correspond à aucun type d'élément supporté. \n", *t);
+    printf("    t = %d ne correspond à aucun type d'élément supporté. \n", t);
     printf("    Les types supportés sont : \n");
     printf("        - quadrangles : t = 1 \n");
     printf("        - triangles : t = 2 \n");
-    printf("/! Veillez à écrire le fichier de maillage dans le format supporté.\n");
+}
+
+void n1_n2_pas_conforme(int n1,int n2){
+    printf("\n");
+    printf("ERROR \n");
+    printf("/! Le fichier de maillage n'est pas conforme.\n");
+    printf("    n1=%d, n2=%d ne peuvent pas générer de maillage.\n", n1,n2);
+    printf("    n1 et n2 doivent être supérieur ou égale à 2.\n");
     printf("\n");
 }

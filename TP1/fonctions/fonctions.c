@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "../include/headers.h"
 
 void lecture_fichier_maillage(float* a,float* b, float* c,float* d, int* n1, int* n2, int* t){
@@ -10,6 +11,7 @@ void lecture_fichier_maillage(float* a,float* b, float* c,float* d, int* n1, int
     pFile = fopen("fichier_maillage.txt", "r");
     if(pFile == NULL){
         printf("Erreur d'ouverture du fichier pour lecture.\n");
+        exit(EXIT_FAILURE);
     }
 
     fscanf(pFile,"%f %f %f %f",a,b,c,d);

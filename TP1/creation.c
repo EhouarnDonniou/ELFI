@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "include/headers.h"
 #include "include/errhandle.h"
 
@@ -11,14 +12,18 @@ void main() {
     lecture_fichier_maillage(&a,&b,&c,&d,&n1,&n2,&t);
 
     int format = fichier_maillage_format_check(&a,&b,&c,&d,&n1,&n2,&t);
-    //après ça : encastrer les prochains appels dans une condition sur format
-    // format == 0  => appels normaux
-    // format == 1  => stop et rien ne se passe 
+
+    if(format==1) {
+        printf("/! Veillez à écrire le fichier de maillage dans le format supporté.\n");
+        printf("\n");
+        exit(EXIT_FAILURE);
+    }
 
     FILE* pFile;
     pFile = fopen("cad.txt", "w");
     if(pFile == NULL){
         printf("Erreur d'ouverture du fichier pour écriture\n");
+        exit(EXIT_FAILURE);
     }
 
     //calcul et écriture de n
