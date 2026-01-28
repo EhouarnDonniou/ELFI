@@ -19,19 +19,45 @@
 int fichier_maillage_format_check(float* a, float* b, float* c, float* d, int* n1, int* n2, int* t){
     int check = 0;
 
-    if(*t < 1 || *t > 2){
+    if(*a>=*b){
         check = 1;
-        t_pas_conforme(*t);
+        bords_pas_conforme(*a,*b,'a','b');
     }
 
-    //ajouter conditions de format sur a,b,c,d
+    if(*c>=*d){
+        check = 1;
+        bords_pas_conforme(*c,*d,'c','d');
+    }
 
     if(*n1 < 2 || *n2 <2){
         check = 1;
         n1_n2_pas_conforme(*n1,*n2);
     }
 
+    if(*t < 1 || *t > 2){
+        check = 1;
+        t_pas_conforme(*t);
+    }
+
     return(check);
+}
+
+void bords_pas_conforme(int a, int b, char x1, char x2){
+    printf("\n");
+    printf("ERROR \n");
+    printf("/! Le fichier de maillage n'est pas conforme.\n");
+    printf("    ",x1," = %d et ",x1," = %d ne peuvent pas définir le domaine.\n", a,b);
+    printf("    format supporté :  ",x1," < ",x2," .\n");
+    printf("\n");
+}
+
+void n1_n2_pas_conforme(int n1,int n2){
+    printf("\n");
+    printf("ERROR \n");
+    printf("/! Le fichier de maillage n'est pas conforme.\n");
+    printf("    n1=%d, n2=%d ne peuvent pas générer de maillage.\n", n1,n2);
+    printf("    n1 et n2 doivent être supérieur ou égale à 2.\n");
+    printf("\n");
 }
 
 void t_pas_conforme(int t){
@@ -44,11 +70,3 @@ void t_pas_conforme(int t){
     printf("        - triangles : t = 2 \n");
 }
 
-void n1_n2_pas_conforme(int n1,int n2){
-    printf("\n");
-    printf("ERROR \n");
-    printf("/! Le fichier de maillage n'est pas conforme.\n");
-    printf("    n1=%d, n2=%d ne peuvent pas générer de maillage.\n", n1,n2);
-    printf("    n1 et n2 doivent être supérieur ou égale à 2.\n");
-    printf("\n");
-}
