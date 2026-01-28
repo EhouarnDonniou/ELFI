@@ -3,7 +3,7 @@
 #include "include/headers.h"
 #include "include/errhandle.h"
 
-//se mettre dans le dossier et entrer dans le terminal : bash compil.sh
+//se mettre dans le dossier et entrer dans le terminal : 
 
 void main() {
 
