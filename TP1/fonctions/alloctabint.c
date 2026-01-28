@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include "../include/headers.h"
 
-int** alloctab(int dim1, int dim2) {
+int** alloctabint(int dim1, int dim2) {
   int **ptr;
 
   ptr = malloc(dim1*sizeof(int *));
