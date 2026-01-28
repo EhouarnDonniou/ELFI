@@ -4,7 +4,7 @@
 
 int lecfima(char *ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
     FILE *pFile;
-    pFile = fopen("*ficmai.txt", "r");
+    pFile = fopen(*ficmai, "r");
     if(pFile == NULL){
         printf("Erreur d ouverture du fichier\n");
     return 1;
@@ -20,8 +20,8 @@ int lecfima(char *ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel
     //Lecture de pnbtel=m, ptypel=t, pnbneel=p, pnbaret=q
     fscanf(pFile,"%d %d %d %d",pnbtel,ptypel,pnbneel,pnbaret);
     //Allouer les tableaux pour pngnel de dimension mxp et pour pnRefAr de dimension mxq
-    ***pngel=alloctab(*pnbtel,*pnbneel);
-    ***pnRefAr=alloctab(*pnbtel,*pnbaret);
+    ***pngel=alloctabint(*pnbtel,*pnbneel);
+    ***pnRefAr=alloctabint(*pnbtel,*pnbaret);
     //Lecture et remplissage des tableaux pngnel et pnRefAr
     for(int i=0; i<*pnbtel;i++){
         for(int j=0;j<*pnbneel;j++){
