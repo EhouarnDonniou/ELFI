@@ -18,3 +18,5 @@ void etiqAr(int, int ,int, int, int*, int, int, int**);
 
 float** alloctab(int, int);
 void freetab(void*); 
+
+int lecfima(char*, int*, int*, float***, int*, int***, int*, int*, int***);
