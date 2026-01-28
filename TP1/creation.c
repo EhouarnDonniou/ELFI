@@ -3,6 +3,8 @@
 #include "include/headers.h"
 #include "include/errhandle.h"
 
+//se mettre dans le dossier et entrer dans le terminal : bash compil.sh
+
 void main() {
 
     float a,b,c,d; int n1,n2,t;
