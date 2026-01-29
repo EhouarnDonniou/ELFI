@@ -28,7 +28,7 @@ int lecfima(char* ficmai, int* ptypel, int* pnbtng, float*** pcoord, int* pnbtel
     //Lecture et remplissage des tableaux pngnel et pnRefAr
     for(int i=0; i<*pnbtel;i++){
         for(int j=0;j<*pnbneel;j++){
-            fscanf(pFile,"%d",&(*pngel)[i][j]);
+            fscanf(pFile,"%d",pngel1[i][j]);
         }
         for(int j=0;j<*pnbaret;j++){
             fscanf(pFile,"%d",&(*pnRefAr)[i][j]);
@@ -41,7 +41,7 @@ int lecfima(char* ficmai, int* ptypel, int* pnbtng, float*** pcoord, int* pnbtel
     ***pnRefAr= **pnRefAr1;
     //Liberes les tableaux
     freetab(*pcoord);
-    freetab(*pngel);
+    freetab(*pngel1);
     freetab(*pnRefAr);
     return 0;
 }

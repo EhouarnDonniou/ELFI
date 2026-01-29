@@ -17,6 +17,7 @@ void calc_s_ecrire_s_et_r(int, int, int, int**, FILE*);
 void etiqAr(int, int ,int, int, int*, int, int, int**);
 
 float** alloctab(int, int);
+int** alloctabint(int, int);
 void freetab(void*); 
 
 int lecfima(char*, int*, int*, float***, int*, int***, int*, int*, int***);
