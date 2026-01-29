@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include "../include/headers.h"
 
-int lecfima(char *ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
+int lecfima(char* ficmai, int* ptypel, int* pnbtng, float*** pcoord, int* pnbtel, int*** pngnel, int* pnbneel, int* pnbaret, int*** pnRefAr){
     FILE *pFile;
-    pFile = fopen(*ficmai, "r");
+    pFile = fopen(ficmai, "r");
     if(pFile == NULL){
         printf("Erreur d ouverture du fichier\n");
     return 1;
     }
+
     // Lecture de n
     fscanf(pFile,"%d",pnbtng);
     //Allouer le tableau pour stocker les coordonnees de dimension n x 2
@@ -19,9 +20,11 @@ int lecfima(char *ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel
     }
     //Lecture de pnbtel=m, ptypel=t, pnbneel=p, pnbaret=q
     fscanf(pFile,"%d %d %d %d",pnbtel,ptypel,pnbneel,pnbaret);
+
     //Allouer les tableaux pour pngnel de dimension mxp et pour pnRefAr de dimension mxq
     int **pngel1=alloctabint(*pnbtel,*pnbneel);
     int **pnRefAr1=alloctabint(*pnbtel,*pnbaret);
+
     //Lecture et remplissage des tableaux pngnel et pnRefAr
     for(int i=0; i<*pnbtel;i++){
         for(int j=0;j<*pnbneel;j++){
@@ -35,7 +38,7 @@ int lecfima(char *ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel
 
     ***pcoord = **pcoord1;
     ***pngel1 = **pcoord1;
-    ***pnRefAr= **pnRefAr;
+    ***pnRefAr= **pnRefAr1;
     //Liberes les tableaux
     freetab(*pcoord);
     freetab(*pngel);

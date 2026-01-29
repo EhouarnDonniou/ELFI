@@ -20,7 +20,7 @@ void main() {
     }
 
     FILE* pFile;
-    pFile = fopen("cad.txt", "w");
+    pFile = fopen("output_maillage.txt", "w");
     if(pFile == NULL){
         printf("Erreur d'ouverture du fichier pour écriture\n");
         exit(EXIT_FAILURE);

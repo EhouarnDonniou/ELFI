@@ -5,12 +5,12 @@
 
 void lecture_fichier_maillage(float* a,float* b, float* c,float* d, int* n1, int* n2, int* t){
     FILE *pFile;
-    char line[1024];
  
     //lecture du fichier qui set up le cadre
-    pFile = fopen("fichier_maillage.txt", "r");
+    pFile = fopen("input_maillage.txt", "r");
     if(pFile == NULL){
         printf("Erreur d'ouverture du fichier pour lecture.\n");
+        printf("Veuillez écrire un fichier de maillage.\n");
         exit(EXIT_FAILURE);
     }
 
