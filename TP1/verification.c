@@ -16,6 +16,7 @@ void main(){
     int** pnRefAr;
     int ptypel, pnbtng, pnbtel, pnbneel, pnbaret;
 
+    int lecfima(ficmai,&ptypel,&pnbtng,&pcoord,&pnbtel,&pngnel, &pnbneel, &pnbaret, &pnRefAr);
     int lecture = lecfima(ficmai,&ptypel,&pnbtng,&pcoord,&pnbtel,&pngnel, &pnbneel, &pnbaret, &pnRefAr);
 
     //check de sortie de lecture
@@ -37,13 +38,24 @@ void main(){
     fprintf(pFile,"%d %d %d %d\n",pnbtel, ptypel, pnbneel, pnbaret);
     for(int i=0; i<pnbtel;i++){
         for(int j=0;j<pnbneel;j++){
+            fprintf(pFile,"%d",pngnel[i][j]);
+
+    fprintf(pFile,"%d %d %d %d\n",pnbtel, ptypel, pnbneel, pnbaret);
+    for(int i=0; i<pnbtel;i++){
+        for(int j=0;j<pnbneel;j++){
             fprintf(pFile,"%d ",pngnel[i][j]);
         }
+        for(int j=0;j<pnbaret;j++){
+            fprintf(pFile,"%d",pnRefAr[i][j]);
         for(int j=0;j<pnbaret;j++){
             fprintf(pFile,"%d ",pnRefAr[i][j]);
         }
         fprintf(pFile,"\n");
     }
+
+    freetab(*pcoord);
+    freetab(*pngnel);
+    freetab(*pnRefAr);
 
     freetab(pcoord);
     freetab(pngnel);
