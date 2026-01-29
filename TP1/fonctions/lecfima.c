@@ -5,8 +5,7 @@
 int lecfima(char *ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
     printf("oui");
     FILE *pFile;
-    
-    pFile = fopen(ficmai, "r");
+    pFile = fopen(*ficmai, "r");
     if(pFile == NULL){
         printf("Erreur d ouverture du fichier\n");
     return 1;
