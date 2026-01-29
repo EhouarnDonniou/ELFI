@@ -46,8 +46,8 @@ void bords_pas_conforme(int a, int b, char x1, char x2){
     printf("\n");
     printf("ERROR \n");
     printf("/! Le fichier de maillage n'est pas conforme.\n");
-    printf("    ",x1," = %d et ",x1," = %d ne peuvent pas définir le domaine.\n", a,b);
-    printf("    format supporté :  ",x1," < ",x2," .\n");
+    printf("    %c = %d et %c = %d ne peuvent pas définir le domaine.\n", x1,a,x2,b);
+    printf("    format supporté :  %c < %c .\n",x1,x2);
     printf("\n");
 }
 
