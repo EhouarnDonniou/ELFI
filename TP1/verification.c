@@ -2,7 +2,7 @@
 #include "include/errhandle.h"
 
 void main(){
-    char* ficmai = "cad.txt";
+    char* ficmai = "outpu_maillage.txt";
     float** pcoord;
     int** pngnel;
     int** pnRefAr;
