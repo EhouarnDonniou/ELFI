@@ -2,21 +2,22 @@
 #include <stdlib.h>
 #include "../include/headers.h"
 
-int lecfima(char* ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
-    printf("oui");
+int lecfima(char* ficmai, int *ptypel, int *pnbtng, float***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
     FILE *pFile;
     pFile = fopen(ficmai, "r");
     if(pFile == NULL){
-        printf("Erreur d ouverture du fichier\n");
-    return 1;
+        printf("Erreur d ouverture du fichier pour lecture\n");
+        return 1;
     }
+
     // Lecture de n
     fscanf(pFile,"%d",pnbtng);
     //Allouer le tableau pour stocker les coordonnees de dimension n x 2
-    *pcoord=alloctab(*pnbtng,2);
+    *pcoord=alloctab(2,*pnbtng);
     //Lexture des coordonnees
     for(int i=0;i<*pnbtng;i++){
-        fscanf(pFile,"%f %f",&(*pcoord)[0][i],&(*pcoord)[1][i]);
+        fscanf(pFile,"%f %f ",&(*pcoord)[0][i],&(*pcoord)[1][i]);
+       // printf("%f %f \n",(*pcoord)[0][i],(*pcoord)[1][i]);
     }
     //Lecture de pnbtel=m, ptypel=t, pnbneel=p, pnbaret=q
     fscanf(pFile,"%d %d %d %d",pnbtel,ptypel,pnbneel,pnbaret);
