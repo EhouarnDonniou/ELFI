@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 //fonction de lecture de fichier_maillage.txt
 void lecture_fichier_maillage(float*, float*, float*, float*, int*, int*, int*);
@@ -11,13 +12,16 @@ void nombre_points(int, int, int*, FILE*);
 void coordonees_points(float, float, float, float, float*, float*, int, int, FILE*);
 //calcul et écriture de m, t, p, q en fonction de t et n1, n2
 void ecriture_mtpq(int*, int, int*, int*, int, int, FILE*);
-//calcul de s et écriture des s et des r pour chaque élément
-void calc_s_ecrire_s_et_r(int, int, int, int**, FILE*);
 //étiquetage des arêtes
 void etiqAr(int, int ,int, int, int*, int, int, int**);
+//calcul de s et écriture des s et des r pour chaque élément
+void calc_s_ecrire_s_et_r(int, int, int, int**, FILE*);
 
+
+//gestion des tableaux à 2 dimensions
 float** alloctab(int, int);
 int** alloctabint(int, int);
 void freetab(void*); 
 
+//lecture de fichier de maillage 
 int lecfima(char*, int*, int*, float***, int*, int***, int*, int*, int***);

@@ -16,7 +16,7 @@ int lecfima(char* ficmai, int *ptypel, int *pnbtng, float***pcoord, int *pnbtel,
     *pcoord=alloctab(2,*pnbtng);
     //Lexture des coordonnees
     for(int i=0;i<*pnbtng;i++){
-        fscanf(pFile,"%f %f ",&(*pcoord)[0][i],&(*pcoord)[1][i]);
+        fscanf(pFile,"%f %f",&(*pcoord)[0][i],&(*pcoord)[1][i]);
        // printf("%f %f \n",(*pcoord)[0][i],(*pcoord)[1][i]);
     }
     //Lecture de pnbtel=m, ptypel=t, pnbneel=p, pnbaret=q

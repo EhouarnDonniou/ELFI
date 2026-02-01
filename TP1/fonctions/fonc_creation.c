@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "../include/headers.h"
 
 void lecture_fichier_maillage(float* a,float* b, float* c,float* d, int* n1, int* n2, int* t){
@@ -11,6 +8,7 @@ void lecture_fichier_maillage(float* a,float* b, float* c,float* d, int* n1, int
     if(pFile == NULL){
         printf("Erreur d'ouverture du fichier pour lecture.\n");
         printf("Veuillez écrire un fichier de maillage.\n");
+        printf("Nom supporté : input_maillage.txt .\n");
         exit(EXIT_FAILURE);
     }
 
@@ -50,6 +48,40 @@ void ecriture_mtpq(int* m, int t, int* p, int* q, int n1, int n2, FILE* pFile){
         *p = 3; *m = 2*(n1-1)*(n2-1); *q = 3;
     }
     fprintf(pFile,"%d %d %d %d\n",*m,t,*p,*q);
+}
+
+void etiqAr(int typel, int n1, int n2, int nrefdom, int* nrefcot, int nbtel, int nbaret, int** nRefAr){
+    //défault sur tous les r : nrefdom de l'intérieur du domaine
+    for(int i=0; i<nbtel; i++){
+        for(int j=0; j<nbaret; j++){
+            nRefAr[i][j] = nrefdom;
+        }
+
+    }
+
+    //balayages des côtés pour assignation différentes 
+    if(typel==1){ //quadrangles
+        for(int i=0;i<n1-1; i++){ //balayage horizontal
+            nRefAr[i][3] = nrefcot[0]; //cas en bas
+            nRefAr[(nbtel-1)-i][1] = nrefcot[2]; //cas en haut
+        }
+        for(int i=0;i<n2-1; i++){ //balayage vertical
+            nRefAr[i*(n1-1)][2] = nrefcot[3]; //cas à gauche
+            nRefAr[i*(n1-1) + (n1-2)][0] = nrefcot[1]; //cas à droite
+        }
+    }
+
+    else if(typel==2){ //triangles
+        for(int i=0;i<n1-1; i++){ //balayage horizontal
+            nRefAr[2*i][2] = nrefcot[0]; //cas en bas
+            nRefAr[(nbtel-1)-2*i][2] = nrefcot[2]; //cas en haut
+        }
+        for(int i=0;i<n2-1; i++){ //balayage vertical
+            nRefAr[2*i*(n1-1)][1] = nrefcot[3]; //cas à gauche
+            nRefAr[2*i*(n1-1) + 2*(n1-2) +1][1] = nrefcot[1]; //cas à droite
+        }
+    }
+    
 }
 
 void calc_s_ecrire_s_et_r(int t, int n1, int n2, int** nRefAr, FILE* pFile){
@@ -128,36 +160,3 @@ void calc_s_ecrire_s_et_r(int t, int n1, int n2, int** nRefAr, FILE* pFile){
     free(s_ref); free(s);
 }
 
-void etiqAr(int typel, int n1, int n2, int nrefdom, int* nrefcot, int nbtel, int nbaret, int** nRefAr){
-    //défault sur tous les r : nrefdom de l'intérieur du domaine
-    for(int i=0; i<nbtel; i++){
-        for(int j=0; j<nbaret; j++){
-            nRefAr[i][j] = nrefdom;
-        }
-
-    }
-
-    //balayages des côtés pour assignation différentes 
-    if(typel==1){ //quadrangles
-        for(int i=0;i<n1-1; i++){ //balayage horizontal
-            nRefAr[i][3] = nrefcot[0]; //cas en bas
-            nRefAr[(nbtel-1)-i][1] = nrefcot[2]; //cas en haut
-        }
-        for(int i=0;i<n2-1; i++){ //balayage vertical
-            nRefAr[i*(n1-1)][2] = nrefcot[3]; //cas à gauche
-            nRefAr[i*(n1-1) + (n1-2)][0] = nrefcot[1]; //cas à droite
-        }
-    }
-
-    else if(typel==2){ //triangles
-        for(int i=0;i<n1-1; i++){ //balayage horizontal
-            nRefAr[2*i][2] = nrefcot[0]; //cas en bas
-            nRefAr[(nbtel-1)-2*i][2] = nrefcot[2]; //cas en haut
-        }
-        for(int i=0;i<n2-1; i++){ //balayage vertical
-            nRefAr[2*i*(n1-1)][1] = nrefcot[3]; //cas à gauche
-            nRefAr[2*i*(n1-1) + 2*(n1-2) +1][1] = nrefcot[1]; //cas à droite
-        }
-    }
-    
-}

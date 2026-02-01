@@ -23,7 +23,7 @@ void main(){
     fprintf(pFile,"%d\n",pnbtng);
 
     for(int i=0; i<pnbtng;i++){
-        fprintf(pFile,"%f %f \n",pcoord[0][i],pcoord[1][i]);
+        fprintf(pFile,"%f %f\n",pcoord[0][i],pcoord[1][i]);
     }
 
     fprintf(pFile,"%d %d %d %d\n",pnbtel, ptypel, pnbneel, pnbaret);

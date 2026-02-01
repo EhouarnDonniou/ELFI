@@ -1,10 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 #include "include/headers.h"
 #include "include/errhandle.h"
 
-//se mettre dans le dossier et entrer dans le terminal : 
+//se mettre dans le dossier et entrer dans le terminal : bash compilation.sh
+//le fichier d'input doit s'appeler input_maillage
 
 void main() {
 
