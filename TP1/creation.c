@@ -3,6 +3,7 @@
 
 //se mettre dans le dossier et entrer dans le terminal : bash compilation.sh
 //le fichier d'input doit s'appeler input_maillage
+//le fichier générateur correspond à l'exemple car3x3t_3.txt
 
 void main() {
 
