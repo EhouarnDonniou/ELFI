@@ -2,7 +2,7 @@
 #include "include/errhandle.h"
 
 void main(){
-    char *ficmai = "cad.txt";
+    char *ficmai = "output_maillage.txt";
     float **pcoord;
     int **pngnel, **pnRefAr;
     int ptypel, pnbtng, pnbtel, pnbneel, pnbaret;
@@ -21,10 +21,10 @@ void main(){
     fprintf(pFile,"%d %d %d %d\n",pnbtel, ptypel, pnbneel, pnbaret);
     for(int i=0; i<pnbtel;i++){
         for(int j=0;j<pnbneel;j++){
-            fprintf(pFile,"%d",pngnel[i][j]);
+            fprintf(pFile,"%d ",pngnel[i][j]);
         }
         for(int j=0;j<pnbaret;j++){
-            fprintf(pFile,"%d",pnRefAr[i][j]);
+            fprintf(pFile,"%d ",pnRefAr[i][j]);
         }
         fprintf(pFile,"\n");
     }

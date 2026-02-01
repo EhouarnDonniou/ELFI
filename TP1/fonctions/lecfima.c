@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "../include/headers.h"
 
-int lecfima(char *ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
+int lecfima(char* ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
     printf("oui");
     FILE *pFile;
     pFile = fopen(ficmai, "r");
