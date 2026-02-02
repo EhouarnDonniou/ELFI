@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "../include/headers.h"
+
+
+//in : coordonnées du point x
+//     valeurs des fonctions de base (calculés au préalable)
+//     p le nombre de sommets
+//out : F_K(x) float* de dim 1x2
+void transFK(float*** pcoord_a, float** pvalfbase, float** fk_x, int p){
+    for(int i=0; i<=p; i++){
+        *fk_x[0] += *pvalfbase[i] * *pcoord_a[i][0];
+        *fk_x[1] += *pvalfbase[i] * *pcoord_a[i][1];
+    }
+}

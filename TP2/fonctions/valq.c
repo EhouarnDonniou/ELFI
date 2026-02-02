@@ -11,7 +11,6 @@ int valq(int *t){
         case 3 : 
             q=3;
             break;
-
     } 
     return q;
 }
