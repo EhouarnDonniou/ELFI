@@ -9,7 +9,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 /*
 types : t==1 -> quadrangles
         t==2 -> triangles
@@ -38,6 +37,8 @@ float invertM2x2(float***, float***);
 //renvoie le couple de sommets pour (local) pour l'arête (locale) en entrée
 //différentie les quadrangles des triangles
 void numNaret(int*, int, int);
+
+void selectPts(int nb, int num[], float* coorEns[], float* coorSel[]);
 
 //gestion des tableaux à 2 dimensions
 float** alloctab(int, int);
