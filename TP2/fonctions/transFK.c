@@ -1,10 +1,18 @@
+/*
+--------------------------------------------------------------------------------
+    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
+
+    Ecrit le 01/02/2026
+--------------------------------------------------------------------------------
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "../include/headers.h"
 
 
 //in : coordonnées du point x
-//     valeurs des fonctions de base (calculés au préalable)
+//     valeurs des fonctions de base (calculées au préalable)
 //     p le nombre de sommets
 //out : F_K(x) float* de dim 1x2
 void transFK(float*** pcoord_a, float** pvalfbase, float** fk_x, int p){

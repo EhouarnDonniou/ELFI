@@ -21,7 +21,7 @@
       subroutine trucF (tab,nbli,nbco)
       integer nbli, nbco
       real tab(nbli, nbco)
-    et la fonction C :
+    et la fonction C :--------------------------------------------------------------------------------
       void trucC(float **ptr)
     l'allocation de memoire et les appels se feront de la maniere suivante :
       ptr = alloctab(nbco, nbli);
@@ -53,8 +53,15 @@ float** alloctab(int dim1, int dim2) {
 }
 
 
+
 /*
+--------------------------------------------------------------------------------
+  Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
+
+  Ecrit le 28/01/2026
+
   alloctab adapté au type int (alloctab est de type float**) 
+--------------------------------------------------------------------------------
 */
 int** alloctabint(int dim1, int dim2) {
   int **ptr;

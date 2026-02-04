@@ -1,6 +1,20 @@
+/*
+--------------------------------------------------------------------------------
+    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI 
+
+    Ecrit le 04/02/2026
+--------------------------------------------------------------------------------
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/*
+types : t==1 -> quadrangles
+        t==2 -> triangles
+        t==3 -> segments
+*/
 
 //association de la valeur q en fonction de t
 int valq(int*);
@@ -20,6 +34,10 @@ void transFK(float***, float**, float**, int);
 //calcule le déterminant d'une matrice 2x2
 //inverse la matrice et retourne le déterminant
 float invertM2x2(float***, float***);
+
+//renvoie le couple de sommets pour (local) pour l'arête (locale) en entrée
+//différentie les quadrangles des triangles
+void numNaret(int*, int, int);
 
 //gestion des tableaux à 2 dimensions
 float** alloctab(int, int);

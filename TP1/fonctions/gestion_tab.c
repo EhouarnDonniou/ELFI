@@ -54,7 +54,13 @@ float** alloctab(int dim1, int dim2) {
 
 
 /*
-  alloctab adapté au type int (alloctab est de type float**) 
+--------------------------------------------------------------------------------
+    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
+
+    Ecrit le 01/02/2026 
+    
+    alloctab adapté au type int (alloctab est de type float**) 
+--------------------------------------------------------------------------------
 */
 int** alloctabint(int dim1, int dim2) {
   int **ptr;
