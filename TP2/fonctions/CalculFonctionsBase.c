@@ -13,7 +13,7 @@
 //calcul de wi(x) pour x dans K et wi fonction de base sur K
 //les wi sont d'ordre 1 tq wi(sommet_j)=1 si j==i
 //                                     =0 si j!=i 
-void calFbase(int t, float* x, float* valeurs){
+void calFbase(int t, float* x, float* valeur){
     switch(t){
         //quadrangles -> ordre 1 : Q1
         case(1):
@@ -38,7 +38,7 @@ void calFbase(int t, float* x, float* valeurs){
 
 //calcul de dwi/dxj(x) pour x dans K et wi fonction de base sur K
 //pour K dans le plan, x = (x1,x2)
-void calDerFbase(int t, float* x, float** valeurs){
+void calDerFbase(int t, float* x, float** valeur){
     switch(t){
         //quadrangles
         case(1):
@@ -67,8 +67,8 @@ void calDerFbase(int t, float* x, float** valeurs){
             break;
         //segments
         case(3):
-            valeur[0] = 1;
-            valeur[1] = -1;
+            *valeur[0] = 1;
+            *valeur[1] = -1;
             break;
     }
 }

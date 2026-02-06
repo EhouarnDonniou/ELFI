@@ -7,30 +7,12 @@ void main(){
     float* valeurs = malloc(4*sizeof(float));
 
     //sommet local 1
-    x_ref_q[0] = 1; x_ref_q[1] = 0;
+    x_ref_q[0] = 0.5; x_ref_q[1] = 0.5;
     printf("x-ref 1 : \n");
-    calFbase(t,x,valeurs);
+    printtab(&x_ref_q, 1, 2);
+    calFbase(t,x_ref_q,valeurs);
     printf("wi(x-ref) 1 : \n");
-    
-
-    //sommet local 2
-    x_ref_q[0] = 1; x_ref_q[1] = 1;
-    printf("x-ref 2 : \n");
-    calFbase(t,x,valeurs);
-    printf("wi(x-ref) 2 : \n");
-
-    //sommet local 3
-    x_ref_q[0] = 0; x_ref_q[1] = 1;
-    printf("x-ref 3 : \n");
-    calFbase(t,x,valeurs);
-    printf("wi(x-ref) 3 : \n");
-
-    //sommet local 4
-    x_ref_q[0] = 0; x_ref_q[0] = 0;
-    printf("x-ref 4 : \n");
-    calFbase(t,x,valeurs);
-    printf("wi(x-ref) 4 : \n");
-
+    printtab(&valeurs, 1, 4);
 
     // t = 2;
 
