@@ -84,7 +84,6 @@ int** alloctabint(int dim1, int dim2) {
   return(ptr);
 }
 
-
 /* 
 --------------------------------------------------------------------------------
   Cette fonction libere la memoire allouee par alloctab.

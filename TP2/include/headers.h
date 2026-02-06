@@ -18,6 +18,9 @@ types : t==1 -> quadrangles
 //association de la valeur q en fonction de t
 int valq(int*);
 
+//renvoie le vecteur poids et matrice des poits de quadrature en fonction de t
+void ppquad(int , float* , float**);
+
 //calcul des fonctions de base sur l'élément de référence 
 //élément 1 - quadrangle
 //------- 2 - triangle
