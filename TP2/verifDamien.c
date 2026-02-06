@@ -4,14 +4,16 @@ void main(){
     float det, **A, **Ainv;
     A=alloctab(2,2);
     Ainv=alloctab(2,2);
+    //Coef Matrice A
     A[0][0]=1;
     A[0][1]=0.99999;
     A[1][0]=1;
     A[1][1]=1;
+    //Fonction invertM2x2
     det = invertM2x2(A,Ainv);
     printtab(A,2,2);
     printtab(Ainv,2,2);
-    //Multiplication Matrice
+    //Multiplication Matrice A et Ainv
     float **C=alloctab(2,2);
     for(int i=0;i<2;i++){
         for(int j=0;j<2;j++){
