@@ -32,15 +32,15 @@ void transFK(float***, float**, float**, int);
 
 //calcule le déterminant d'une matrice 2x2
 //inverse la matrice et retourne le déterminant
-float invertM2x2(float***, float***);
+float invertM2x2(float**, float**);
 
 //renvoie le couple de sommets pour (local) pour l'arête (locale) en entrée
 //différentie les quadrangles des triangles
 void numNaret(int*, int, int);
 
-void selectPts(int nb, int num[], float* coorEns[], float* coorSel[]);
+void selectPts(int, int*, float**, float**);
 
-void matJacob(int d, float* aK[], float** derW, float** Jac);
+void matJacob(int, float**, float**, float**);
 
 //gestion des tableaux à 2 dimensions
 float** alloctab(int, int);
