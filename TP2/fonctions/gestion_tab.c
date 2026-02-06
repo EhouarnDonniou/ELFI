@@ -96,10 +96,10 @@ void freetab(void *ptr) {
   free(ptr);
 }
 
-void printtab(void **Mat,int dim1, int dim2){
+void printtab(float **Mat,int dim1, int dim2){
   for(int i=0;i<dim1;i++){
     for(int j=0;j<dim2;j++){
-      printf("A[%d][%d]=%f ",i,j,A[i][j]);
+      printf("%f ",Mat[i][j]);
     }
     printf("\n");
   }  

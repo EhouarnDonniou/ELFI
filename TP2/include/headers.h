@@ -46,4 +46,4 @@ void matJacob(int, float**, float**, float**);
 float** alloctab(int, int);
 int** alloctabint(int, int);
 void freetab(void*);
-void printtab(void**, int, int);
+void printtab(float**, int, int);
