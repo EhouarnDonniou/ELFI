@@ -40,6 +40,8 @@ void numNaret(int*, int, int);
 
 void selectPts(int nb, int num[], float* coorEns[], float* coorSel[]);
 
+void matJacob(int d, float* aK[], float** derW, float** Jac);
+
 //gestion des tableaux à 2 dimensions
 float** alloctab(int, int);
 int** alloctabint(int, int);
