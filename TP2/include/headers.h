@@ -45,4 +45,5 @@ void matJacob(int, float**, float**, float**);
 //gestion des tableaux à 2 dimensions
 float** alloctab(int, int);
 int** alloctabint(int, int);
-void freetab(void*); 
+void freetab(void*);
+void printtab(void**, int, int);
