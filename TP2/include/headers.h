@@ -22,9 +22,9 @@ int valq(int*);
 //élément 1 - quadrangle
 //------- 2 - triangle
 //------- 3 - segment
-void calFbase(int, float*, float**);
+void calFbase(int, float*, float*);
 //calcul de dérivées des fonctions de base sur l'élément de référence
-void calDerFbase(int, float*, float***);
+void calDerFbase(int, float*, float**);
 
 //fonction de changement de variable 
 //fait la transformation d'un élémént K à l'élémént de référence
