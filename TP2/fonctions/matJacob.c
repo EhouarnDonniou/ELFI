@@ -18,7 +18,7 @@ void matJacob(int d, float* aK[], float** derW, float** Jac){
             Jac[1] += derW[i]*aK[1];
         }
     }
-    if(d==12{//triangles et quadrangles
+    if(d==2){//triangles et quadrangles
         //ajouter un stop sur 3 ou 4 en fonction de la taille de l'élément?
         for(int i=0;i<4;i++){
             Jac[0][0] += derW[i][0]*aK[i][0];
