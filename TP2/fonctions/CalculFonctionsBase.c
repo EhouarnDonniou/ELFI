@@ -67,8 +67,8 @@ void calDerFbase(int t, float* x, float** valeur){
             break;
         //segments
         case(3):
-            *valeur[0] = 1;
-            *valeur[1] = -1;
+            valeur[0][0] = 1;
+            valeur[1][0] = -1;
             break;
     }
 }
