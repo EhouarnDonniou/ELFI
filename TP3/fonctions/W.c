@@ -5,9 +5,8 @@
     Ecrit le 11/02/2026
 --------------------------------------------------------------------------------
 */
-#include "include/headersTP3.h"
-void W(int nbneel, float *fctbase, float eltdif, float *vecelem){
+void W(int nbneel,float coefvar, float *fctbas, float eltdif, float *vecelem){
     for (int i=0; i<nbneel; i++){
-        
+        vecelem[i]+=coefvar*eltdif*fctbas[i];
     }
 }
