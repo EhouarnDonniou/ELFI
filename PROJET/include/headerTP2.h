@@ -44,9 +44,3 @@ void numNaret(int*, int, int);
 void selectPts(int, int*, float**, float**);
 
 void matJacob(int, float**, float**, float**);
-
-//gestion des tableaux à 2 dimensions
-float** alloctab(int, int);
-int** alloctabint(int, int);
-void freetab(void*);
-void printtab(float**, int, int);
