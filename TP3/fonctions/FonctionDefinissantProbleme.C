@@ -8,7 +8,7 @@
 // un point de coordonnées x=(x1,x2)
 
 int A11(float *x){
-    return 1;i FN(
+    return 1;
 }
 
 int A22(float *x){
