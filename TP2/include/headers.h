@@ -31,7 +31,7 @@ void calDerFbase(int, float*, float**);
 
 //fonction de changement de variable 
 //fait la transformation d'un élémént K à l'élémént de référence
-void transFK(float***, float**, float**, int);
+void transFK(float**, float*, float*, int);
 
 //calcule le déterminant d'une matrice 2x2
 //inverse la matrice et retourne le déterminant
@@ -44,3 +44,9 @@ void numNaret(int*, int, int);
 void selectPts(int, int*, float**, float**);
 
 void matJacob(int, float**, float**, float**);
+
+//gestion des tableaux à 2 dimensions
+float** alloctab(int, int);
+int** alloctabint(int, int);
+void freetab(void*);
+void printtab(float**, int, int);

@@ -20,7 +20,7 @@ void calFbase(int t, float* x, float* valeur){
             valeur[0] = x[0]-x[0]*x[1];
             valeur[1] = x[0]*x[1];
             valeur[2] = x[1]-x[0]*x[1];
-            valeur[3] = 1 - x[1]-x[0] + x[0]*x[1];
+            valeur[3] = 1 -x[1] -x[0] + x[0]*x[1];
             break;
         //triangles -> ordre 1 : P1
         case(2):
