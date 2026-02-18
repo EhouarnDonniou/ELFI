@@ -103,3 +103,29 @@ void printtab(float **Mat,int dim1, int dim2){
     printf("\n");
   }  
 }
+/* 
+--------------------------------------------------------------------------------
+  Cette fonction fait la somme de deux matrices
+--------------------------------------------------------------------------------
+*/
+void SommeMat(float **A,float **B, float **C ,int dim1 ,int dim2){
+  for(int i=0;i<dim1;i++){
+    for(int j=0;j<dim2;j++){
+      C[i][j]= A[i][j]+B[i][j];
+    }
+  }
+}
+/* 
+--------------------------------------------------------------------------------
+  Cette fonction fait le produit de deux matrices
+--------------------------------------------------------------------------------
+*/
+void ProduitMat(float **A,float **B, float **C ,int Adim1 ,int Adim2 ,int Bdim1 ,int Bdim2){  
+  for(int i=0;i<Bdim1;i++){
+    for(int j=0;j<Adim2;j++){
+      for(int k=0;k<Adim1;k++){
+        C[i][j]+= A[i][k]*Ainv[k][j];
+      }
+    }
+  }
+}
