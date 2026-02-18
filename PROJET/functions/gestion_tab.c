@@ -124,7 +124,7 @@ void ProduitMat(float **A,float **B, float **C ,int Adim1 ,int Adim2 ,int Bdim1 
   for(int i=0;i<Bdim1;i++){
     for(int j=0;j<Adim2;j++){
       for(int k=0;k<Adim1;k++){
-        C[i][j]+= A[i][k]*Ainv[k][j];
+        C[i][j]+= A[i][k]*B[k][j];
       }
     }
   }
