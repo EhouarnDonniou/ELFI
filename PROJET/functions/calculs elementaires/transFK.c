@@ -13,7 +13,7 @@
 
 //in : coordonnées du point x
 //     valeurs des fonctions de base (calculées au préalable)
-//     p le nombre de sommets
+//     p le nombre de fonctions de base
 //out : F_K(x) float* de dim 1x2 -> à entrer en argument avec les valeurs (0,0) et pas (x1,x2)
 void transFK(float** pcoord_a, float* pvalfbase, float* fk_x, int p){
     for(int i=0; i<p; i++){

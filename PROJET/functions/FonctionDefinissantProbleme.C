@@ -7,31 +7,31 @@
 */
 // un point de coordonnées x=(x1,x2)
 
-int A11(float *x){
+float A11(float *x){
     return 1;
 }
 
-int A22(float *x){
+float A22(float *x){
     return 1;
 }
 
-int A12(float *x){
+float A12(float *x){
     return 0;
 }
 
-int A00(float *x){
+float A00(float *x){
     return 1;
 }
 
-int BN(float *x){
+float BN(float *x){
     return 0;
 }
 
-int FOMEGA(float *x){
+float FOMEGA(float *x){
     return 1;
 }
 
-int FN(float *x){
+float FN(float *x){
     return 1;
 }
 
