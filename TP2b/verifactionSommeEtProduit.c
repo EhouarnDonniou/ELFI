@@ -9,9 +9,9 @@
 #include "../PROJET/include/utilitaires.h"
 void main(){
     int l,m,k;
-    l=2;
-    m=2;
-    k=2;
+    l=8;
+    m=3;
+    k=3;
     float **A=alloctab(l,m);
     //Coeff A
     for(int i=0;i<l;i++){
@@ -46,6 +46,7 @@ void main(){
     printf("A+B:\n");
     printtab(C,l,m);
     //Multiplication A*D=E
+    ProduitMat(A,D,E,l,m,k,l);
     printf("A:\n");
     printtab(A,l,m);
     printf("D:\n");
