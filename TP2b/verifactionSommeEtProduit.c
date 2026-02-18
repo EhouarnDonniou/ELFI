@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------
 */
 
-#include "../PROJET/include/utilitaires.h"
+#include "utilitaires.h"
 void main(){
     int l,m,k;
     l=8;
@@ -28,6 +28,7 @@ void main(){
     }
     float **C=alloctab(l,m);
 
+    l = 6;
     float **D=alloctab(k,l);
     //Coeff D
     for(int i=0;i<k;i++){
@@ -46,7 +47,7 @@ void main(){
     printf("A+B:\n");
     printtab(C,l,m);
     //Multiplication A*D=E
-    ProduitMat(A,D,E,l,m,k,l);
+    ProduitMat(D,A,E,l,m,k,l);
     printf("A:\n");
     printtab(A,l,m);
     printf("D:\n");
