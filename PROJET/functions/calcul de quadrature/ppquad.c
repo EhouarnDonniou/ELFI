@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/headerTP2a.h"
+#include "../../include/headerTP2a.h"
 
 void ppquad(int t, float* poids, float** pts){
     switch (t){
