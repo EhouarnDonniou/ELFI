@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------
 */
 
-#include "../include/headerTP1.h"
+#include "../../include/headerTP1.h"
 
 void lecture_fichier_maillage(float* a,float* b, float* c,float* d, int* n1, int* n2, int* t){
     FILE *pFile;

@@ -7,6 +7,8 @@
 */
 // un point de coordonnées x=(x1,x2)
 
+#include "../include/headerTP2b.h"
+
 float A11(float *x){
     return 1;
 }

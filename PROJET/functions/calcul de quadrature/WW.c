@@ -1,3 +1,5 @@
+#include "../../include/headerTP2b.h"
+
 /*
 --------------------------------------------------------------------------------
   Mise a jour de la matrice elementaire : ajout de la contribution
@@ -21,6 +23,7 @@
    matelm : matrice elementaire de masse actualisee
 --------------------------------------------------------------------------------
 */
+
 void WW(int nbneel, float *fctbas, float eltdif, float cofvar, float **matelm) {
   int i, j;
   float coeff;

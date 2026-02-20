@@ -52,7 +52,7 @@ float** alloctab(int dim1, int dim2) {
   return(ptr);
 }
 
-
+#include "../../include/headerTP2b.h"
 
 /*
 --------------------------------------------------------------------------------

@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/headerTP2a.h"
+#include "../../include/headerTP2a.h"
 
 //calcul de wi(x) pour x dans K et wi fonction de base sur K
 //les wi sont d'ordre 1 tq wi(sommet_j)=1 si j==i

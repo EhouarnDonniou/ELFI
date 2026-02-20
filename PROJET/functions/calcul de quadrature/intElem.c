@@ -1,4 +1,4 @@
-#include "../../include/headerTP2b.h"
+
 
 /*
 --------------------------------------------------------------------------------
@@ -8,6 +8,7 @@
 --------------------------------------------------------------------------------
 */
 
+#include "../../include/headerTP2b.h"
 
 /*
    Calcule par quadrature, la matrice et le second membre de la formulation variationnelle

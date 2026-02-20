@@ -5,6 +5,9 @@
     Ecrit le 11/02/2026
 --------------------------------------------------------------------------------
 */
+
+#include "../../include/headerTP2b.h"
+
 //cofvar est la matrice des a_alpha_beta(Fk(x_k_hat))
 //DW est la matrice de la dérivées des fonctions de base
 void ADWDW(int nbneel, float **DW, float** JFk_inv, float eltdif, float **cofvar, float **matelm) {

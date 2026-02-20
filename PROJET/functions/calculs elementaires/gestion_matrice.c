@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/headerTP2a.h"
+#include "../../include/headerTP2a.h"
 
 
 void matJacob(int d, float* aK[], float** derW, float** Jac){

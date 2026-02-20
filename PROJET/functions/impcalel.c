@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "../include/utilitaires.h"
 
 void impCalEl(int K, int typEl, int nbneel, float **MatElem, float *SMbrElem,
               int *NuDElem, float *uDElem) {
