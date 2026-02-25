@@ -14,9 +14,11 @@
 
 //prend le numéro local d'une arête et ressort le couple de numéros locaux des sommets associés
 // en fonction du type de l'élément et ordonné en sens anti-horaire (numérotation locale de ref)
-//entrée : int* numaret, pointeur scalaire, num local d'une arête
-//         int t, type de l'élément (t==1 -> quadrangle, t==2 -> triangle)
-//sortie : int numsommet[], pointeur 2x1 où est placé le couple (_,_), sommets de l'arête en entrée
+//
+//in : int* numaret, pointeur scalaire, num local d'une arête
+//     int t, type de l'élément (t==1 -> quadrangle, t==2 -> triangle)
+//out : int numsommet[], pointeur 2x1 où est placé le couple (_,_), sommets de l'arête en entrée
+//
 void numNaret(int* numaret, int numsommets[], int t){
     switch(*numaret){
         case(1): 
@@ -32,12 +34,12 @@ void numNaret(int* numaret, int numsommets[], int t){
         case(3):
         //num-arête == 3 
             if(t==1){ //quadrangle
-                //-> sommets : (3,4)
+            //-> sommets : (3,4)
                 numsommets[0]=3;
                 numsommets[1]=4;
             }
             if(t==2){ //triangle
-                //-> sommets : (3,1)
+            //-> sommets : (3,1)
                 numsommets[0]=3;
                 numsommets[1]=1;
             }

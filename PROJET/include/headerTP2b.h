@@ -12,15 +12,23 @@
 
 //fonctions de définition du problème 
 //intérieur
-float A11(float* ); 
-float A22(float* );
-float A12(float* );
-float A00(float* );
+float A11(float*); 
+float A22(float*);
+float A12(float*);
+float A00(float*);
 //en GammaN
-float BN(float* );
+float BN(float*);
 //second membre intérieur
-float FOMEGA(float* );
+float FOMEGA(float*);
 //second membre en GammeN
-float FN(float* );
+float FN(float*);
 //en GammaD (Dirichlet)
-float UD(float* );
+float UD(float*);
+
+//fonctions de quadrature
+void ADWDW(int, float**, float**, float, float**, float**);
+void WW(int, float*, float, float, float**);
+void W(int , float*, float, float, float*);
+
+//Calcul des intégrales de surface
+void intElem(int, int, int, float**, float*, float**, float**, float*);

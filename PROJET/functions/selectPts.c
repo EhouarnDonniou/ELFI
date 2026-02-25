@@ -23,7 +23,7 @@
 //                           pointe aux mêmes endroits de la mémoire que coorEns, 
 //                           pour seulement les points séléctionnés associés par leur numéro global.
 void selectPts(int nb, int num[], float* coorEns[], float* coorSel[]){
-    for(int i=0; i<nb;i++){
-        coorSel[i] = coorEns[num[i]-1]; //-1, les num globaux sont >=1
+    for(int i=0; i<nb; i++){
+        coorSel[i] = coorEns[num[i]-1]; //-1 car les num globaux sont >=1
     }
 }

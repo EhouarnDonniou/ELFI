@@ -37,16 +37,12 @@ void transFK(float**, float*, float*, int);
 //inverse la matrice et retourne le déterminant
 float invertM2x2(float**, float**);
 
-//renvoie le couple de sommets pour (local) pour l'arête (locale) en entrée
-//différentie les quadrangles des triangles
-void numNaret(int*, int, int);
-
-void selectPts(int, int*, float**, float**);
-
+//calcule et retourne la matrice Jacobienne
+//ou le vecteur différentiel selon la dimension
 void matJacob(int, float**, float**, float**);
 
-//gestion des tableaux à 2 dimensions
-float** alloctab(int, int);
-int** alloctabint(int, int);
-void freetab(void*);
-void printtab(float**, int, int);
+//renvoie le couple de sommets pour (local) pour l'arête (locale) en entrée
+//différentie les quadrangles des triangles
+void numNaret(int*, int*, int);
+
+void selectPts(int, int*, float**, float**);
