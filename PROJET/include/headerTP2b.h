@@ -30,5 +30,8 @@ void ADWDW(int, float**, float**, float, float**, float**);
 void WW(int, float*, float, float, float**);
 void W(int , float*, float, float, float*);
 
-//Calcul des intégrales de surface
+//calcul des intégrales de surface
 void intElem(int, int, int, float**, float*, float**, float**, float*);
+
+//calculs relatifs à un élément K
+void cal1Elem(int, int, int*, int, int*, int, int*, int, int, float**, int, int*, float**, float*, float*, float*);

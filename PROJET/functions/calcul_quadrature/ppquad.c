@@ -10,6 +10,13 @@
 #include <stdlib.h>
 #include "../../include/headerTP2a.h"
 
+int valq(int t){
+    int q;
+    if(t==1) q = 9;
+    else q = 3;
+    return q;
+}
+
 void ppquad(int t, float* poids, float** pts){
     switch (t){
         // quadrangle (ordre 3) q=9
@@ -19,7 +26,7 @@ void ppquad(int t, float* poids, float** pts){
             for (int i=0; i<5; i++){
                 poids[i]=1/36;
             }
-            for (int i=4; i<8; i++){
+            for (i=4; i<8; i++){
                 poids[i]=1/9;
             }
             poids[8]=4/9;
@@ -58,7 +65,7 @@ void ppquad(int t, float* poids, float** pts){
         case 2 : 
 
             //vecteur poids
-            for (int i=0; i<2; i++){
+            for (int i=0; i<3; i++){
                 poids[i]=1/6;
             }
 
@@ -87,8 +94,6 @@ void ppquad(int t, float* poids, float** pts){
             pts[1][0]=0;    //x2
             pts[2][0]=1/2;  //x3
             break;
-
-            
     }//x3
 
 }
