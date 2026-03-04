@@ -34,4 +34,4 @@ void W(int , float*, float, float, float*);
 void intElem(int, int, float**, float*, float**, float**, float*);
 
 //calculs relatifs à un élément K
-void cal1Elem(int, int, int*, int, int*, int, int*, int, int, float**, int, int*, float**, float*, float*, float*);
+void cal1Elem(int, int, int, int*, int, int*, int, int*, int, int, float**, int, int*, float**, float*, float*, float*);

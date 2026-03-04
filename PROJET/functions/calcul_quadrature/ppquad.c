@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------
     Dora PAPAI, Ehouarn DONNIOU, Damien MALETTE
 
-    Ecrit le /2026
+    Ecrit le 04/03/2026
 --------------------------------------------------------------------------------
 */
 
@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include "../../include/headerTP2a.h"
 
-int valq(int t){
+int valq(int t){    
     int q;
     if(t==1) q = 9;
     else q = 3;

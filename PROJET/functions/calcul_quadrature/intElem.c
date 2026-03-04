@@ -26,7 +26,7 @@
 // (utilise vectlm[k]+=truc(k) / matelm[k][l]+=truc(k,l))
 // attention donc à l'initialiser à 0 avant de l'entrer en argument de intElem
 
-void intElem(int p, int q, float** xquad, float* pdsquad, float** aK, float** matelm, float* vectelm){
+void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, float** matelm, float* vectelm){
     //déclaration des vecteurs et matrices éphémères
     float* wx_i = malloc(4*sizeof(float)); //taille 4 parce qu'on a max 4 fonctions de base
     float** dwx_i = alloctab(4,2);
