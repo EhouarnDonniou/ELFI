@@ -4,28 +4,33 @@
 #include "include/utilitaires.h"
 
 void main(){
+    //Declaration
     char* ficmai = "../TP1/fichiers-de-maillage-tests/car1x1q_4";
     float** coord;
     int** ngnel; 
     int** nRefAr;
-    int typel, nbtng, nbtel, nbneel, nbaret;
-    lecfima(ficmai,&typel,&nbtng,&coord,&nbtel,&ngnel, &nbneel, &nbaret, &nRefAr);
+    int typeEl, nbtng, nbtel, nbneel, nbaret, nRefDom, nbRefD0, nbRefD1, nbRefF1;
+    int* numRefD0, numRefD1, numRefF1, nrefArEl;
+    lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel, &nbneel, &nbaret, &nRefAr);
 
-    //Allocation de MatElem, SMbrElem, NuDElem et uDElem
+    //Allocation
     float** MatElem=alloctab(nbneel,nbneel);
     float* SMbrElem=calloc(nbneel,sizeof(float));
     float* NuDElem=calloc(nbneel,sizeof(float));
     float* uDElem=calloc(nbneel,sizeof(float));
-    //Initialisation à 0 des --Elem
+    float** coorEl=alloctab(nbneel,nbneel);
+    //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
     for(int i=0; i<nbneel ; i++){
         for(int j=0; j<nbneel; j++){
             MatElem[i][j]=0;
         }
     }
+    
     //Boucle sur les éléments K
     for(int i=0;i<k;i++){
-        cal1Elem( nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, 
-                  int typeEl, int nbneel, float** coorEl, int nbaret, int* nrefArEl,
-                  float** MatElem, float* SMbrElem, float* NuDElem, float* uDElemen)
+        selectPts(nbneel,ngnel[i],coord,coorEl);
+        cal1Elem(nRefDom, nbRefD0, numRefD0, nbRefD1, numRefD1, nbRefF1, numRefF1, 
+                  typeEl, nbneel, coorEl, nbaret, nrefArEl,
+                  MatElem, SMbrElem, NuDElem, uDElemen)
     }
 }
