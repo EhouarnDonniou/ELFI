@@ -32,9 +32,8 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
     float** dwx_i = alloctab(q,2);
 
     float* fk_x = malloc(2*sizeof(float));
-
-    float** JFk = alloctab(4,2);
-    float** JFk_inv = alloctab(4,2);
+    float** JFk = alloctab(2,2);
+    float** JFk_inv = alloctab(2,2);
 
     //matrice des a_alpha_beta(Fk(x_hat))
     float** AabFk = alloctab(2,2);
