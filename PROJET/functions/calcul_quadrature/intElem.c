@@ -28,10 +28,11 @@
 
 void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, float** matelm, float* vectelm){
     //déclaration des vecteurs et matrices éphémères
-    float* wx_i = malloc(4*sizeof(float)); //taille 4 parce qu'on a max 4 fonctions de base
-    float** dwx_i = alloctab(4,2);
+    float* wx_i = malloc(q*sizeof(float)); //taille 4 parce qu'on a max 4 fonctions de base
+    float** dwx_i = alloctab(q,2);
 
-    float* fk_x = malloc(4*sizeof(float));
+    float* fk_x = malloc(2*sizeof(float));
+
     float** JFk = alloctab(4,2);
     float** JFk_inv = alloctab(4,2);
 
@@ -42,12 +43,12 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
     for(int i=0; i<q; i++){
         
         //calculs élémentaires sur le point x_i
-        calFbase(t, x[i], wx_i);
-        calDerFbase(t, x[i], dwx_i);
+        calFbase(t, xquad[i], wx_i);
+        calDerFbase(t, xquad[i], dwx_i);
 
         //calcul par transformation Fk(x)
         transFK(aK, wx_i, fk_x, p);
-        matJacob(2, aK, dwx_i, JFk);
+        matJacob(t, aK, dwx_i, JFk);
         float detJFk = invertM2x2(JFk, JFk_inv);
         
         //calcul des a_alpha_beta(Fk(x_hat)) et a00(Fk(x_hat))
