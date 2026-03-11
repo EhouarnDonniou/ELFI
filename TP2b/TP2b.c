@@ -10,7 +10,10 @@ void main(){
     int** ngnel; 
     int** nRefAr;
     int typeEl, nbtng, nbtel, nbneel, nbaret, nRefDom, nbRefD0, nbRefD1, nbRefF1;
-    int* numRefD0, numRefD1, numRefF1, nrefArEl;
+    int* numRefD0;
+    int* numRefD1;
+    int* numRefF1;
+    int* nrefArEl;
     lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel, &nbneel, &nbaret, &nRefAr);
 
     //Allocation

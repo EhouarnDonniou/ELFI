@@ -18,7 +18,7 @@ void ADWDW(int nbneel, float **DW, float** JFk_inv, float eltdif, float **cofvar
   //same pour (j,beta)
   float dwdx_fk_xhat;
 
-  for(int alpha=0;aplha<2;alpha++){
+  for(int alpha=0;alpha<2;alpha++){
     for(int beta=0;beta<2;beta++){
       
       for (i=0; i<nbneel; i++) {

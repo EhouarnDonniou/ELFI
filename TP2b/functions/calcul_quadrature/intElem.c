@@ -59,12 +59,12 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
         float A00Fk = A00(fk_x);
         
         //calcul de matelm matrice de l'intérieur en deux parties 
-        ADWDW(p, dwx_i, JFk_inv, pdsquad[i]*detJKk, AabFk, matelm)
-        WW(p, wx_i, pdsquad[i]*detJKk, A00Fk, matelm);
+        ADWDW(p, dwx_i, JFk_inv, pdsquad[i]*detJFk, AabFk, matelm);
+        WW(p, wx_i, pdsquad[i]*detJFk, A00Fk, matelm);
 
         //calcul de Fw(Fk(x_hat)) puis de vectelm second membre de l'intérieur
         float fOmgFk = FOMEGA(fk_x);
-        W(p, wx_i, pdsquad[i]*detJKk, fOmgFk, vectelm);
+        W(p, wx_i, pdsquad[i]*detJFk, fOmgFk, vectelm);
     }
 
     free(wx_i); free(fk_x);
