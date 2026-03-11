@@ -37,28 +37,6 @@ void main(){
                   typeEl, nbneel, coorEl, nbaret, nrefArEl,
                   MatElem, SMbrElem, NuDElem, uDElem);
 
-        cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, 
-                 int typeEl, int nbneel, float** coorEl, int nbaret, int* nrefArEl, 
-                 float** MatElem, float* SMbrElem, float* NuDElem, float* uDElem)
-
-        cal1Elem(int, int, int*, int, int*, int, int*,
-                 int, int, float**, int, int*,
-                float**, float*, float*, float*);
- 
-    int typeEl, nbtng, nbtel, nbneel, nbaret, nRefDom, nbRefD0, nbRefD1, nbRefF1;
-    int* numRefD0, numRefD1, numRefF1, nrefArEl;
-    lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel, &nbneel, &nbaret, &nRefAr);
-
-    //Allocation
-    float** MatElem=alloctab(nbneel,nbneel);
-    float* SMbrElem=calloc(nbneel,sizeof(float));
-    int* NuDElem=calloc(nbneel,sizeof(int));
-    float* uDElem=calloc(nbneel,sizeof(float));
-    float** coorEl=alloctab(nbneel,nbneel);
-
-
-
-
         impCalEl(k, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
     }
 }
