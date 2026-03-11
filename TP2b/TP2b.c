@@ -9,7 +9,8 @@ void main(){
     float** coord;
     int** ngnel; 
     int** nRefAr;
-    int typeEl, nbtng, nbtel, nbneel, nbaret, nRefDom, nbRefD0, nbRefD1, nbRefF1;
+    int typeEl, nbtng, nbtel, nbneel, nbaret;
+    int nRefDom, nbRefD0, nbRefD1, nbRefF1;
     int* numRefD0;
     int* numRefD1;
     int* numRefF1;
