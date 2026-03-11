@@ -18,7 +18,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
     //construction du contexte de quadrature (points et poids associés)
     int nbquad = valq(typeEl);
     float* pdsquad = malloc(nbquad*sizeof(float));
-    float** xquad = alloctab(2,nbquad);
+    float** xquad = alloctab(nbquad,2);
     ppquad(typeEl,pdsquad,xquad);
 
     intElem(typeEl, nbneel, nbaret, xquad, pdsquad, coorEl, MatElem, SMbrElem);

@@ -4,7 +4,7 @@
 #include "include/utilitaires.h"
 
 void main(){
-    char* ficmai = "../TP1/fichiers-de-maillage-tests/car1x1q_4";
+    char* ficmai = "car1x1q_4";
     float** coord;
     int** ngnel; 
     int** nRefAr;
@@ -14,14 +14,14 @@ void main(){
     int* numRefD1;
     int* numRefF1;
     int* nrefArEl;
-    lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel, &nbneel, &nbaret, &nRefAr);
+    int  check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel, &nbneel, &nbaret, &nRefAr);
 
     //Allocation
     float** MatElem=alloctab(nbneel,nbneel);
     float* SMbrElem=calloc(nbneel,sizeof(float));
     int* NuDElem=calloc(nbneel,sizeof(int));
     float* uDElem=calloc(nbneel,sizeof(float));
-    float** coorEl=alloctab(nbneel,nbneel);
+    float** coorEl=alloctab(nbneel,2);
 
     //Boucle sur les éléments K
     for(int k=0;k<nbtel;k++){
