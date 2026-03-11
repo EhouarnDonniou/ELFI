@@ -6,7 +6,10 @@
 --------------------------------------------------------------------------------
 */
 
+#include "../../include/headerTP1.h"
+#include "../../include/headerTP2a.h"
 #include "../../include/headerTP2b.h"
+#include "../../include/utilitaires.h"
 
 /*
    Calcule par quadrature, la matrice et le second membre de la formulation variationnelle

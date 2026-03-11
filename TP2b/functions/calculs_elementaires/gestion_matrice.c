@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include "../../include/headerTP2a.h"
 
+
 //calcule la matrice Jacobienne de FK(x_hat) pour K actuel en un point x_hat donné (x_hat dans K_hat)
 //utilise la formule pour x_hat noté x : 
 //                  

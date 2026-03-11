@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/headerTP2a.h"
+#include "../../include/headerTP2a.h"
 
 
 //Associe le num global num[] de nb points à leurs coordonées coorSel[]

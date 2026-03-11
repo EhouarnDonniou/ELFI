@@ -19,11 +19,12 @@ int valq(int t){
 
 void ppquad(int t, float* poids, float** pts){
     switch (t){
+        int i ;
         // quadrangle (ordre 3) q=9
         case 1 : 
 
             //vecteur poids
-            for (int i=0; i<5; i++){
+            for (i=0; i<5; i++){
                 poids[i]=1/36;
             }
             for (i=4; i<8; i++){
@@ -65,7 +66,7 @@ void ppquad(int t, float* poids, float** pts){
         case 2 : 
 
             //vecteur poids
-            for (int i=0; i<3; i++){
+            for (i=0; i<3; i++){
                 poids[i]=1/6;
             }
 
