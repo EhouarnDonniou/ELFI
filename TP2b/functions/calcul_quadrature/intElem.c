@@ -64,7 +64,7 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
 
         //calcul de Fw(Fk(x_hat)) puis de vectelm second membre de l'intérieur
         float fOmgFk = FOMEGA(fk_x);
-        W(p, wx_i, pdsquad[i]*detJKk, fOmgFk, vectelm)
+        W(p, wx_i, pdsquad[i]*detJKk, fOmgFk, vectelm);
     }
 
     free(wx_i); free(fk_x);
