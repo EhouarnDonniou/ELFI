@@ -36,3 +36,4 @@ void intElem(int, int, float**, float*, float**, float**, float*);
 //calculs relatifs à un élément K
 void cal1Elem(int, int, int*, int, int*, int, int*, int, int, float**, int, int*, float**, float*, float*, float*);
 //void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, int typeEl, int nbneel, float** coorEl, int nbaret, int* nrefArEl, float** MatElem, float* SMbrElem, float* NuDElem, float* uDElem){
+int lecNumRef(char*, int*,int*, int*, int*, int*, int*, int*)
