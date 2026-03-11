@@ -4,7 +4,6 @@
 #include "include/utilitaires.h"
 
 void main(){
-    //Declaration
     char* ficmai = "../TP1/fichiers-de-maillage-tests/car1x1q_4";
     float** coord;
     int** ngnel; 
