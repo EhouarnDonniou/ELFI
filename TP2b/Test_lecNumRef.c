@@ -14,9 +14,9 @@
 void main(){
     char* ficmai = "NUMREF.Test";
     int nbRefdm,nbRefD0,nbRefD1,nbRefF1;
-    int* numRefD0;
-    int* numRefD1;
-    int* numRefF1;
+    int** numRefD0;
+    int** numRefD1;
+    int** numRefF1;
 
     lecNumRef(ficmai,&nbRefdm,&nbRefD0,&nbRefD1,&nbRefF1,numRefD0,numRefD1,numRefF1);
     printf("nbrefdm = %d ",nbRefdm);
