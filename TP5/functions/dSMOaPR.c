@@ -92,33 +92,3 @@ void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int Lon
         
     }
 }
-
-/*
---------------------------------------------------------------------------------
-    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
-
-    Ecrit le 22/04/2026
---------------------------------------------------------------------------------
-*/
-
-/*
-    Affiche la partie inférieur d'une matrice en stockage profil.
-*/
-void affSProf(int NbLign, int* Profil, float* MatProf){
-    printf("\n");
-        printf("Ligne %d  ", 1);
-        printf("%10.4e \n", MatProf[0]);
-
-        for(int i=1;i<NbLign;i++){
-            printf("Ligne %d  ", i+1);
-            int CoefSurLigne = Profil[i]-Profil[i-1];
-
-            for(int j=0; j<i; j++){
-
-                printf("%10.4e, %d ", MatProf[NbLign+Profil[i]+j],Profil[i]);
-            }
-
-            printf("%10.4e \n", MatProf[i]);
-        }
-
-}
