@@ -73,7 +73,7 @@ if (affichage>=1){
 }
 
 
-//declaration des variables relatives au stockage morse ordonné
+//declaration d    free(Profil_true); free(MatProf_true);es variables relatives au stockage morse ordonné
     NbCoef = AdPrCoefLi[nbtng-1];
     float* SecMemb0 = malloc(nbtng*sizeof(float));
     int* AdPrCoLi0 = malloc(nbtng*sizeof(int));
@@ -90,30 +90,17 @@ if (affichage>=2){
 
 //déclaration des variables relatives au stockage profil (nbtng == Nblign)
     NbCoef = AdPrCoLi0[nbtng]-1;
-    //int LongProfil_prof =  dSMOaLongPR(nbtng,AdPrCoLi0,NumCol0,Matrice0);
-    int LongProfil =  dSMOaLongPR_nous(nbtng,AdPrCoLi0,NumCol0,Matrice0); //check
+    int LongProfil =  dSMOaLongPR_nous(nbtng,AdPrCoLi0,NumCol0,Matrice0);
     int* Profil = malloc(nbtng*sizeof(int));
     float* MatProf = malloc(LongProfil*sizeof(float)); 
-    int* Profil_true = malloc(nbtng*sizeof(int));
-    float* MatProf_true = malloc(LongProfil*sizeof(float));
 
 //passage SMO->Profile 
-    dSMOaPR(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil_true, MatProf_true);   
     dSMOaPR_nous(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil, MatProf);
    
-
-    printf("diff Profil : \n");
-    for(int i=0;i<=nbtng;i++){
-        printf("  %d : %d, %d\n",i,Profil[i],Profil_true[i]);
-    }
-    printf("diff MatProfil : \n");
-    for(int i=0;i<LongProfil;i++){
-        printf("  %d : %f , %f\n",i,MatProf[i],MatProf_true[i]);
-    }
 //affichage du système en profil
-// à revoir tbh
+const int a = 1;
 if(affichage>=3){ 
-    affSProf(nbtng, Profil, MatProf);
+    impmpr_(&a,&nbtng, Profil, MatProf, &MatProf[nbtng]);
 }
 
 
@@ -126,5 +113,4 @@ if(affichage>=3){
     free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
 
     free(Profil); free(MatProf);
-    free(Profil_true); free(MatProf_true);
 }
