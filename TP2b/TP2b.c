@@ -14,8 +14,8 @@ void main(){
     int* numRefD1;
     int* numRefF1;
     int* nrefArEl;
-    int  check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel, &nbneel, &nbaret, &nRefAr);
-
+    int  check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
+    
     //Allocation
     float** MatElem=alloctab(nbneel,nbneel);
     float* SMbrElem=calloc(nbneel,sizeof(float));
@@ -24,8 +24,8 @@ void main(){
     float** coorEl=alloctab(nbneel,2);
 
     //Boucle sur les éléments K
-    for(int k=0;k<nbtel;k++){
-        
+    for(int k=0;k<2;k++){
+        printf("---------Element actuel K = %d \n", k+1);
         //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
         for(int i=0; i<nbneel ; i++){
             SMbrElem[i]=0;
@@ -35,11 +35,24 @@ void main(){
             MatElem[i][j]=0;
             }
         }
-        selectPts(nbneel,ngnel[k],coord,coorEl);
-        cal1Elem(nRefDom, nbRefD0, numRefD0, nbRefD1, numRefD1, nbRefF1, numRefF1, 
-                  typeEl, nbneel, coorEl, nbaret, nrefArEl,
-                  MatElem, SMbrElem, NuDElem, uDElem);
 
-        impCalEl(k, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
+        for(int i=0;i<nbtel;i++){
+            for(int j=0;j<nbneel;j++){
+                printf("num global pt = %d\n",ngnel[j][i]);
+            }
+            printf("---\n");
+        }
+
+        selectPts(nbneel,ngnel[k],coord,coorEl);
+
+        for(int i=0; i<nbneel ; i++){
+           printf("(%f, %f)\n", coorEl[i][0],coorEl[i][1]);
+        }
+
+        cal1Elem(nRefDom, nbRefD0, numRefD0, nbRefD1, numRefD1, nbRefF1, numRefF1, 
+                   typeEl, nbneel, coorEl, nbaret, nrefArEl,
+                   MatElem, SMbrElem, NuDElem, uDElem);
+
+        //impCalEl(k, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
     }
 }
