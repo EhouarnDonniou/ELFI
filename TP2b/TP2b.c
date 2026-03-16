@@ -36,12 +36,12 @@ void main(){
             }
         }
 
-        for(int i=0;i<nbtel;i++){
-            for(int j=0;j<nbneel;j++){
-                printf("num global pt = %d\n",ngnel[j][i]);
-            }
-            printf("---\n");
-        }
+        // for(int i=0;i<nbtel;i++){
+        //     for(int j=0;j<nbneel;j++){
+        //         printf("num global pt = %d\n",ngnel[i][j]);
+        //     }
+        //     printf("---\n");
+        // }
 
         selectPts(nbneel,ngnel[k],coord,coorEl);
 
@@ -53,6 +53,7 @@ void main(){
                    typeEl, nbneel, coorEl, nbaret, nrefArEl,
                    MatElem, SMbrElem, NuDElem, uDElem);
 
-        //impCalEl(k, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
+        impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
     }
+    
 }
