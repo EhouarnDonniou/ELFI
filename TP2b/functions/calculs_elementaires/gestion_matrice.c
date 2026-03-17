@@ -63,7 +63,7 @@ void matJacob(int t, float* aK[], float** derW, float** Jac){
 //      det(Mat)=0 => determinant = 0 et mat n'est pas inversée (Mat_inverse non-modifiée)
 float invertM2x2(float** Mat, float** Mat_inv){
     float determinant = Mat[0][0]*Mat[1][1] - Mat[0][1]*Mat[1][0];
-    if(determinant<=  pow(10,-16) ){
+    if(fabs(determinant)<=  pow(10,-8) ){
         printf("/! ERROR \n La matrice n'est pas inversible!\n");
         return 0;
     }

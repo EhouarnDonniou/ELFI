@@ -1,3 +1,10 @@
+/*
+--------------------------------------------------------------------------------
+    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
+
+    Ecrit le 04/03/2026
+--------------------------------------------------------------------------------
+*/
 #include "include/headerTP1.h"
 #include "include/headerTP2a.h"
 #include "include/headerTP2b.h"
@@ -18,14 +25,14 @@ void main(){
     
     //Allocation
     float** MatElem=alloctab(nbneel,nbneel);
-    float* SMbrElem=calloc(nbneel,sizeof(float));
-    int* NuDElem=calloc(nbneel,sizeof(int));
-    float* uDElem=calloc(nbneel,sizeof(float));
+    float* SMbrElem=malloc(nbneel*sizeof(float));
+    int* NuDElem=malloc(nbneel*sizeof(int));
+    float* uDElem=malloc(nbneel*sizeof(float));
     float** coorEl=alloctab(nbneel,2);
 
     //Boucle sur les éléments K
     for(int k=0;k<2;k++){
-        printf("---------Element actuel K = %d \n", k+1);
+        printf("\n \n ---------Element actuel K = %d \n", k+1);
         //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
         for(int i=0; i<nbneel ; i++){
             SMbrElem[i]=0;
@@ -35,14 +42,7 @@ void main(){
             MatElem[i][j]=0;
             }
         }
-
-        // for(int i=0;i<nbtel;i++){
-        //     for(int j=0;j<nbneel;j++){
-        //         printf("num global pt = %d\n",ngnel[i][j]);
-        //     }
-        //     printf("---\n");
-        // }
-
+        
         selectPts(nbneel,ngnel[k],coord,coorEl);
 
         for(int i=0; i<nbneel ; i++){

@@ -27,7 +27,7 @@ int lecfima(char* ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel
     //Lexture des coordonnees
     for(int i=0;i<*pnbtng;i++){
         fscanf(pFile,"%f %f",&(*pcoord)[i][0],&(*pcoord)[i][1]);
-        printf("%f %f \n",(*pcoord)[i][0],(*pcoord)[i][1]);
+        // printf("%f %f \n",(*pcoord)[i][0],(*pcoord)[i][1]);
     }
     //Lecture de pnbtel=m, ptypel=t, pnbneel=p, pnbaret=q
     fscanf(pFile,"%d %d %d %d",pnbtel,ptypel,pnbneel,pnbaret);
