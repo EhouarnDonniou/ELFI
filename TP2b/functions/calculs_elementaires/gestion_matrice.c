@@ -38,8 +38,8 @@ void matJacob(int t, float* aK[], float** derW, float** Jac){
 
     if(t==3){ //segments
         for(int i=0; i<stop; i++){
-            Jac[0][0] += derW[i][0]*aK[0][0];
-            Jac[1][0] += derW[i][0]*aK[1][0]; 
+            Jac[0][0] += derW[i][0]*aK[i][0];
+            Jac[1][0] += derW[i][0]*aK[i][1]; 
         }
     }
     else{ //triangle et quadrangles

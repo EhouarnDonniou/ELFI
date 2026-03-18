@@ -37,14 +37,14 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
 
     float* fk_x = malloc(2*sizeof(float));
     float** JFk = alloctab(2,2);
-    float** JFk_inv = alloctab(2,2);
+    float** JFk_inv = alloctab(2,2); // hanger aussi
 
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q; i++){
         //réinitialisation de la jacobienne à 0.
         for(int j=0; j<2;j++){
             JFk[j][0]=0;
-            JFk[j][1]=0;
+            JFk[j][1]=0; //à changer, JFk est pas de la même taille
         }
 
         //fonctions de base et dérivées associées sur lesegment de référence
@@ -64,7 +64,7 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
         float BNFk = BN(fk_x);
         float FNFk = FN(fk_x);
         
-        float eltdif = pdsquad[i]*detJFk;
+        float eltdif = pdsquad[i]*detJFk;  //pas det, norme pour avoir la longueur de l'arête
 
         //contribution au point de quadrature courant pour le calcul des intégrales 
 
