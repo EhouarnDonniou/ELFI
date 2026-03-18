@@ -12,6 +12,7 @@
 
 void main(){
     char* ficmai = "car3x3t_3";
+    char* ficRef = "NUMREF.Test";
     float** coord;
     int** ngnel; 
     int** nRefAr;
@@ -22,7 +23,8 @@ void main(){
     int* numRefF1;
     int* nrefArEl;
     int  check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
-    
+    lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
+
     //Allocation
     float** MatElem=alloctab(nbneel,nbneel);
     float* SMbrElem=malloc(nbneel*sizeof(float));
