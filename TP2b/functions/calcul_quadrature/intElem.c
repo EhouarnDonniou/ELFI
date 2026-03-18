@@ -69,7 +69,11 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
         WW(p, wx_i, eltdif, A00Fk, matelm);
         //calcul de Fw(Fk(x_hat)) puis de vectelm second membre de l'intérieur
         float fOmgFk = FOMEGA(fk_x);
-        printf("w_i(x_hat) =  %f \n",wx_i);
+
+        for(int j=0; j<3; j++){
+            printf("    w_%d(x_hat) = %10.4e \n",j+1,wx_i[j]);
+        }  
+        printf(" omegai =  %10.4e \n",detJFk);
 
         W(p, wx_i, eltdif, fOmgFk, vectelm);
 

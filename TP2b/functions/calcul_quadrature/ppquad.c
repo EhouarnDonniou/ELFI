@@ -21,12 +21,12 @@ void ppquad(int t, float* poids, float** pts){
         case 1 : 
             //vecteur poids
             for(int i=0; i<5; i++){
-                poids[i]=(float)1/36;
+                poids[i]=1./36.;
             }
             for(int i=4; i<8; i++){
-                poids[i]=(float)1/9;
+                poids[i]=1./9.;
             }
-            poids[8]=(float)4/9;
+            poids[8]=4./9.;
 
             //matrice des points de quadrature
             pts[0][0]=1.;    //x1
@@ -63,7 +63,7 @@ void ppquad(int t, float* poids, float** pts){
 
             //vecteur poids
             for(int i=0; i<3; i++){
-                poids[i]=(float)1/6;
+                poids[i]= 1./6.;
             }
             
             //matrice des points de quadrature
@@ -82,9 +82,9 @@ void ppquad(int t, float* poids, float** pts){
         case 3 : 
 
             //vecteur poids
-            poids[1]=(float)1/6;
-            poids[2]=(float)1/6;
-            poids[3]=(float)2/3;
+            poids[1]=1./6.;
+            poids[2]=1./6.;
+            poids[3]=2./3.;
 
             //matrice des points de quadrature
             pts[0][0]=1.;    //x1
