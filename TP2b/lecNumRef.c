@@ -18,26 +18,28 @@ int lecNumRef(char* ficmai, int* nbrefdm,int* nbRefD0, int* nbRefD1, int* nbRefF
         printf("Erreur d ouverture du fichier pour lecture\n");
         return 1;
     }
+
     //numero de reference du domaine
     fscanf(pFile,"%d",nbrefdm);
     //nombre de numeros de reference Dirichlet homogene + tableau des numeros de reference Dirichlet homogene
     fscanf(pFile,"%d",nbRefD0);
     *numRefD0=malloc(*nbRefD0*sizeof(int));
     for(int i=0;i<*nbRefD0;i++){
-        fscanf(pFile,"%d",&(*numRefD0[i]));
+        fscanf(pFile,"%d",&((*numRefD0)[i]));
     }
+    
     //nombre de numeros de reference Dirichlet non homogene + tableau des numeros de reference Dirichlet non homogene
     fscanf(pFile,"%d",nbRefD1);
     *numRefD1=malloc(*nbRefD1*sizeof(int));
     for(int i=0;i<*nbRefD1;i++){
-        fscanf(pFile,"%d",&(*numRefD1[i]));
+        fscanf(pFile,"%d",&((*numRefD1)[i]));
     }
+
     //nombre de numeros de reference Neumann + tableau des numeros de reference Neumann
     fscanf(pFile,"%d",nbRefF1);
     *numRefF1=malloc(*nbRefF1*sizeof(int));
-    for(int i=0;i<*nbRefF1;i++){
-        fscanf(pFile,"%d",&(*numRefF1[i]));
+    for(int i=0;i<*nbRefF1;i++){       
+        fscanf(pFile,"%d",&((*numRefF1)[i]));
     }
-
     return 0;
 }
