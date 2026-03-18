@@ -39,12 +39,8 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
     float** JFk = alloctab(2,2);
     float** JFk_inv = alloctab(2,2);
 
-    //matrice des a_alpha_beta(Fk(x_hat))
-    float** AabFk = alloctab(2,2);
-
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q; i++){
-
         //réinitialisation de la jacobienne à 0.
         for(int j=0; j<2;j++){
             JFk[j][0]=0;
@@ -61,25 +57,23 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
         //image du point de quad dans K
         transFK(aK, wx_i, fk_x, p);
         
-        //valeurs des fonctions intervenant dans les intégrales 
-        
+        //valeurs des fonctions intervenant dans les intégrales au point
         float detJFk = invertM2x2(JFk, JFk_inv);
 
         //calcul des a_alpha_beta(Fk(x_hat)) et a00(Fk(x_hat))
-        AabFk[0][0] = A11(fk_x); AabFk[0][1] = A12(fk_x);
-        AabFk[0][1] = A12(fk_x); AabFk[1][1] = A22(fk_x);
-        float A00Fk = A00(fk_x);
+        float BNFk = BN(fk_x);
+        float FNFk = FN(fk_x);
         
         float eltdif = pdsquad[i]*detJFk;
 
+        //contribution au point de quadrature courant pour le calcul des intégrales 
+
         //calcul de matelm matrice de l'intérieur en deux parties
-        ADWDW(p, dwx_i, JFk_inv, eltdif, AabFk, matelm);
-        WW(p, wx_i, eltdif, A00Fk, matelm);
+        WW(p, wx_i, eltdif, BNFk, matelm);
+
         //calcul de Fw(Fk(x_hat)) puis de vectelm second membre de l'intérieur
-        float fOmgFk = FOMEGA(fk_x);
-        W(p, wx_i, eltdif, fOmgFk, vectelm);
+        W(p, wx_i, eltdif, FNFk, vectelm);
     }
     free(wx_i); free(fk_x);
     freetab(JFk); freetab(JFk_inv);
-    freetab(dwx_i); freetab(AabFk);
 }

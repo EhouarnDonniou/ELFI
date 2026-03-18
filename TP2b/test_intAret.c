@@ -21,6 +21,7 @@ void main(){
     int* numRefD0;
     int* numRefD1;
     int* numRefF1;
+    int* nrefArEl;
     int  check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
     lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
 
@@ -47,7 +48,7 @@ void main(){
         selectPts(nbneel,ngnel[k],coord,coorEl);
 
         cal1Elem(nRefDom, nbRefD0, numRefD0, nbRefD1, numRefD1, nbRefF1, numRefF1, 
-                   typeEl, nbneel, coorEl, nbaret, nRefAr[k],
+                   typeEl, nbneel, coorEl, nbaret, nrefArEl,
                    MatElem, SMbrElem, NuDElem, uDElem);
 
         impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;

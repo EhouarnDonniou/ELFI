@@ -26,6 +26,8 @@
 //     pointeur double Jac, en entrée initialisée à 1 partout à l'avance.
 //out : pointeur double Jac, matrice jacobienne de FK(x_hat) pour t==2,3.
 //                           vecteur (dFK/dx_1, dFK/dx_2)(x_hat) pour t==1. 
+//
+// /!\ Jac doit être init à 0 avant chaque appel! 
 void matJacob(int t, float* aK[], float** derW, float** Jac){
 
     int stop = 5 - t; 
