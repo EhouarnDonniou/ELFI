@@ -25,17 +25,11 @@ void ADWDW(int nbneel, float **DW, float** JFk_inv, float eltdif, float **cofvar
       for (i=0; i<nbneel; i++) {
         dwdx_fk_xhat = DW[i][0]*JFk_inv[alpha][0] + DW[i][1]*JFk_inv[alpha][1];
         coeff = eltdif*cofvar[alpha][beta]*dwdx_fk_xhat;
-
-        // printf("eltdif = %f , coeff = %f \n", eltdif, coeff);
-
         for (j=0; j<nbneel; j++) {
           dwdx_fk_xhat = DW[j][0]*JFk_inv[beta][0] + DW[j][1]*JFk_inv[beta][1];
           matelm[i][j] = matelm[i][j] + coeff*dwdx_fk_xhat;
         }
       }
-
     }
   }
-  // printtab(matelm,3,3);
-  
 }
