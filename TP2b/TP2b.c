@@ -38,8 +38,8 @@ void main(){
         //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
         for(int i=0; i<nbneel ; i++){
             SMbrElem[i]=0;
-            NuDElem[i]=0;
-            uDElem[i]=0;
+            NuDElem[i]=1;
+            uDElem[i]=-1;
             for(int j=0; j<nbneel; j++){
             MatElem[i][j]=0;
             }
