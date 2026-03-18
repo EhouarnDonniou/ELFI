@@ -41,13 +41,14 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
 
     //matrice des a_alpha_beta(Fk(x_hat))
     float** AabFk = alloctab(2,2);
-    // printf("----avant W()\n");
-    // for(int j=0; j<3; j++){
-    //     printf("     vect_%d = %f \n",j+1,vectelm[j]);
-    // } 
-    // printf("----après W()\n");
+
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q; i++){
+
+        for(int j=0; j<2;j++){
+            JFk[j][0]=0;
+            JFk[j][1]=0;
+        }
         //calculs élémentaires sur le point x_i
         calFbase(t, xquad[i], wx_i);
         calDerFbase(t, xquad[i], dwx_i);
@@ -55,7 +56,9 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
         //calcul par transformation Fk(x)
         transFK(aK, wx_i, fk_x, p);
         matJacob(t, aK, dwx_i, JFk);
+
         float detJFk = invertM2x2(JFk, JFk_inv);
+
         //calcul des a_alpha_beta(Fk(x_hat)) et a00(Fk(x_hat))
         AabFk[0][0] = A11(fk_x); AabFk[0][1] = A12(fk_x);
         AabFk[0][1] = A12(fk_x); AabFk[1][1] = A22(fk_x);
@@ -64,26 +67,12 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
         float eltdif = pdsquad[i]*detJFk;
 
         //calcul de matelm matrice de l'intérieur en deux parties
-        
         ADWDW(p, dwx_i, JFk_inv, eltdif, AabFk, matelm);
         WW(p, wx_i, eltdif, A00Fk, matelm);
         //calcul de Fw(Fk(x_hat)) puis de vectelm second membre de l'intérieur
         float fOmgFk = FOMEGA(fk_x);
-
-        for(int j=0; j<3; j++){
-            printf("    w_%d(x_hat) = %10.4e \n",j+1,wx_i[j]);
-        }  
-        printf(" omegai =  %10.4e \n",detJFk);
-
         W(p, wx_i, eltdif, fOmgFk, vectelm);
-
-
-        // for(int j=0; j<3; j++){
-        //     printf("    vect_%d = %10.4e \n",j+1,vectelm[j]);
-        // }  
-        // printf("---\n");
     }
-   
     free(wx_i); free(fk_x);
     freetab(JFk); freetab(JFk_inv);
     freetab(dwx_i); freetab(AabFk);

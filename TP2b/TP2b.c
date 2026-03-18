@@ -11,7 +11,7 @@
 #include "include/utilitaires.h"
 
 void main(){
-    char* ficmai = "car1x1q_4";
+    char* ficmai = "car3x3t_3";
     float** coord;
     int** ngnel; 
     int** nRefAr;
@@ -31,7 +31,7 @@ void main(){
     float** coorEl=alloctab(nbneel,2);
 
     //Boucle sur les éléments K
-    for(int k=0;k<2;k++){
+    for(int k=0;k<nbtel;k++){
         printf("\n \n ---------Element actuel K = %d \n", k+1);
         //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
         for(int i=0; i<nbneel ; i++){
@@ -44,10 +44,6 @@ void main(){
         }
         
         selectPts(nbneel,ngnel[k],coord,coorEl);
-
-        for(int i=0; i<nbneel ; i++){
-           printf("(%f, %f)\n", coorEl[i][0],coorEl[i][1]);
-        }
 
         cal1Elem(nRefDom, nbRefD0, numRefD0, nbRefD1, numRefD1, nbRefF1, numRefF1, 
                    typeEl, nbneel, coorEl, nbaret, nrefArEl,

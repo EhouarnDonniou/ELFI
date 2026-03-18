@@ -34,9 +34,7 @@ void matJacob(int t, float* aK[], float** derW, float** Jac){
     //  -> triangles    : stop = 5-2 = 3
     //  -> segments     : stop = 5-3 = 2
 
-    
     if(t==3){ //segments
-        //à recheck, jsuis pas du tout sûr de la syntaxe
         for(int i=0; i<stop; i++){
             Jac[0][0] += derW[i][0]*aK[0][0];
             Jac[1][0] += derW[i][0]*aK[1][0]; 
@@ -45,8 +43,8 @@ void matJacob(int t, float* aK[], float** derW, float** Jac){
     else{ //triangle et quadrangles
         for(int i=0; i<stop; i++){
             Jac[0][0] += derW[i][0]*aK[i][0];
-            Jac[0][1] += derW[i][0]*aK[i][1];
-            Jac[1][0] += derW[i][1]*aK[i][0];
+            Jac[1][0] += derW[i][0]*aK[i][1];
+            Jac[0][1] += derW[i][1]*aK[i][0];
             Jac[1][1] += derW[i][1]*aK[i][1];
         }
     }
@@ -62,7 +60,7 @@ void matJacob(int t, float* aK[], float** derW, float** Jac){
 // edge case : 
 //      det(Mat)=0 => determinant = 0 et mat n'est pas inversée (Mat_inverse non-modifiée)
 float invertM2x2(float** Mat, float** Mat_inv){
-    
+
     float determinant = Mat[0][0]*Mat[1][1] - Mat[0][1]*Mat[1][0];
 
     if(fabs(determinant)<=  pow(10,-8) ){
