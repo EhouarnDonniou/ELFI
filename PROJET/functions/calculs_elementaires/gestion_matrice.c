@@ -9,7 +9,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "../../include/headerTP2a.h"
+
 
 //calcule la matrice Jacobienne de FK(x_hat) pour K actuel en un point x_hat donné (x_hat dans K_hat)
 //utilise la formule pour x_hat noté x : 
@@ -32,19 +34,17 @@ void matJacob(int t, float* aK[], float** derW, float** Jac){
     //  -> triangles    : stop = 5-2 = 3
     //  -> segments     : stop = 5-3 = 2
 
-    
     if(t==3){ //segments
-        //à recheck, jsuis pas du tout sûr de la syntaxe
         for(int i=0; i<stop; i++){
-            Jac[0] += derW[i]*aK[0];
-            Jac[1] += derW[i]*aK[1]; 
+            Jac[0][0] += derW[i][0]*aK[0][0];
+            Jac[1][0] += derW[i][0]*aK[1][0]; 
         }
     }
     else{ //triangle et quadrangles
         for(int i=0; i<stop; i++){
             Jac[0][0] += derW[i][0]*aK[i][0];
-            Jac[0][1] += derW[i][0]*aK[i][1];
-            Jac[1][0] += derW[i][1]*aK[i][0];
+            Jac[1][0] += derW[i][0]*aK[i][1];
+            Jac[0][1] += derW[i][1]*aK[i][0];
             Jac[1][1] += derW[i][1]*aK[i][1];
         }
     }
@@ -60,12 +60,14 @@ void matJacob(int t, float* aK[], float** derW, float** Jac){
 // edge case : 
 //      det(Mat)=0 => determinant = 0 et mat n'est pas inversée (Mat_inverse non-modifiée)
 float invertM2x2(float** Mat, float** Mat_inv){
+
     float determinant = Mat[0][0]*Mat[1][1] - Mat[0][1]*Mat[1][0];
-    if(determinant<= 10e-6 ){
+
+    if(fabs(determinant)<=  pow(10,-8) ){
         printf("/! ERROR \n La matrice n'est pas inversible!\n");
         return 0;
     }
-
+    
     Mat_inv[0][0] = Mat[1][1]/determinant;
     Mat_inv[1][1] = Mat[0][0]/determinant;
     Mat_inv[0][1] = -Mat[0][1]/determinant;

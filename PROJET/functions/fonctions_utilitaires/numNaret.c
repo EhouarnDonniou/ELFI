@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "../include/headerTP2a.h"
+#include "../../include/headerTP2a.h"
 
 // attention à ne pas appliquer aux segments (t=3)
 

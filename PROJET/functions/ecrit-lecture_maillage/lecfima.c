@@ -9,9 +9,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../include/headerTP1.h"
+#include "../../include/utilitaires.h"
 
-int lecfima(char* ficmai, int *ptypel, int *pnbtng, float***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
-    FILE *pFile;
+int lecfima(char* ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
+    FILE* pFile;
     pFile = fopen(ficmai, "r");
     if(pFile == NULL){
         printf("Erreur d ouverture du fichier pour lecture\n");
@@ -21,19 +22,23 @@ int lecfima(char* ficmai, int *ptypel, int *pnbtng, float***pcoord, int *pnbtel,
     // Lecture de n
     fscanf(pFile,"%d",pnbtng);
     //Allouer le tableau pour stocker les coordonnees de dimension n x 2
-    *pcoord=alloctab(2,*pnbtng);
+    *pcoord=alloctab(*pnbtng,2);
+    //printf("%d\n", *pnbtng);
     //Lexture des coordonnees
     for(int i=0;i<*pnbtng;i++){
-        fscanf(pFile,"%f %f",&(*pcoord)[i][0],&(*pcoord)[i][0]);
-       // printf("%f %f \n",(*pcoord)[0][i],(*pcoord)[1][i]);
+        fscanf(pFile,"%f %f",&(*pcoord)[i][0],&(*pcoord)[i][1]);
+        // printf("%f %f \n",(*pcoord)[i][0],(*pcoord)[i][1]);
     }
     //Lecture de pnbtel=m, ptypel=t, pnbneel=p, pnbaret=q
     fscanf(pFile,"%d %d %d %d",pnbtel,ptypel,pnbneel,pnbaret);
+    
     //Allouer les tableaux pour pngnel de dimension mxp et pour pnRefAr de dimension mxq
     *pngnel=alloctabint(*pnbtel,*pnbneel);
     *pnRefAr=alloctabint(*pnbtel,*pnbaret);
+
     //Lecture et remplissage des tableaux pngnel et pnRefAr
     for(int i=0; i<*pnbtel;i++){
+        
         for(int j=0;j<*pnbneel;j++){
             fscanf(pFile,"%d",&(*pngnel)[i][j]);
         }

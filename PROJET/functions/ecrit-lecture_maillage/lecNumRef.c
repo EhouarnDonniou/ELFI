@@ -6,10 +6,10 @@
 --------------------------------------------------------------------------------
 */
 
-#include "include/headerTP1.h"
-#include "include/headerTP2a.h"
-#include "include/headerTP2b.h"
-#include "include/utilitaires.h"
+#include "../include/headerTP1.h"
+#include "../include/headerTP2a.h"
+#include "../include/headerTP2b.h"
+#include "../include/utilitaires.h"
 
 int lecNumRef(char* ficmai, int* nbrefdm,int* nbRefD0, int* nbRefD1, int* nbRefF1, int** numRefD0, int** numRefD1, int** numRefF1){
     FILE *pFile;
