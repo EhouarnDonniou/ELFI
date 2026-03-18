@@ -45,6 +45,7 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q; i++){
 
+        //réinitialisation de la jacobienne à 0.
         for(int j=0; j<2;j++){
             JFk[j][0]=0;
             JFk[j][1]=0;

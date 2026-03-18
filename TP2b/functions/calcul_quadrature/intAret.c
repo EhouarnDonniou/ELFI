@@ -45,18 +45,24 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q; i++){
 
+        //réinitialisation de la jacobienne à 0.
         for(int j=0; j<2;j++){
             JFk[j][0]=0;
             JFk[j][1]=0;
         }
-        //calculs élémentaires sur le point x_i
+
+        //fonctions de base et dérivées associées sur lesegment de référence
         calFbase(t, xquad[i], wx_i);
         calDerFbase(t, xquad[i], dwx_i);
 
-        //calcul par transformation Fk(x)
-        transFK(aK, wx_i, fk_x, p);
+        //élément de longueur
         matJacob(t, aK, dwx_i, JFk);
 
+        //image du point de quad dans K
+        transFK(aK, wx_i, fk_x, p);
+        
+        //valeurs des fonctions intervenant dans les intégrales 
+        
         float detJFk = invertM2x2(JFk, JFk_inv);
 
         //calcul des a_alpha_beta(Fk(x_hat)) et a00(Fk(x_hat))
