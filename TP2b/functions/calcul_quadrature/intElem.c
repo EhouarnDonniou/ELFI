@@ -6,7 +6,7 @@
 --------------------------------------------------------------------------------
 */
 
-#include "../../include/headerTP2b/include TP2b/functionsP1.h"
+#include "../../include/headerTP2b.h"
 #include "../../include/headerTP2a.h"
 #include "../../include/headerTP2b.h"
 #include "../../include/utilitaires.h"
