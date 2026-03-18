@@ -48,4 +48,22 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
 
     intElem(typeEl, nbneel, nbaret, xquad, pdsquad, coorEl, MatElem, SMbrElem);
     //appel intAret(----)
+    //prise en compte des conditions de Dirichlet
+    for(int i=0; i<nbaret;i++){
+        if (nrefArEl[i] == nRefDom){}
+        else{
+            for (int j=0;j<nbRefD0;j++){
+                if (nrefArEl[i]==numRefD0[j]){
+                    NuDElem[i]=0;
+                    uDElem[i]=;
+                }
+            }
+            for (int j=0;j<nbRefD1;j++){
+                if (nrefArEl[i]==numRefD1[j]){
+                    NuDElem[i]=-1;
+                    uDElem[i]=;
+                }
+            }
+        }
+    }
 }
