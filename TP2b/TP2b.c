@@ -52,4 +52,12 @@ void main(){
 
         impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
     }
+
+    free(numRefD0); free(numRefD1); free(numRefF1);
+    free(NuDElem); free(uDElem);
+    freetab(coord); freetab(ngnel); freetab(nRefAr);
+    freetab(MatElem); free(SMbrElem); 
+    
+    free(coorEl);//free simple parce que ça pointe sur un espace mémoire aussi pointé par coord
+                 //donc si coord est entièrement free, les espaces mémoires sont déjà libres 
 }

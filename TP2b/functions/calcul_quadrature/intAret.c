@@ -42,7 +42,8 @@ void intAret(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
 
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q; i++){
-        //réinitialisation de la jacobienne à 0. /!\ à faire
+        //réinitialisation de la jacobienne à 0.
+        JFk[0][0]=0;JFk[0][1]=0;
 
         //fonctions de base et dérivées associées sur le segment de référence
         calFbase(t, xquad[i], wx_i);
@@ -50,7 +51,7 @@ void intAret(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
 
         //élément de longueur
         matJacob(t, aK, dwx_i, JFk);
-        float LK = sqrtf(JFk[0][0]*JFk[0][0] + JFk[1][0]*JFk[1][0]); //norme 2 du vecteur JFk
+        float LK = sqrtf(JFk[0][0]*JFk[0][0] + JFk[0][1]*JFk[0][1]); //norme 2 du vecteur JFk
 
         //image du point de quad dans K
         transFK(aK, wx_i, fk_x, p);
@@ -66,6 +67,6 @@ void intAret(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
         float FNFk = FN(fk_x);
         W(p, wx_i, eltdif, FNFk, vectelm);
     }
-    free(wx_i); free(fk_x);
+    free(wx_i); freetab(dwx_i); free(fk_x); 
     freetab(JFk); freetab(JFk_inv);
 }
