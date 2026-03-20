@@ -13,9 +13,7 @@
 * nrefdm : numero de reference du domaine
 * nbred0 : nombre de numeros de reference Dirichlet homogene
 * nured0 : tableau des numeros de reference Dirichlet homogene
-*
 * nbred1 : nombre de numeros de reference Dirichlet non homogene
 * nured1 : tableau des numeros de reference Dirichlet non homogene
-*
 * nbref1 : nombre de numeros de reference Neumann
 * nuref1 : tableau des numeros de reference Neumann

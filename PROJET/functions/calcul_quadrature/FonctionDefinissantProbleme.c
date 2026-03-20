@@ -22,11 +22,11 @@ float A12(float *x){
 }
 
 float A00(float *x){
-    return 0;
+    return 1;
 }
 
 float BN(float *x){
-    return 0;
+    return 1;
 }
 
 float FOMEGA(float *x){
@@ -34,7 +34,7 @@ float FOMEGA(float *x){
 }
 
 float FN(float *x){
-    return 0;
+    return 1;
 }
 
 float UD(float *x){

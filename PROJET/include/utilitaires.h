@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 //gestion des tableaux à 2 dimensions
 float** alloctab(int, int);

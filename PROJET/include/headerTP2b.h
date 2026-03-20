@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <math.h>
 
 //fonctions de définition du problème 
 //intérieur
@@ -32,8 +32,11 @@ void W(int , float*, float, float, float*);
 
 //calcul des intégrales de surface
 void intElem(int, int, int, float**, float*, float**, float**, float*);
+//calcul des intégrales sur les arêtes dans GammaN
+void intAret(int, int, int, float**, float*, float**, float**, float*);
 
 //calculs relatifs à un élément K
 void cal1Elem(int, int, int*, int, int*, int, int*, int, int, float**, int, int*, float**, float*, int*, float*);
-//void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, int typeEl, int nbneel, float** coorEl, int nbaret, int* nrefArEl, float** MatElem, float* SMbrElem, float* NuDElem, float* uDElem){
+
+//lecture du fichier de num ref pour les bords du domaine
 int lecNumRef(char*, int*,int*, int*, int*, int**, int**, int**);

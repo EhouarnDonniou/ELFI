@@ -5,13 +5,16 @@
     Ecrit le 04/03/2026
 --------------------------------------------------------------------------------
 */
+
+
+//pour compiler : bash compil.sh dans le dossier actuel
+
 #include "include/headerTP1.h"
 #include "include/headerTP2a.h"
 #include "include/headerTP2b.h"
 #include "include/utilitaires.h"
 
 void main(){
-    //Déclaration des variables et pointeurs
     char* ficmai = "car3x3t_3";
     char* ficRef = "NUMREF.Test";
     float** coord;
@@ -22,8 +25,6 @@ void main(){
     int* numRefD0;
     int* numRefD1;
     int* numRefF1;
-
-    //Lecture des fichiers de maillage et de références des bords du domaine
     int  check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
     lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
 
@@ -36,8 +37,8 @@ void main(){
 
     //Boucle sur les éléments K
     for(int k=0;k<nbtel;k++){
-        printf("\n \n ---------Element actuel K = %d \n", k+1);
-        //Initialisation à 0 de MatElem, SMbrElem, uDElem, et NuDElem à 1
+        //printf("\n \n ---------Element actuel K = %d \n", k+1);
+        //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
         for(int i=0; i<nbneel ; i++){
             SMbrElem[i]=0;
             NuDElem[i]=1;
@@ -47,17 +48,12 @@ void main(){
             }
         }
         
-        //Pointe coorEl sur les adresses des coordonnées des noeuds de K, 
-        //parmis l'ensemble des adresses des coordonnées du maillage (pointées par coord)
         selectPts(nbneel,ngnel[k],coord,coorEl);
 
-        //Calcul d'intégration sur l'élément actuel K 
-        //Resultats dans MatElem, SMbrElem, NuDElem et uDElem
         cal1Elem(nRefDom, nbRefD0, numRefD0, nbRefD1, numRefD1, nbRefF1, numRefF1, 
                    typeEl, nbneel, coorEl, nbaret, nRefAr[k],
                    MatElem, SMbrElem, NuDElem, uDElem);
 
-        //Impression de ces résultats dans le terminal
         impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
     }
 

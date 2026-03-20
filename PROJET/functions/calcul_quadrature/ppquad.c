@@ -82,9 +82,9 @@ void ppquad(int t, float* poids, float** pts){
         case 3 : 
 
             //vecteur poids
+            poids[0]=1./6.;
             poids[1]=1./6.;
-            poids[2]=1./6.;
-            poids[3]=2./3.;
+            poids[2]=2./3.;
 
             //matrice des points de quadrature
             pts[0][0]=1.;    //x1

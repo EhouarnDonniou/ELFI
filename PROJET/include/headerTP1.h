@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <math.h>
 
 //fonction de lecture de fichier_maillage.txt
 void lecture_fichier_maillage(float*, float*, float*, float*, int*, int*, int*);
