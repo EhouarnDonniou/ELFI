@@ -82,6 +82,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
             for (int j=0;j<nbRefF1;j++){
                 if (nrefArEl[i-1]==numRefF1[j]){
 
+                    //
                     //hardcode type = 3 et nbaret = 1;
                     //appel intAret(__);
 

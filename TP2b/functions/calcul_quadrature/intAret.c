@@ -42,7 +42,7 @@ void intAret(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
 
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q; i++){
-        //réinitialisation de la jacobienne à 0.
+        //réinitialisation de la jacobienne à 0. /!\ à faire
 
         //fonctions de base et dérivées associées sur le segment de référence
         calFbase(t, xquad[i], wx_i);
