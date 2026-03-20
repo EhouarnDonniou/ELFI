@@ -29,7 +29,7 @@
 //
 // /!\ Jac doit être init à 0 avant chaque appel! 
 void matJacob(int t, float* aK[], float** derW, float** Jac){
-
+    
     int stop = 5 - t; 
     //condition d'arrêt : stop = 5-t = #points d'interpolation de chaque élément
     //  -> quadrangles  : stop = 5-1 = 4 
@@ -40,6 +40,7 @@ void matJacob(int t, float* aK[], float** derW, float** Jac){
         for(int i=0; i<stop; i++){
             Jac[0][0] += derW[i][0]*aK[i][0];
             Jac[1][0] += derW[i][0]*aK[i][1]; 
+            
         }
     }
     else{ //triangle et quadrangles

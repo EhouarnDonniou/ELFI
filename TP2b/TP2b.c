@@ -38,7 +38,7 @@ void main(){
         for(int i=0; i<nbneel ; i++){
             SMbrElem[i]=0;
             NuDElem[i]=1;
-            uDElem[i]=-1;
+            uDElem[i]=0;
             for(int j=0; j<nbneel; j++){
             MatElem[i][j]=0;
             }
@@ -52,5 +52,4 @@ void main(){
 
         impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
     }
-    
 }

@@ -17,6 +17,8 @@
 
 *** Arguments *** 
    t        : type de l'élémnt sur lequel est fait le calcul
+   p        : nombre de noeuds d'interpo géomértrique qui forment l'élémnt K
+   q        : nombre d'arêtes qui forment l'élémnt K
    xquad    : points de quadrature sur l'élémnt de ref
    pdsquad  : poids de quadrature associés
    aK       : coordonnées des noeuds d'interpo de l'élémnt actuel K
@@ -29,49 +31,39 @@
 // (utilise vectlm[k]+=truc(k) / matelm[k][l]+=truc(k,l))
 // attention donc à l'initialiser à 0 avant de l'entrer en argument de intElem
 
-void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, float** matelm, float* vectelm){
-
+void intAret(int t, int p, int q, float** xquad, float* pdsquad, float** aK, float** matelm, float* vectelm){
     //déclaration des vecteurs et matrices éphémères
-    float* wx_i = malloc(q*sizeof(float)); //taille 4 parce qu'on a max 4 fonctions de base
+    float* wx_i = malloc(q*sizeof(float));
     float** dwx_i = alloctab(q,2);
 
     float* fk_x = malloc(2*sizeof(float));
-    float** JFk = alloctab(2,2);
-    float** JFk_inv = alloctab(2,2); // hanger aussi
+    float** JFk = alloctab(1,2);
+    float** JFk_inv = alloctab(1,2); 
 
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q; i++){
         //réinitialisation de la jacobienne à 0.
-        for(int j=0; j<2;j++){
-            JFk[j][0]=0;
-            JFk[j][1]=0; //à changer, JFk est pas de la même taille
-        }
 
-        //fonctions de base et dérivées associées sur lesegment de référence
+        //fonctions de base et dérivées associées sur le segment de référence
         calFbase(t, xquad[i], wx_i);
         calDerFbase(t, xquad[i], dwx_i);
 
         //élément de longueur
         matJacob(t, aK, dwx_i, JFk);
+        float LK = sqrtf(JFk[0][0]*JFk[0][0] + JFk[1][0]*JFk[1][0]); //norme 2 du vecteur JFk
 
         //image du point de quad dans K
         transFK(aK, wx_i, fk_x, p);
-        
-        //valeurs des fonctions intervenant dans les intégrales au point
-        float detJFk = invertM2x2(JFk, JFk_inv);
 
-        //calcul des a_alpha_beta(Fk(x_hat)) et a00(Fk(x_hat))
-        float BNFk = BN(fk_x);
-        float FNFk = FN(fk_x);
-        
-        float eltdif = pdsquad[i]*detJFk;  //pas det, norme pour avoir la longueur de l'arête
+        float eltdif = pdsquad[i]*LK;  //pas detJFk, norme pour avoir la longueur de l'arête
 
         //contribution au point de quadrature courant pour le calcul des intégrales 
-
         //calcul de matelm matrice de l'intérieur en deux parties
+        float BNFk = BN(fk_x);
         WW(p, wx_i, eltdif, BNFk, matelm);
 
         //calcul de Fw(Fk(x_hat)) puis de vectelm second membre de l'intérieur
+        float FNFk = FN(fk_x);
         W(p, wx_i, eltdif, FNFk, vectelm);
     }
     free(wx_i); free(fk_x);

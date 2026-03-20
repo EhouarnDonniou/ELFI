@@ -17,6 +17,8 @@
 
 *** Arguments *** 
    t        : type de l'élémnt sur lequel est fait le calcul
+   p        : nombre de noeuds d'interpo géomértrique qui forment l'élémnt K
+   q        : nombre d'arêtes qui forment l'élémnt K
    xquad    : points de quadrature sur l'élémnt de ref
    pdsquad  : poids de quadrature associés
    aK       : coordonnées des noeuds d'interpo de l'élémnt actuel K
@@ -56,7 +58,7 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
 
         //calcul par transformation Fk(x)
         transFK(aK, wx_i, fk_x, p);
-        matJacob(t, aK, dwx_i, JFk);
+        matJacob(t, aK, dwx_i, JFk); 
 
         float detJFk = invertM2x2(JFk, JFk_inv);
 
