@@ -127,7 +127,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
             }
             
         }
-    }
+    } 
     freetab(xquad); free(pdsquad); free(sommets);
     free(pdsquad_ar);freetab(xquad_ar);
     free(coorAr);//free simple parce que ça pointe sur un espace mémoire aussi pointé par coorEl.
