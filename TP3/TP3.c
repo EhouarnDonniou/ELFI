@@ -41,17 +41,22 @@ void main(){
     float* SecMembre = malloc(NbLign*sizeof(float));
     int* NumDLDir = malloc(NbLign*sizeof(int));
     int* ValDLDir = malloc(NbLign*sizeof(int));
-    int* AdPrCefLi = malloc(NbLign*sizeof(int)); int NbCoef = AdPrCoefLi[NbLign]-1;
+    int* AdPrCoefLi = malloc(NbLign*sizeof(int)); int NbCoef = AdPrCoefLi[NbLign]-1;
     float* Matrice = malloc(NbCoef*sizeof(float));
     int* NumCol = malloc(NbCoef*sizeof(int));
     int* AdSuccLi = malloc(NbCoef*sizeof(int));
  
-
-
-    
-//appel Assemblage()
+    Assemblage(coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
+            Nblign ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi , Matrice , Numcol , AdSuccLi);
 
 //affichage système assemblé
+/*
+    affsmd(const int *nblign, const int *adprcl, const int *numcol,
+           const int *adsucl, const float *matris, const float *secmbr,
+           const int *nuddir, const float *valdir);
+*/
+    
+
 
 //quitter
 

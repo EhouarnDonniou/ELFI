@@ -12,7 +12,7 @@
 #include "include/utilitaires.h"
 #include "include/forfun.h"
 
-void Assemblage(float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int Nblign ,float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float** Matrice ,int* Numcol ,int* AdSuccLi){
+void Assemblage(float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int Nblign ,float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float*  Matrice ,int* Numcol ,int* AdSuccLi){
     
     int NextAd=1;
     //Allocation
@@ -41,6 +41,7 @@ void Assemblage(float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng 
                    typeEl, nbneel, coorEl, nbaret, nRefAr[k],
                    MatElem, SMbrElem, NuDElem, uDElem);
 
+        impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ; //enfait on impcalel (c'est dans les fichiers de test)
 
         for(int i=1;i<Nblign+1;i++){
             int I=ngnel[k-1][i-1];
@@ -52,6 +53,9 @@ void Assemblage(float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng 
                 assmat(&Itild,&Jtild,); // A FINIR
             }
         }
+
+
+        
     }
 
 
