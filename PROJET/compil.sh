@@ -1,3 +1,3 @@
 clear
-gcc TP2b.c functions/cal1Elem.c functions/calcul_quadrature/intAret.c functions/calcul_quadrature/ADWDW.c functions/calcul_quadrature/FonctionDefinissantProbleme.c functions/calcul_quadrature/intElem.c functions/calcul_quadrature/ppquad.c functions/calcul_quadrature/W.c functions/calcul_quadrature/WW.c functions/calculs_elementaires/Cal_fonc_bases.c functions/calculs_elementaires/gestion_matrice.c functions/calculs_elementaires/transFK.c functions/ecrit-lecture_maillage/fonc_creation.c functions/ecrit-lecture_maillage/lecfima.c  functions/fonctions_utilitaires/gestion_tab.c functions/fonctions_utilitaires/impcalel.c functions/fonctions_utilitaires/numNaret.c functions/fonctions_utilitaires/selectPts.c functions/ecrit-lecture_maillage/lecNumRef.c -lm -o TP2b.exe
+gcc TP2b.c functions/*.c functions/calcul_quadrature/*.c functions/calculs_elementaires/*.c functions/ecrit-lecture_maillage/*.c functions/fonctions_utilitaires/*.c -lm -o TP2b.exe
 TP2b.exe
