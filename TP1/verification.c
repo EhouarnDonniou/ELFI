@@ -16,7 +16,6 @@ void main(){
     int** pnRefAr;
     int ptypel, pnbtng, pnbtel, pnbneel, pnbaret;
 
-    int lecfima(ficmai,&ptypel,&pnbtng,&pcoord,&pnbtel,&pngnel, &pnbneel, &pnbaret, &pnRefAr);
     int lecture = lecfima(ficmai,&ptypel,&pnbtng,&pcoord,&pnbtel,&pngnel, &pnbneel, &pnbaret, &pnRefAr);
 
     //check de sortie de lecture
@@ -61,3 +60,4 @@ void main(){
     freetab(pngnel);
     freetab(pnRefAr);
 }
+        }}}

@@ -15,7 +15,7 @@
 #include "include/utilitaires.h"
 
 void main(){
-    char* ficmai = "car3x3t_3";
+    char* ficmai = "car1x1q_4";
     char* ficRef = "NUMREF.Test";
     float** coord;
     int** ngnel; 
