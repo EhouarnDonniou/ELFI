@@ -44,7 +44,6 @@ void main() {
     int p,m,q;
     ecriture_mtpq(&m,t,&p,&q,n1,n2,pFile);
 
-
     //pour les tests
     int nrefdom = 0;
     int* nrefcot = malloc(4*sizeof(int));

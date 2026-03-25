@@ -12,56 +12,49 @@
 #include "include/headerTP1.h"
 #include "include/headerTP2a.h"
 #include "include/headerTP2b.h"
+#include "include/forfun.h"
 #include "include/utilitaires.h"
 
 void main(){
+    //déclaration-init pour la lecture de fichiers
     char* ficmai = "car3x3t_3";
     char* ficRef = "NUMREF.Test";
+
+    //déclaration des variables géométriques
     float** coord;
     int** ngnel; 
-    int** nRefAr;
     int typeEl, nbtng, nbtel, nbneel, nbaret;
+
+    //déclaration des variables relatives aux conditions de bord
+    int** nRefAr;
     int nRefDom, nbRefD0, nbRefD1, nbRefF1;
     int* numRefD0;
     int* numRefD1;
     int* numRefF1;
-    int  check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
+
+    //appel des fonctions de lecture de fichiers pour initialiser les variables associées au maillage/domaine
+    int check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
     lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
 
-    //Allocation
-    float** MatElem=alloctab(nbneel,nbneel);
-    float* SMbrElem=malloc(nbneel*sizeof(float));
-    int* NuDElem=malloc(nbneel*sizeof(int));
-    float* uDElem=malloc(nbneel*sizeof(float));
-    float** coorEl=alloctab(nbneel,2);
+    //declaration des variables relatives au stockage morse
+    int NbLign = ?;
+    float* SecMembre = malloc(NbLign*sizeof(float));
+    int* NumDLDir = malloc(NbLign*sizeof(int));
+    int* ValDLDir = malloc(NbLign*sizeof(int));
+    int* AdPrCefLi = malloc(NbLign*sizeof(int)); int NbCoef = AdPrCoefLi[NbLign]-1;
+    float* Matrice = malloc(NbCoef*sizeof(float));
+    int* NumCol = malloc(NbCoef*sizeof(int));
+    int* AdSuccLi = malloc(NbCoef*sizeof(int));
+ 
 
-    //Boucle sur les éléments K
-    for(int k=0;k<nbtel;k++){
-        //printf("\n \n ---------Element actuel K = %d \n", k+1);
-        //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
-        for(int i=0; i<nbneel ; i++){
-            SMbrElem[i]=0;
-            NuDElem[i]=1;
-            uDElem[i]=0;
-            for(int j=0; j<nbneel; j++){
-            MatElem[i][j]=0;
-            }
-        }
-        
-        selectPts(nbneel,ngnel[k],coord,coorEl);
 
-        cal1Elem(nRefDom, nbRefD0, numRefD0, nbRefD1, numRefD1, nbRefF1, numRefF1, 
-                   typeEl, nbneel, coorEl, nbaret, nRefAr[k],
-                   MatElem, SMbrElem, NuDElem, uDElem);
+    
+//appel Assemblage()
 
-        impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ;
-    }
+//affichage système assemblé
+
+//quitter
 
     free(numRefD0); free(numRefD1); free(numRefF1);
-    free(NuDElem); free(uDElem);
     freetab(coord); freetab(ngnel); freetab(nRefAr);
-    freetab(MatElem); free(SMbrElem); 
-    
-    free(coorEl);//free simple parce que ça pointe sur un espace mémoire aussi pointé par coord
-                 //donc si coord est entièrement free, les espaces mémoires sont déjà libres 
 }
