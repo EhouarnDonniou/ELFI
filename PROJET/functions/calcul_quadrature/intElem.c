@@ -44,8 +44,9 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
     //matrice des a_alpha_beta(Fk(x_hat))
     float** AabFk = alloctab(2,2);
 
+    int q_quad = valq(t);
     //boucle sur les points de quadrature i = 0 -> q-1
-    for(int i=0; i<q; i++){
+    for(int i=0; i<q_quad; i++){
 
         //réinitialisation de la jacobienne à 0.
         for(int j=0; j<2;j++){

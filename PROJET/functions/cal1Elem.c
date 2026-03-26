@@ -79,7 +79,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
             //puis condition if pour vérifier si l'arête est référencée de la même manière
             for (int j=0;j<nbRefF1;j++){
                 if (nrefArEl[i-1]==numRefF1[j]){
-                    uDElem[sommets[0]-1]=0; uDElem[sommets[1]-1]=0;
+                    uDElem[sommets[0]-1]=0; //uDElem[sommets[1]-1]=0;
 
                     float* VectAret = malloc(2*sizeof(float));
                     float** MatAret = alloctab(2,2);
@@ -112,17 +112,17 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
             for (int j=0;j<nbRefD0;j++){
                 if (nrefArEl[i-1]==numRefD0[j]){
                     NuDElem[sommets[0]-1]=0;NuDElem[sommets[1]-1]=0;
-                    uDElem[sommets[0]-1]=0; uDElem[sommets[1]-1]=0;
+                    uDElem[sommets[0]-1]=0; //uDElem[sommets[1]-1]=0;
                 }
             }
             //boucle sur la liste des num ref Dirichlet non-homogène 
             for (int j=0;j<nbRefD1;j++){
                 if (nrefArEl[i-1]==numRefD1[j]){
-                    NuDElem[sommets[0]-1]=-1;NuDElem[sommets[1]-1]=-1;
+                    NuDElem[sommets[0]-1]=-1;//NuDElem[sommets[1]-1]=-1;
 
                     //utilisation de UD pour les points dans cette arête
                     uDElem[sommets[0]-1]=UD(coorAr[0]);
-                    uDElem[sommets[1]-1]=UD(coorAr[1]); 
+                    //uDElem[sommets[1]-1]=UD(coorAr[1]); 
                 }
             }
             
