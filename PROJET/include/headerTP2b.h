@@ -33,7 +33,7 @@ void W(int , float*, float, float, float*);
 //calcul des intégrales de surface
 void intElem(int, int, int, float**, float*, float**, float**, float*);
 //calcul des intégrales sur les arêtes dans GammaN
-void intAret(int, int, int, float**, float*, float**, float**, float*);
+void intAret(int, int, float**, float*, float**, float**, float*);
 
 //calculs relatifs à un élément K
 void cal1Elem(int, int, int*, int, int*, int, int*, int, int, float**, int, int*, float**, float*, int*, float*);

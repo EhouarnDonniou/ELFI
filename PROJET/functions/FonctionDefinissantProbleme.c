@@ -1,3 +1,14 @@
+#include "../include/headerTP2b.h"
+
+/*
+Contient les fonctions : 
+    -A11, A12, A22
+    -A00, BN
+    -FOMEGA, FN
+    -UD 
+*/
+
+
 /*
 --------------------------------------------------------------------------------
     Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
@@ -6,8 +17,6 @@
 --------------------------------------------------------------------------------
 */
 // un point de coordonnées x=(x1,x2)
-
-#include "../../include/headerTP2b.h"
 
 float A11(float *x){
     return 1;

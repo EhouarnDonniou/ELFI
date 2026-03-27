@@ -1,4 +1,13 @@
-#include "../../include/utilitaires.h"
+#include "../include/utilitaires.h"
+
+/*
+Contient les fonctions : 
+    -alloctab, freetab
+    -alloctabint 
+    -printtab
+    -SommeMat, ProduitMat
+*/
+
 
 /*
 --------------------------------------------------------------------------------
@@ -52,7 +61,16 @@ float** alloctab(int dim1, int dim2) {
   return(ptr);
 }
 
-#include "../../include/headerTP2b.h"
+/* 
+--------------------------------------------------------------------------------
+  Cette fonction libere la memoire allouee par alloctab.
+--------------------------------------------------------------------------------
+*/
+void freetab(void *ptr) {
+  void **ptrT=ptr;
+  free(ptrT[0]);
+  free(ptr);
+}
 
 /*
 --------------------------------------------------------------------------------
@@ -86,15 +104,9 @@ int** alloctabint(int dim1, int dim2) {
 
 /* 
 --------------------------------------------------------------------------------
-  Cette fonction libere la memoire allouee par alloctab.
+  Cette fonction affiche une matrice dans le terminal
 --------------------------------------------------------------------------------
 */
-void freetab(void *ptr) {
-  void **ptrT=ptr;
-  free(ptrT[0]);
-  free(ptr);
-}
-
 void printtab(float **Mat,int dim1, int dim2){
   for(int i=0;i<dim1;i++){
     for(int j=0;j<dim2;j++){
@@ -103,6 +115,7 @@ void printtab(float **Mat,int dim1, int dim2){
     printf("\n");
   }  
 }
+
 /* 
 --------------------------------------------------------------------------------
   Cette fonction fait la somme de deux matrices
@@ -115,6 +128,7 @@ void SommeMat(float **A,float **B, float **C ,int dim1 ,int dim2){
     }
   }
 }
+
 /* 
 --------------------------------------------------------------------------------
   Cette fonction fait le produit de deux matrices

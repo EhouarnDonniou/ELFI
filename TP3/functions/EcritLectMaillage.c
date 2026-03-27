@@ -1,3 +1,108 @@
+#include "../include/headerTP1.h"
+#include "../include/headerTP2a.h"
+#include "../include/headerTP2b.h"
+#include "../include/utilitaires.h"
+
+/*
+Contient les fonctions : 
+    -lecfima
+    -lecNumref 
+
+    -lecture_fichier_maillage
+    -nombre_points, coordonees_points
+    -ecriture_mtpq, etiqAr, calc_s_ecrire_s_et_r
+*/
+
+
+/*
+--------------------------------------------------------------------------------
+    Damien MALETTE, Ehouarn DONNIOU, Dora PAPAI
+
+    Ecrit le 01/02/2026
+--------------------------------------------------------------------------------
+*/
+
+int lecfima(char* ficmai, int *ptypel, int *pnbtng, float ***pcoord, int *pnbtel, int ***pngnel, int *pnbneel, int *pnbaret, int ***pnRefAr){
+    FILE* pFile;
+    pFile = fopen(ficmai, "r");
+    if(pFile == NULL){
+        printf("Erreur d ouverture du fichier pour lecture\n");
+        return 1;
+    }
+
+    // Lecture de n
+    fscanf(pFile,"%d",pnbtng);
+    //Allouer le tableau pour stocker les coordonnees de dimension n x 2
+    *pcoord=alloctab(*pnbtng,2);
+    //printf("%d\n", *pnbtng);
+    //Lexture des coordonnees
+    for(int i=0;i<*pnbtng;i++){
+        fscanf(pFile,"%f %f",&(*pcoord)[i][0],&(*pcoord)[i][1]);
+        // printf("%f %f \n",(*pcoord)[i][0],(*pcoord)[i][1]);
+    }
+    //Lecture de pnbtel=m, ptypel=t, pnbneel=p, pnbaret=q
+    fscanf(pFile,"%d %d %d %d",pnbtel,ptypel,pnbneel,pnbaret);
+    
+    //Allouer les tableaux pour pngnel de dimension mxp et pour pnRefAr de dimension mxq
+    *pngnel=alloctabint(*pnbtel,*pnbneel);
+    *pnRefAr=alloctabint(*pnbtel,*pnbaret);
+
+    //Lecture et remplissage des tableaux pngnel et pnRefAr
+    for(int i=0; i<*pnbtel;i++){
+        
+        for(int j=0;j<*pnbneel;j++){
+            fscanf(pFile,"%d",&(*pngnel)[i][j]);
+        }
+        for(int j=0;j<*pnbaret;j++){
+            fscanf(pFile,"%d",&(*pnRefAr)[i][j]);
+        }
+        
+    }
+    return 0;
+}
+
+
+/*
+--------------------------------------------------------------------------------
+    Damien MALETTE, Ehouarn DONNIOU, Dora PAPAI
+
+    Ecrit le 11/03/2026
+--------------------------------------------------------------------------------
+*/
+
+int lecNumRef(char* ficmai, int* nbrefdm,int* nbRefD0, int* nbRefD1, int* nbRefF1, int** numRefD0, int** numRefD1, int** numRefF1){
+    FILE *pFile;
+    pFile = fopen(ficmai, "r");
+    if(pFile == NULL){
+        printf("Erreur d ouverture du fichier pour lecture\n");
+        return 1;
+    }
+
+    //numero de reference du domaine
+    fscanf(pFile,"%d",nbrefdm);
+    //nombre de numeros de reference Dirichlet homogene + tableau des numeros de reference Dirichlet homogene
+    fscanf(pFile,"%d",nbRefD0);
+    *numRefD0=malloc(*nbRefD0*sizeof(int));
+    for(int i=0;i<*nbRefD0;i++){
+        fscanf(pFile,"%d",&((*numRefD0)[i]));
+    }
+    
+    //nombre de numeros de reference Dirichlet non homogene + tableau des numeros de reference Dirichlet non homogene
+    fscanf(pFile,"%d",nbRefD1);
+    *numRefD1=malloc(*nbRefD1*sizeof(int));
+    for(int i=0;i<*nbRefD1;i++){
+        fscanf(pFile,"%d",&((*numRefD1)[i]));
+    }
+
+    //nombre de numeros de reference Neumann + tableau des numeros de reference Neumann
+    fscanf(pFile,"%d",nbRefF1);
+    *numRefF1=malloc(*nbRefF1*sizeof(int));
+    for(int i=0;i<*nbRefF1;i++){       
+        fscanf(pFile,"%d",&((*numRefF1)[i]));
+    }
+    return 0;
+}
+
 /*
 --------------------------------------------------------------------------------
     Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
@@ -5,8 +110,6 @@
     Ecrit le 01/02/2026
 --------------------------------------------------------------------------------
 */
-
-#include "../../include/headerTP1.h"
 
 void lecture_fichier_maillage(float* a,float* b, float* c,float* d, int* n1, int* n2, int* t){
     FILE *pFile;

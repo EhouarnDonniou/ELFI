@@ -9,6 +9,41 @@
 
 //pour compiler : bash compil.sh dans le dossier actuel
 
+/* Contenus des fichiers .c
+CalSysLin1Elem.c : 
+    -Cal1Elem
+    -intElem, intAret 
+    -numNaret, selectPts
+
+CalQuadrature.c : 
+    -W, WW, ADWDW 
+    -transFk, calFbase, calDerFbase
+    -valq, ppquad
+    -matJacob, invertM2x2
+
+FonctionDefinissantProbleme.c : 
+    -A11, A12, A22
+    -A00, BN
+    -FOMEGA, FN
+    -UD 
+
+EcritLectMaillage.c : 
+    -lecfima
+    -lecNumref 
+
+    -lecture_fichier_maillage
+    -nombre_points, coordonees_points
+    -ecriture_mtpq, etiqAr, calc_s_ecrire_s_et_r
+
+gestion_tab.c
+    -alloctab, freetab
+    -alloctabint 
+    -printtab
+    -SommeMat, ProduitMat
+
+impcalel.c : impcalel
+*/
+
 #include "include/headerTP1.h"
 #include "include/headerTP2a.h"
 #include "include/headerTP2b.h"
