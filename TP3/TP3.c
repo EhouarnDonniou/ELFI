@@ -42,13 +42,14 @@ void main(){
     float* SecMembre = malloc(nbtng*sizeof(float));
     int* NumDLDir = malloc(nbtng*sizeof(int));
     float* ValDLDir = malloc(nbtng*sizeof(int));
-    int* AdPrCoefLi = calloc(nbtng,sizeof(int)); int NbCoef = AdPrCoefLi[nbtng]-1;
+    int* AdPrCoefLi = calloc(nbtng,sizeof(int)); int NbCoef = 12*nbtng;//AdPrCoefLi[nbtng]-1;
     float* Matrice = malloc(nbtng+NbCoef*sizeof(float));
     int* NumCol = malloc(NbCoef*sizeof(int));
     int* AdSuccLi = malloc(NbCoef*sizeof(int));
  
-    Assemblage(coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
-               nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi);
+    Assemblage(nRefDom,nbRefD0,numRefD0,nbRefD1,numRefD1,nbRefF1,numRefF1,
+            coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
+            nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi);
 
 //affichage système assemblé
 

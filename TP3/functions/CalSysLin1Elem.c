@@ -68,7 +68,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
     //Boucles sur les nbaret arêtes de l'élément actuel
     //Pour prise en compte des conditions au bord
     //
-    // intérieur -> on fait rien
+    // intérieur -> on fait rien NuDElem = 1
     // bord Neumann/Fourier -> gestion par appel de intAret, uDElem = 0
     // bord Dirichlet homogène -> NuDElem = 0, uDElem = 0
     // bord Dirichlet non-homogène -> NuDElem = -1, uDElem = uD(x)
@@ -82,7 +82,6 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
         
         if (nrefArEl[i-1] == nRefDom); //noeud à l'intérieur => "on fait rien"
         else{
-
             //boucle sur les num de ref des bords sous condition de Fourier/Neumann
             //puis condition if pour vérifier si l'arête est référencée de la même manière
             for (int j=0;j<nbRefF1;j++){
@@ -105,35 +104,33 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
                     
                     for(int k=0; k<2 ; k++){
                         int nk = sommets[k]-1;
-                        SMbrElem[nk] = SMbrElem[nk] + VectAret[k];
+                        SMbrElem[nk] += VectAret[k];
+
                             for(int l=0; l<2; l++){
                                 int nl = sommets[l]-1;
-                                MatElem[nk][nl] = MatElem[nk][nl] + MatAret[k][l];
+                                MatElem[nk][nl] += MatAret[k][l];
                             }
                     }
                     //libération ici pour les réallouer si on re-rentre dans la condition 
                     free(VectAret); freetab(MatAret);
                 }
             }
-
-            //boucle sur la liste des num ref Dirichlet homogène
-            for (int j=0;j<nbRefD0;j++){
-                if (nrefArEl[i-1]==numRefD0[j]){
-                    NuDElem[sommets[0]-1]=0;//NuDElem[sommets[1]-1]=0;
-                    uDElem[sommets[0]-1]=0; //uDElem[sommets[1]-1]=0;
-                }
-            }
             //boucle sur la liste des num ref Dirichlet non-homogène 
             for (int j=0;j<nbRefD1;j++){
                 if (nrefArEl[i-1]==numRefD1[j]){
                     NuDElem[sommets[0]-1]=-1; NuDElem[sommets[1]-1]=-1;
-
                     //utilisation de UD pour les points dans cette arête
-                    uDElem[sommets[0]-1]=UD(coorAr[0]);
-                    uDElem[sommets[1]-1]=UD(coorAr[1]); 
+                    uDElem[sommets[0]-1]=UD(coorAr[0]); uDElem[sommets[1]-1]=UD(coorAr[1]);
+                }
+            }         
+
+            //boucle sur la liste des num ref Dirichlet homogène
+            for (int j=0;j<nbRefD0;j++){
+                if (nrefArEl[i-1]==numRefD0[j]){
+                    NuDElem[sommets[0]-1]=0; NuDElem[sommets[1]-1]=0;
+                    uDElem[sommets[0]-1]=0;  uDElem[sommets[1]-1]=0;
                 }
             }
-            
         }
     } 
     freetab(xquad); free(pdsquad); free(sommets);
@@ -275,7 +272,7 @@ void intAret(int p, int q_quad, float** xquad, float* pdsquad, float** aK, float
         transFK(aK, wx_i, fk_x, p);
 
         float eltdif = pdsquad[i]*LK;
-
+        
         //contribution au point de quadrature courant pour le calcul des intégrales 
         //calcul de BN(Fk(x_hat)) puis de matart
         float BNFk = BN(fk_x);
