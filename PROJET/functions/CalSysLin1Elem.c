@@ -68,7 +68,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
     //Boucles sur les nbaret arêtes de l'élément actuel
     //Pour prise en compte des conditions au bord
     //
-    // intérieur -> on fait rien
+    // intérieur -> on ne fait rien
     // bord Neumann/Fourier -> gestion par appel de intAret, uDElem = 0
     // bord Dirichlet homogène -> NuDElem = 0, uDElem = 0
     // bord Dirichlet non-homogène -> NuDElem = -1, uDElem = uD(x)
@@ -80,9 +80,8 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
         selectPts(2,sommets,coorEl,coorAr);
 
         
-        if (nrefArEl[i-1] == nRefDom); //noeud à l'intérieur => "on fait rien"
+        if (nrefArEl[i-1] == nRefDom); //noeud à l'intérieur => "on ne fait rien"
         else{
-
             //boucle sur les num de ref des bords sous condition de Fourier/Neumann
             //puis condition if pour vérifier si l'arête est référencée de la même manière
             for (int j=0;j<nbRefF1;j++){
@@ -115,7 +114,6 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
                     free(VectAret); freetab(MatAret);
                 }
             }
-
             //boucle sur la liste des num ref Dirichlet homogène
             for (int j=0;j<nbRefD0;j++){
                 if (nrefArEl[i-1]==numRefD0[j]){
@@ -133,9 +131,9 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
                     uDElem[sommets[1]-1]=UD(coorAr[1]); 
                 }
             }
-            
         }
     } 
+    //Libération de la mémoire
     freetab(xquad); free(pdsquad); free(sommets);
     free(pdsquad_ar);freetab(xquad_ar);
     free(coorAr);//free simple parce que ça pointe sur un espace mémoire aussi pointé par coorEl.
