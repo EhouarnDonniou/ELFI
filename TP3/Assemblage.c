@@ -44,14 +44,19 @@ void Assemblage(float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng 
         impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ; //enfait on impcalel (c'est dans les fichiers de test)
 
         for(int i=1;i<Nblign+1;i++){
-            int I=ngnel[k-1][i-1];
+            int I=ngnel[k-1][i-1]; // I = gK(i)
             
             for(int j=1; j<i;j++){
-                int J=ngnel[k-1][j-1];
+                int J=ngnel[k-1][j-1]; // J = gK(j)
+
                 Jtild = (((I) < (J)) ? (I) : (J)) ;
                 Itild = (((I) > (J)) ? (I) : (J)) ;
-                assmat(&Itild,&Jtild,); // A FINIR
+
+                assmat(&Itild,&Jtild,) ; 
             }
+            //Gérer la partie diag(I)
+            //Gérer Sec Membre(I)
+            //Gérer Cond Dirichlet(I) -> {uDElem,NuDElem} <-> {NumDLDir,ValDLDir}
         }
 
 
