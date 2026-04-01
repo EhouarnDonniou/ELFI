@@ -12,6 +12,7 @@
 #include "include/headerTP1.h"
 #include "include/headerTP2a.h"
 #include "include/headerTP2b.h"
+#include "include/headerTP3_4.h"
 #include "include/forfun.h"
 #include "include/utilitaires.h"
 
@@ -40,14 +41,14 @@ void main(){
 
     float* SecMembre = malloc(nbtng*sizeof(float));
     int* NumDLDir = malloc(nbtng*sizeof(int));
-    int* ValDLDir = malloc(nbtng*sizeof(int));
+    float* ValDLDir = malloc(nbtng*sizeof(int));
     int* AdPrCoefLi = calloc(nbtng,sizeof(int)); int NbCoef = AdPrCoefLi[nbtng]-1;
     float* Matrice = malloc(nbtng+NbCoef*sizeof(float));
     int* NumCol = malloc(NbCoef*sizeof(int));
     int* AdSuccLi = malloc(NbCoef*sizeof(int));
  
     Assemblage(coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
-               nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi , Matrice , Numcol , AdSuccLi);
+               nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi);
 
 //affichage système assemblé
 
