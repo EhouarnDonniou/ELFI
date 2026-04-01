@@ -12,7 +12,7 @@
 #include "include/utilitaires.h"
 #include "include/forfun.h"
 
-void Assemblage(float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int Nblign ,float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float*  Matrice ,int* Numcol ,int* AdSuccLi){
+void Assemblage(float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int Nblign ,float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float*  Matrice ,int* NumCol ,int* AdSuccLi){
     
     int NextAd=1;
     //Allocation
