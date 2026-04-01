@@ -1,0 +1,17 @@
+/*
+--------------------------------------------------------------------------------
+    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
+
+    Ecrit le 01/04/2026
+--------------------------------------------------------------------------------
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+//Fonction assemblage du TP3
+void Assemblage(float**,int**,int**,int,int,int,int,int,int,float*,int*,float*,int*,float*,int*,int* );
+
+//Fonction de Stockage en structure morse desordonnee a ordonnee du TP4
+void dSMDaSMO(int,float*,int*,float*,int*,float*,int*,int*,float*,int*,float*,int*);
