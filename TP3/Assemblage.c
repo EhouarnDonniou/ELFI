@@ -43,27 +43,35 @@ void Assemblage(float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng 
 
         impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ; //enfait on impcalel (c'est dans les fichiers de test)
 
-        for(int i=1;i<Nblign+1;i++){
-            int I=ngnel[k-1][i-1]; // I = gK(i)
+        /* /!\ i et j commencent à 1 et k à 0 /!\ */
+        for(int i=1;i<nbneel+1;i++){
+            int I=ngnel[k][i-1]; // I = gK(i) (i est local, I est global)
             
             for(int j=1; j<i;j++){
-                int J=ngnel[k-1][j-1]; // J = gK(j)
+                int J=ngnel[k-1][j-1]; // J = gK(j) (j est local, J est global)
 
                 Jtild = (((I) < (J)) ? (I) : (J)) ;
                 Itild = (((I) > (J)) ? (I) : (J)) ;
 
-                assmat(&Itild,&Jtild,) ; 
+                assmat_(&Itild, &Jtild, &MatElem[Itild][Jtild], AdPrCoefLi, NumCol, AdSuccLi, Matrice[Nblign+1], NextAd); 
             }
-            //Gérer la partie diag(I)
-            //Gérer Sec Membre(I)
-            //Gérer Cond Dirichlet(I) -> {uDElem,NuDElem} <-> {NumDLDir,ValDLDir}
+            Matrice[I] = MatElem[i-1][i-1];
+            SecMembre[I] = SMbrElem[i-1];
+            switch(NuDElem[i-1]){
+                case -1 :
+                    ValDLDir[I] = uDElem[i-1];
+                    NumDLDir[I] = -I;  break;
+                case 0 :
+                    NumDLDir[I] = I;   break;
+                default : NumDLDir[I] = I;
+            }
         }
 
 
         
     }
-
-
-    free(numRefD0); free(numRefD1); free(numRefF1);
+    //Allocation
+    freetab(MatElem); free(SMbrElem);
+    freetab(coorEl);
     free(NuDElem); free(uDElem);
 }

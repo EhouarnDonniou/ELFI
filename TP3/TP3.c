@@ -36,30 +36,31 @@ void main(){
     int check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
     lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
 
-    //declaration des variables relatives au stockage morse
-    int NbLign = ?;
-    float* SecMembre = malloc(NbLign*sizeof(float));
-    int* NumDLDir = malloc(NbLign*sizeof(int));
-    int* ValDLDir = malloc(NbLign*sizeof(int));
-    int* AdPrCoefLi = malloc(NbLign*sizeof(int)); int NbCoef = AdPrCoefLi[NbLign]-1;
-    float* Matrice = malloc(NbCoef*sizeof(float));
+    //declaration des variables relatives au stockage morse désordonné
+
+    float* SecMembre = malloc(nbtng*sizeof(float));
+    int* NumDLDir = malloc(nbtng*sizeof(int));
+    int* ValDLDir = malloc(nbtng*sizeof(int));
+    int* AdPrCoefLi = calloc(nbtng,sizeof(int)); int NbCoef = AdPrCoefLi[nbtng]-1;
+    float* Matrice = malloc(nbtng+NbCoef*sizeof(float));
     int* NumCol = malloc(NbCoef*sizeof(int));
     int* AdSuccLi = malloc(NbCoef*sizeof(int));
  
     Assemblage(coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
-            Nblign ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi , Matrice , Numcol , AdSuccLi);
+               nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi , Matrice , Numcol , AdSuccLi);
 
 //affichage système assemblé
-/*
-    affsmd(const int *nblign, const int *adprcl, const int *numcol,
-           const int *adsucl, const float *matris, const float *secmbr,
-           const int *nuddir, const float *valdir);
-*/
-    
+
+    affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
 
 
 //quitter
 
     free(numRefD0); free(numRefD1); free(numRefF1);
     freetab(coord); freetab(ngnel); freetab(nRefAr);
+
+    free(SecMembre); free(Matrice); 
+    free(NumDLDir); free(ValDLDir);
+    free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
+    
 }
