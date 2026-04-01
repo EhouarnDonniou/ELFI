@@ -12,7 +12,7 @@
 #include "../include/utilitaires.h"
 #include "../include/forfun.h"
 
-void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int Nblign ,float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float*  Matrice ,int* NumCol ,int* AdSuccLi){
+void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int Nblign ,float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float*  Matrice ,int* NumCol ,int* AdSuccLi,float* SecMemb0 ,int* AdPrCoLi0 ,float* Matrice0 ,int* NumCol0){
     
     int NextAd=1;
     //Allocation
@@ -54,7 +54,7 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
                 int Jtild = (((I) < (J)) ? (I) : (J)) ;
                 int Itild = (((I) > (J)) ? (I) : (J)) ;
 
-                assmat_(&Itild, &Jtild, &MatElem[i-1][j-1], AdPrCoefLi, NumCol, AdSuccLi, Matrice, &NextAd); 
+                assmat_(&Itild, &Jtild, &MatElem[i-1][j-1], AdPrCoefLi, NumCol, AdSuccLi, &Matrice[Nblign], &NextAd); 
             }
             Matrice[I-1] += MatElem[i-1][i-1];
             SecMembre[I-1] += SMbrElem[i-1]; 
@@ -69,10 +69,11 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
             if(NuDElem[i-1]==1 & NumDLDir[I-1] != -I){
                     NumDLDir[I-1] = I;
             }
-
-
         }
+        AdPrCoefLi[Nblign-1] = NextAd;
     }
+
+
     //Libération
     freetab(MatElem); free(SMbrElem);
     free(NuDElem); free(uDElem);

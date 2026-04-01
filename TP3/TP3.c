@@ -38,7 +38,6 @@ void main(){
     lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
 
     //declaration des variables relatives au stockage morse désordonné
-
     float* SecMembre = malloc(nbtng*sizeof(float));
     int* NumDLDir = malloc(nbtng*sizeof(int));
     float* ValDLDir = malloc(nbtng*sizeof(int));
@@ -47,14 +46,24 @@ void main(){
     int* NumCol = malloc(NbCoef*sizeof(int));
     int* AdSuccLi = malloc(NbCoef*sizeof(int));
  
+    //declaration des variables relatives au stockage morse ordonné
+    float* SecMemb0 = malloc(nbtng*sizeof(float));
+    int* AdPrCoLi0 = malloc(nbtng*sizeof(int));
+    float* Matrice0 = malloc(nbtng+NbCoef*sizeof(float)); 
+    int* NumCol0 = malloc(NbCoef*sizeof(int));
+
     Assemblage(nRefDom,nbRefD0,numRefD0,nbRefD1,numRefD1,nbRefF1,numRefF1,
             coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
-            nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi);
+            nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, 
+            SecMemb0 , AdPrCoLi0 , Matrice0 ,NumCol0);
 
-//affichage système assemblé
+//affichage système assemblé en SMD
 
     affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
 
+//passage de SMD à SMO puis affichage
+    cdesse_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
+    affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
 //quitter
 
