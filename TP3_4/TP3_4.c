@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------
     Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
 
-    Ecrit le 04/03/2026
+    Ecrit le 02/04/2026
 --------------------------------------------------------------------------------
 */
 
@@ -17,27 +17,30 @@
 #include "include/utilitaires.h"
 
 void main(){
-    //déclaration-init pour la lecture de fichiers
-    char* ficmai = "car3x3t_3";
-    char* ficRef = "NUMREF.Test";
+//déclaration-init pour la lecture de fichiers
+    char* ficmai;
+    printf("\nDonner le nom du fichier de maillage : ");
+    scanf("%s", ficmai); 
+    char* ficRef = "input/NUMREF.Test";
+    printf("Lecture du fichier %s\n\n",ficRef);
 
-    //déclaration des variables géométriques
+//déclaration des variables géométriques
     float** coord;
     int** ngnel; 
     int typeEl, nbtng, nbtel, nbneel, nbaret;
 
-    //déclaration des variables relatives aux conditions de bord
+//déclaration des variables relatives aux conditions de bord
     int** nRefAr;
     int nRefDom, nbRefD0, nbRefD1, nbRefF1;
     int* numRefD0;
     int* numRefD1;
     int* numRefF1;
 
-    //appel des fonctions de lecture de fichiers pour initialiser les variables associées au maillage/domaine
+//appel des fonctions de lecture de fichiers pour initialiser les variables associées au maillage/domaine
     int check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
     lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
 
-    //declaration des variables relatives au stockage morse désordonné
+//declaration et initialisation des variables relatives au stockage morse désordonné
     float* SecMembre = calloc(nbtng,sizeof(float));
     int* NumDLDir = malloc(nbtng*sizeof(int));
     float* ValDLDir = calloc(nbtng,sizeof(int));
@@ -50,32 +53,30 @@ void main(){
         NumDLDir[i]=i+1;
     }
  
-    //declaration des variables relatives au stockage morse ordonné
+//declaration des variables relatives au stockage morse ordonné
     float* SecMemb0 = calloc(nbtng,sizeof(float));
     int* AdPrCoLi0 = calloc(nbtng,sizeof(int));
     float* Matrice0 = calloc(nbtng+NbCoef,sizeof(float)); 
     int* NumCol0 = calloc(NbCoef,sizeof(int));
 
+//assemblage du système linéaire
     Assemblage(nRefDom,nbRefD0,numRefD0,nbRefD1,numRefD1,nbRefF1,numRefF1,
             coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
             nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, 
             SecMemb0 , AdPrCoLi0 , Matrice0 ,NumCol0);
     
 //affichage système assemblé en SMD
-
     affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
 
 //passage de SMD à SMO puis affichage
     cdesse_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
     affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
-//quitter
-
+//libération de la mémoire
     free(numRefD0); free(numRefD1); free(numRefF1);
     freetab(coord); freetab(ngnel); freetab(nRefAr);
 
     free(SecMembre); free(Matrice); 
     free(NumDLDir); free(ValDLDir);
     free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
-    
 }
