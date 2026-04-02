@@ -316,7 +316,7 @@ void ppquad(int t, float* poids, float** pts){
     t    : type de l'élémnt actuel K
     aK   : coordonnées des noeuds d'interpo de l'élémnt actuel K
     derW : liste de valeurs des dw/dxi(x_hat) pour x_hat actuel.
-    Jac  : matrice jacobienne de FK(x_hat)     pour t==2,3 (initialisé à 0 avant chaque appel)
+    Jac  : matrice jacobienne de FK(x_hat)     pour t==2,3 (initialisé à 1 avant chaque appel)
            vecteur (dFK/dx_1, dFK/dx_2)(x_hat) pour t==1 
 
 */
