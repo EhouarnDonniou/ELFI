@@ -7,4 +7,3 @@ cd functions/fortran/
 rm *.o
 cd ../../
 TP3_4.exe
-
