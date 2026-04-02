@@ -66,13 +66,9 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
             if(NuDElem[i-1]==0){
                 NumDLDir[I-1] = 0; 
             }
-            if(NuDElem[i-1]==1 & NumDLDir[I-1] != -I){
-                    NumDLDir[I-1] = I;
-            }
         }
-        AdPrCoefLi[Nblign-1] = NextAd;
     }
-
+    AdPrCoefLi[Nblign-1] = NextAd;
 
     //Libération
     freetab(MatElem); free(SMbrElem);
