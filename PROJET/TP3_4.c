@@ -41,35 +41,30 @@ void main(){
     lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
 
 //declaration et initialisation des variables relatives au stockage morse désordonné
-    float* SecMembre = calloc(nbtng,sizeof(float));
+    float* SecMembre = malloc(nbtng*sizeof(float));
     int* NumDLDir = malloc(nbtng*sizeof(int));
-    float* ValDLDir = calloc(nbtng,sizeof(int));
-    int* AdPrCoefLi = calloc(nbtng,sizeof(int)); int NbCoef = 12*nbtng; //on overshoot
-    float* Matrice = calloc(nbtng+NbCoef,sizeof(float));
-    int* NumCol = calloc(NbCoef,sizeof(int));
-    int* AdSuccLi = calloc(NbCoef,sizeof(int));
+    float* ValDLDir = malloc(nbtng*sizeof(int));
+    int* AdPrCoefLi = malloc(nbtng*sizeof(int)); int NbCoef = 12*nbtng; //on overshoot
+    float* Matrice = malloc((nbtng+NbCoef)*sizeof(float));
+    int* NumCol = malloc(NbCoef*sizeof(int));
+    int* AdSuccLi = malloc(NbCoef*sizeof(int));
 
-    for(int i=0; i<nbtng ; i++){
-        NumDLDir[i]=i+1;
-    }
- 
 //declaration des variables relatives au stockage morse ordonné
-    float* SecMemb0 = calloc(nbtng,sizeof(float));
-    int* AdPrCoLi0 = calloc(nbtng,sizeof(int));
-    float* Matrice0 = calloc(nbtng+NbCoef,sizeof(float)); 
-    int* NumCol0 = calloc(NbCoef,sizeof(int));
+    float* SecMemb0 = malloc(nbtng*sizeof(float));
+    int* AdPrCoLi0 = malloc(nbtng*sizeof(int));
+    float* Matrice0 = malloc((nbtng+NbCoef)*sizeof(float)); 
+    int* NumCol0 = malloc(NbCoef*sizeof(int));
 
-//assemblage du système linéaire
+//assemblage du système linéaire (matrices élémentaires, assemblage SMO, passage SMO->SMD)
     Assemblage(nRefDom,nbRefD0,numRefD0,nbRefD1,numRefD1,nbRefF1,numRefF1,
             coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
-            nbtng ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, 
+            nbtng ,NbCoef ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, 
             SecMemb0 , AdPrCoLi0 , Matrice0 ,NumCol0);
     
 //affichage système assemblé en SMD
     affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
 
-//passage de SMD à SMO puis affichage
-    cdesse_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
+//affichage système assemblé en SMO
     affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
 //libération de la mémoire

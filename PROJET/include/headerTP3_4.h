@@ -11,4 +11,4 @@
 #include <math.h>
 
 //Fonction assemblage du TP3
-void Assemblage(int,int,int*,int,int*,int,int*,float**,int**,int**,int,int,int,int,int,int,float*,int*,float*,int*,float*,int*,int*,float*,int*,float*,int*);
+void Assemblage(int,int,int*,int,int*,int,int*,float**,int**,int**,int,int,int,int,int,int,int,float*,int*,float*,int*,float*,int*,int*,float*,int*,float*,int*);
