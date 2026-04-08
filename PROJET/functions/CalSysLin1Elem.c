@@ -86,8 +86,6 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
             //puis condition if pour vérifier si l'arête est référencée de la même manière
             for (int j=0;j<nbRefF1;j++){
                 if (nrefArEl[i-1]==numRefF1[j]){
-                    uDElem[sommets[0]-1]=0; uDElem[sommets[1]-1]=0;
-
                     float* VectAret = malloc(2*sizeof(float));
                     float** MatAret = alloctab(2,2);
 

@@ -203,7 +203,12 @@ void calDerFbase(int t, float* x, float** valeur){
 
             valeur[1][0] = 0;
             valeur[1][1] = 1;
-
+ture sur le segment actuel K'
+   xquad    : points de quadrature sur le segment de ref
+   pdsquad  : poids de quadrature associés
+   aK       : coordonnées des noeuds d'interpo du segment actuel K'
+   matart   : matrice de la quadrature sur le segment actuel K' (initialisé à 0)
+   vectart  : vecteur de quadrature du second membre sur le segment actuel K' (initialisé à 0)
             valeur[2][0] = -1;
             valeur[2][1] = -1;
             break;
