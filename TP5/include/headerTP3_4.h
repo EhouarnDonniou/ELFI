@@ -11,4 +11,7 @@
 #include <math.h>
 
 //Fonction assemblage du TP3
-void Assemblage(int,int,int*,int,int*,int,int*,float**,int**,int**,int,int,int,int,int,int,int,float*,int*,float*,int*,float*,int*,int*,float*,int*,float*,int*);
+void Assemblage(int,int,int*,int,int*,int,int*,float**,int**,int**,int,int,int,int,int,int,int,float*,int*,float*,int*,float*,int*,int*,int*);
+
+//passage de stockage SMD à SMO
+void dSMDaSMO(int*, int, int*, int*, int*, float*, float*, int*, float*, int*, int*, float*, float*);

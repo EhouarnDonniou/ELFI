@@ -69,7 +69,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
     //Pour prise en compte des conditions au bord
     //
     // intérieur -> on fait rien NuDElem = 1
-    // bord Neumann/Fourier -> gestion par appel de intAret, uDElem = 0
+    // bord Neumann/Fourier -> gestion par appel de intAret, NuDElem = 1
     // bord Dirichlet homogène -> NuDElem = 0, uDElem = 0
     // bord Dirichlet non-homogène -> NuDElem = -1, uDElem = uD(x)
     for(int i=1; i<=nbaret;i++){
@@ -102,6 +102,13 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
                     //appel à intAret, intègrales linéaires sur les arêtes dans gammaN
                     intAret(2, 3, xquad_ar, pdsquad_ar,coorAr, MatAret, VectAret);
                     
+                    printf("MatAret = \n");
+                    printtab(MatAret,2,2);
+                    printf("VectAret = \n");
+                    printf(" %f\n",VectAret[0]); printf(" %f\n",VectAret[1]);
+                    printf("\n");
+                    
+
                     for(int k=0; k<2 ; k++){
                         int nk = sommets[k]-1;
                         SMbrElem[nk] += VectAret[k];
@@ -252,8 +259,7 @@ void intAret(int p, int q_quad, float** xquad, float* pdsquad, float** aK, float
     float** dwx_i = alloctab(q_quad,2);
 
     float* fk_x = malloc(2*sizeof(float));
-    float** JFk = alloctab(1,2);
-    float** JFk_inv = alloctab(1,2); 
+    float** JFk = alloctab(1,2); 
 
     //boucle sur les points de quadrature i = 0 -> q_quad-1
     for(int i=0; i<q_quad; i++){
@@ -283,7 +289,7 @@ void intAret(int p, int q_quad, float** xquad, float* pdsquad, float** aK, float
         W(p, wx_i, eltdif, FNFk, vectart);
     }
     free(wx_i); freetab(dwx_i); free(fk_x); 
-    freetab(JFk); freetab(JFk_inv);
+    freetab(JFk);
 }
 
 

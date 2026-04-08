@@ -42,7 +42,7 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
                    typeEl, nbneel, coorEl, nbaret, nRefAr[k],
                    MatElem, SMbrElem, NuDElem, uDElem);
 
-        //impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ; //enfait on impcalel (c'est dans les fichiers de test)
+        impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ; //enfait on impcalel (c'est dans les fichiers de test)
 
         /* /!\ i et j commencent à 1 et k à 0 /!\ */
         for(int i=1;i<=nbneel;i++){

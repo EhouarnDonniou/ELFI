@@ -9,6 +9,7 @@
 
 //pour compiler : bash compil.sh dans le dossier actuel
 
+#include <stdio.h>
 #include "include/headerTP1.h"
 #include "include/headerTP2a.h"
 #include "include/headerTP2b.h"
@@ -18,9 +19,10 @@
 
 void main(){
 //déclaration-init pour la lecture de fichiers
-    char* ficmai;
-    printf("\nDonner le nom du fichier de maillage : ");
-    scanf("%s", ficmai); 
+    char* ficmai = "input/car3x3t_3";
+    //printf("\nDonner le nom du fichier de maillage : ");
+    //scanf("%s", ficmai); 
+    //printf("tout est lu correctement\n");
     char* ficRef = "input/NUMREF.Test";
     printf("Lecture du fichier %s\n\n",ficRef);
 
@@ -38,7 +40,10 @@ void main(){
 
 //appel des fonctions de lecture de fichiers pour initialiser les variables associées au maillage/domaine
     int check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
+    
     lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
+
+    
 
 //declaration et initialisation des variables relatives au stockage morse désordonné
     float* SecMembre = malloc(nbtng*sizeof(float));
@@ -48,24 +53,39 @@ void main(){
     float* Matrice = malloc((nbtng+NbCoef)*sizeof(float));
     int* NumCol = malloc(NbCoef*sizeof(int));
     int* AdSuccLi = malloc(NbCoef*sizeof(int));
+    int NextAd;
+
+//assemblage du système linéaire (matrices élémentaires, assemblage SMD)
+    Assemblage(nRefDom,nbRefD0,numRefD0,nbRefD1,numRefD1,nbRefF1,numRefF1,
+            coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
+            nbtng ,NbCoef ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, &NextAd);
+
+//affichage système assemblé en SMD
+    //affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
+
+
 
 //declaration des variables relatives au stockage morse ordonné
+    NbCoef = AdPrCoefLi[nbtng-1];
     float* SecMemb0 = malloc(nbtng*sizeof(float));
     int* AdPrCoLi0 = malloc(nbtng*sizeof(int));
     float* Matrice0 = malloc((nbtng+NbCoef)*sizeof(float)); 
-    int* NumCol0 = malloc(NbCoef*sizeof(int));
+    int* NumCol0 = malloc(NbCoef*sizeof(int)); 
 
-//assemblage du système linéaire (matrices élémentaires, assemblage SMO, passage SMO->SMD)
-    Assemblage(nRefDom,nbRefD0,numRefD0,nbRefD1,numRefD1,nbRefF1,numRefF1,
-            coord ,ngnel ,nRefAr ,typeEl ,nbtng ,nbtel ,nbneel ,nbaret ,
-            nbtng ,NbCoef ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, 
-            SecMemb0 , AdPrCoLi0 , Matrice0 ,NumCol0);
-    
-//affichage système assemblé en SMD
-    affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
+//passage SMD->SMO
+    dSMDaSMO(&nbtng, NbCoef, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
 //affichage système assemblé en SMO
     affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
+
+//déclaration des variables relatives au stockage profil
+    //NbCoef = AdPrCoLi0[nbtng]-1;
+    //int* Profil = malloc(nbtng*sizeof(int));
+    //float* MatProf = malloc((nbtng+NbCoef)*sizeof(float)); 
+
+//passage SMO->Profile    
+
+
 
 //libération de la mémoire
     free(numRefD0); free(numRefD1); free(numRefF1);
@@ -74,4 +94,6 @@ void main(){
     free(SecMembre); free(Matrice); 
     free(NumDLDir); free(ValDLDir);
     free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
+
+    //free(Profil); free(MatProf);
 }

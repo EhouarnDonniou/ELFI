@@ -12,19 +12,18 @@
 #include "../include/utilitaires.h"
 #include "../include/forfun.h"
 
-void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int Nblign ,int NbCoef, float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float*  Matrice ,int* NumCol ,int* AdSuccLi,float* SecMemb0 ,int* AdPrCoLi0 ,float* Matrice0 ,int* NumCol0){
+void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int NbLign ,int NbCoef, float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float*  Matrice ,int* NumCol ,int* AdSuccLi, int* NextAd){
     
     //initialisation des variables allouées précédement
-    int NextAd=1;
-    for(int i=0; i<Nblign; i++){
-        SecMembre[i]=0;  SecMemb0[i]=0;
-        Matrice[i]=0;    Matrice0[i]=0;
-        AdPrCoefLi[i]=0; AdPrCoLi0[i]=0;
+    *NextAd=1;
+    for(int i=0; i<NbLign; i++){
+        SecMembre[i]=0;  
+        Matrice[i]=0;    
+        AdPrCoefLi[i]=0; 
         ValDLDir[i]=0;   NumDLDir[i]=i+1; 
     }
     for(int i=0; i<NbCoef; i++){
-        Matrice[Nblign+i]=0; 
-        Matrice0[Nblign+i]=0;
+        Matrice[NbLign+i]=0; 
         NumCol[i]=0;
         AdSuccLi[i]=0;
     }
@@ -68,7 +67,12 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
                 int Jtild = (((I) < (J)) ? (I) : (J)) ;
                 int Itild = (((I) > (J)) ? (I) : (J)) ;
 
-                assmat_(&Itild, &Jtild, &MatElem[i-1][j-1], AdPrCoefLi, NumCol, AdSuccLi, &Matrice[Nblign], &NextAd); 
+                assmat_(&Itild, &Jtild, &MatElem[i-1][j-1], AdPrCoefLi, NumCol, AdSuccLi, &Matrice[NbLign], NextAd); 
+
+                if(*NextAd > NbCoef) {
+                    printf("NextAd est plus grand que NbCoef, on a pas mis assez grand!!\n");
+                    exit(EXIT_FAILURE);
+                }
             }
             Matrice[I-1] += MatElem[i-1][i-1];
             SecMembre[I-1] += SMbrElem[i-1]; 
@@ -84,12 +88,24 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
             }
         }
     }
-    AdPrCoefLi[Nblign-1] = NextAd;
+    AdPrCoefLi[NbLign-1] = *NextAd;
 
-    cdesse_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
     //Libération
     freetab(MatElem); free(SMbrElem);
     free(NuDElem); free(uDElem);
     free(coorEl); // attention à pas le freetab !
 }
+
+void dSMDaSMO(int* NbLign, int NbCoef, int* AdPrCoefLi, int* NumCol, int* AdSuccLi, float* Matrice, float* SecMembre, int* NumDLDir, float* ValDLDir, int* AdPrCoLi0, int* NumCol0, float* Matrice0, float* SecMemb0){
+    for(int i=0; i< *NbLign; i++){
+        SecMemb0[i]=0;
+        Matrice0[i]=0;        
+        AdPrCoLi0[i]=0;
+    }
+    for(int i=0; i< NbCoef; i++){
+        Matrice0[*NbLign+i]=0;
+    }
+    cdesse_(NbLign, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
+}
+    

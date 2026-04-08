@@ -35,7 +35,7 @@ float A00(float *x){
 }
 
 float BN(float *x){
-    return 1;
+    return 0;
 }
 
 float FOMEGA(float *x){
