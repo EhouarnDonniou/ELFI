@@ -14,17 +14,24 @@
 #include "include/headerTP2a.h"
 #include "include/headerTP2b.h"
 #include "include/headerTP3_4.h"
+#include "include/headerTP5.h"
 #include "include/forfun.h"
 #include "include/utilitaires.h"
+#include "include/dsmoapr.h"
 
 void main(){
 //déclaration-init pour la lecture de fichiers
-    char* ficmai = "input/car3x3t_3";
+    char* ficmai = "input/car1x1q_4";
+    printf("Lecture du fichier %s\n\n",ficmai);
     //printf("\nDonner le nom du fichier de maillage : ");
     //scanf("%s", ficmai); 
     //printf("tout est lu correctement\n");
     char* ficRef = "input/NUMREF.Test";
     printf("Lecture du fichier %s\n\n",ficRef);
+    int affichage;
+    printf("Voulez-vous afficher les résultats ?\n");
+    printf("Aucun affichage : 0\n Affichage SMD : 1\n Affichage SMD-SMO : 2\n Affichage SMD-SMO-Profile : 3\n");
+    scanf("%d", &affichage); 
 
 //déclaration des variables géométriques
     float** coord;
@@ -61,8 +68,9 @@ void main(){
             nbtng ,NbCoef ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, &NextAd);
 
 //affichage système assemblé en SMD
-    //affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
-
+if (affichage>=1){
+    affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
+}
 
 
 //declaration des variables relatives au stockage morse ordonné
@@ -76,15 +84,23 @@ void main(){
     dSMDaSMO(&nbtng, NbCoef, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
 //affichage système assemblé en SMO
+if (affichage>=2){
     affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
+}
 
-//déclaration des variables relatives au stockage profil
-    //NbCoef = AdPrCoLi0[nbtng]-1;
-    //int* Profil = malloc(nbtng*sizeof(int));
-    //float* MatProf = malloc((nbtng+NbCoef)*sizeof(float)); 
+//déclaration des variables relatives au stockage profil (nbtng == Nblign)
+    NbCoef = AdPrCoLi0[nbtng]-1;
+    int LongProfile =  dSMOaLongPR(nbtng,AdPrCoLi0,NumCol0,Matrice0);
+    int* Profil = malloc(nbtng*sizeof(int));
+    float* MatProf = malloc(LongProfile*sizeof(float)); 
 
 //passage SMO->Profile    
+    dSMOaPR(nbtng, AdPrCoLi0, NumCol0, Matrice0, LongProfile, Profil, MatProf);
 
+//affichage du système en profil
+if(affichage>=3){ 
+    affSProf(nbtng, Profil, MatProf);
+}
 
 
 //libération de la mémoire
@@ -95,5 +111,5 @@ void main(){
     free(NumDLDir); free(ValDLDir);
     free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
 
-    //free(Profil); free(MatProf);
+    free(Profil); free(MatProf);
 }

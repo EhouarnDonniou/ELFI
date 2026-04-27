@@ -40,19 +40,7 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
     for(int k=0;k<nbtel;k++){
         
         //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
-        for(int i=0;i<nbneel;i++)/*
---------------------------------------------------------------------------------
-    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
-
-    Ecrit le 25/03/2026
---------------------------------------------------------------------------------
-*/
-
-#include "../include/headerTP1.h"
-#include "../include/headerTP2a.h"
-#include "../include/headerTP2b.h"
-#include "../include/utilitaires.h"
-#include "../include/forfun.h"{
+        for(int i=0;i<nbneel;i++){
             SMbrElem[i]=0;
             NuDElem[i]=1;
             uDElem[i]=0;
