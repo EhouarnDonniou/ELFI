@@ -5,7 +5,8 @@
 #include "../include/utilitaires.h"
 #include "../include/forfun.h"
 
-
+//pas fini
+//objectif : obtenir la longueur du tableau qui stockera la matrice profil à partir de la SMO
 int dSMOaLongPR_nous(int NbLign, int* AdPrCoefLi0, int* NumCol0, float* Matrice0){
     int LongProfil = NbLign+1;
     for(int i=0; ;i++){
