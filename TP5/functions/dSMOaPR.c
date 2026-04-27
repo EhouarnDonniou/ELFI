@@ -36,7 +36,16 @@ int dSMOaLongPR_nous(int NbLign, int* AdPrCoefLi0, int* NumCol0, float* Matrice0
 
 */
 //void dSMOaPR(int* AdPrCoefLi,float* Matrice,int* NumCol,int* Profil,float* MatProf){
-    
+    for(int i=0;i<Nblign-1;i++){
+        MatProf[i]=Matrice[i];
+        for(int j=0;j<AdPrCoefLi[Nblign];j++){
+            if(AdPrCoefLi[i]==AdPrCoefLi[i+1]){Profil[i]=AdPrCoefLi[i];}
+            else{
+            
+            }
+        }
+      
+    }
 //}
 
 /*
