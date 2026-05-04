@@ -58,7 +58,9 @@ void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int Lon
     for(int i=0;i<LongProfil;i++){
         MatProf[i]=0.;
     }
-    int count = 1;
+    int count = 0;
+
+    //la matrice est diagonale 
     if(LongProfil==NbLign){
         for(int i=0;i<LongProfil;i++){
             MatProf[i]=Matrice[i];
@@ -66,20 +68,27 @@ void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int Lon
         }
         Profil[LongProfil]=0;
     }
+
+    //pas que diagonale
     else{
         //Diagonale
+ 
         for(int i=0;i<NbLign;i++){
-            MatProf[i]=Matrice[i];
-            Profil[i]=count;
+           Profil[i]=count+1;
             if(AdPrCoefLi[i]!=AdPrCoefLi[i+1]){
+                
                 for(int j=AdPrCoefLi[i]; j<AdPrCoefLi[i+1]; j++){
-                    MatProf[NbLign+count+NumCol[j]-NumCol[AdPrCoefLi[i]]] = Matrice[NbLign+AdPrCoefLi[i]+j];
-                    count++;
+                    MatProf[NbLign+count+1+NumCol[j]-NumCol[AdPrCoefLi[i]]] = Matrice[NbLign+j];
                 }
-            
+                
+                count += 1+i-NumCol[AdPrCoefLi[i]];
             }
+            
+            MatProf[i]=Matrice[i];
+            
         } 
         Profil[NbLign]=0;
+        
     }
 }
 
