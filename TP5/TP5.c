@@ -21,7 +21,7 @@
 
 void main(){
 //déclaration-init pour la lecture de fichiers
-    char* ficmai = "input/car1x1q_4";
+    char* ficmai = "input/car3x3t_3";
     printf("Lecture du fichier %s\n\n",ficmai);
     //printf("\nDonner le nom du fichier de maillage : ");
     //scanf("%s", ficmai); 
@@ -30,7 +30,7 @@ void main(){
     printf("Lecture du fichier %s\n\n",ficRef);
     int affichage;
     printf("Voulez-vous afficher les résultats ?\n");
-    printf("Aucun affichage : 0\n Affichage SMD : 1\n Affichage SMD-SMO : 2\n Affichage SMD-SMO-Profile : 3\n");
+    printf(" Aucun affichage : 0\n Affichage SMD : 1\n Affichage SMD-SMO : 2\n Affichage SMD-SMO-Profile : 3\n");
     scanf("%d", &affichage); 
 
 //déclaration des variables géométriques
@@ -90,14 +90,28 @@ if (affichage>=2){
 
 //déclaration des variables relatives au stockage profil (nbtng == Nblign)
     NbCoef = AdPrCoLi0[nbtng]-1;
-    int LongProfile =  dSMOaLongPR(nbtng,AdPrCoLi0,NumCol0,Matrice0);
+    //int LongProfil_prof =  dSMOaLongPR(nbtng,AdPrCoLi0,NumCol0,Matrice0);
+    int LongProfil =  dSMOaLongPR_nous(nbtng,AdPrCoLi0,NumCol0,Matrice0); //check
     int* Profil = malloc(nbtng*sizeof(int));
-    float* MatProf = malloc(LongProfile*sizeof(float)); 
+    float* MatProf = malloc(LongProfil*sizeof(float)); 
+    int* Profil_true = malloc(nbtng*sizeof(int));
+    float* MatProf_true = malloc(LongProfil*sizeof(float));
 
-//passage SMO->Profile    
-    dSMOaPR(nbtng, AdPrCoLi0, NumCol0, Matrice0, LongProfile, Profil, MatProf);
+//passage SMO->Profile 
+    dSMOaPR(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil_true, MatProf_true);   
+    dSMOaPR_nous(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil, MatProf);
+   
 
+    printf("diff Profil : \n");
+    for(int i=0;i<nbtng;i++){
+        printf("  %d : %d\n",i,Profil_true[i]);
+    }
+    printf("diff MatProfil : \n");
+    for(int i=0;i<LongProfil;i++){
+        printf("  %d : %f , %f\n",i,MatProf[i],MatProf_true[i]);
+    }
 //affichage du système en profil
+// à revoir tbh
 if(affichage>=3){ 
     affSProf(nbtng, Profil, MatProf);
 }
@@ -112,4 +126,5 @@ if(affichage>=3){
     free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
 
     free(Profil); free(MatProf);
+    free(Profil_true); free(MatProf_true);
 }

@@ -5,12 +5,30 @@
 #include "../include/utilitaires.h"
 #include "../include/forfun.h"
 
-//pas fini
-//objectif : obtenir la longueur du tableau qui stockera la matrice profil à partir de la SMO
-int dSMOaLongPR_nous(int NbLign, int* AdPrCoefLi0, int* NumCol0, float* Matrice0){
-    int LongProfil = NbLign+1;
-    for(int i=0; ;i++){
-        LongProfil+=;
+/*
+--------------------------------------------------------------------------------
+    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
+
+    Ecrit le 8/04/2026
+--------------------------------------------------------------------------------
+*/
+
+/*
+    Retourne la longueur effective du vecteur stockant la matrice en Profil
+    A partir stockage SMO de la même matrice
+    Arguments:
+        NbLign: Nombre de lignes dans la matrice
+        AdPrcoefLi: FirstAdLi, Position dans Lmat du premier element stocke dans la ligne
+        Matrice: Matrice avec le stockage SMO, Matrice = [Diag, LMat]
+        NumCol: ColInd, indice colonne de l'element i (Numcol[i]) dans LMat
+
+*/
+int dSMOaLongPR_nous(int NbLign, int* AdPrCoLi0, int* NumCol0, float* Matrice0){
+    int LongProfil = NbLign;
+    for(int i=0; i<NbLign-1;i++){
+        if(AdPrCoLi0[i]!=AdPrCoLi0[i+1]){
+            LongProfil += (i+2)-NumCol0[AdPrCoLi0[i]-1];
+        }
     }
     return LongProfil;
 }
@@ -35,18 +53,35 @@ int dSMOaLongPR_nous(int NbLign, int* AdPrCoefLi0, int* NumCol0, float* Matrice0
         MatProf: Stockage de la Matrice dans un vecteur qui est la matrice en stockage Profil, MatProf = [Diag,LmatProf]
 
 */
-//void dSMOaPR(int* AdPrCoefLi,float* Matrice,int* NumCol,int* Profil,float* MatProf){
-    for(int i=0;i<Nblign-1;i++){
-        MatProf[i]=Matrice[i];
-        for(int j=0;j<AdPrCoefLi[Nblign];j++){
-            if(AdPrCoefLi[i]==AdPrCoefLi[i+1]){Profil[i]=AdPrCoefLi[i];}
-            else{
+void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int LongProfil,int* Profil,float* MatProf){
+    //init tout à 0, on aura pas à les "remplir" mais juste à les écraser là où ya des valeurs n-nulles
+    for(int i=0;i<LongProfil;i++){
+        MatProf[i]=0.;
+    }
+    int count = 1;
+    if(LongProfil==NbLign){
+        for(int i=0;i<LongProfil;i++){
+            MatProf[i]=Matrice[i];
+            Profil[i]=1;
+        }
+        Profil[LongProfil]=0;
+    }
+    else{
+        //Diagonale
+        for(int i=0;i<NbLign;i++){
+            MatProf[i]=Matrice[i];
+            Profil[i]=count;
+            if(AdPrCoefLi[i]!=AdPrCoefLi[i+1]){
+                for(int j=AdPrCoefLi[i]; j<AdPrCoefLi[i+1]; j++){
+                    MatProf[NbLign+count+NumCol[j]-NumCol[AdPrCoefLi[i]]] = Matrice[NbLign+AdPrCoefLi[i]+j];
+                    count++;
+                }
             
             }
-        }
-      
+        } 
+        Profil[NbLign]=0;
     }
-//}
+}
 
 /*
 --------------------------------------------------------------------------------
@@ -61,15 +96,19 @@ int dSMOaLongPR_nous(int NbLign, int* AdPrCoefLi0, int* NumCol0, float* Matrice0
 */
 void affSProf(int NbLign, int* Profil, float* MatProf){
     printf("\n");
-        for(int i=0;i<NbLign;i++){
-            printf("Ligne %d --", i+1);
-            int CoefSurLigne = Profil[i]-Profil[i+1];
-            for(int j=0;j<i-CoefSurLigne;j++){
-                printf("%10.4e ",0.);
+        printf("Ligne %d  ", 1);
+        printf("%10.4e \n", MatProf[0]);
+
+        for(int i=1;i<NbLign;i++){
+            printf("Ligne %d  ", i+1);
+            int CoefSurLigne = Profil[i]-Profil[i-1];
+
+            for(int j=0; j<i; j++){
+
+                printf("%10.4e, %d ", MatProf[NbLign+Profil[i]+j],Profil[i]);
             }
-            for(int j=0; j<CoefSurLigne; j++){
-                printf("%10.4e ", MatProf[(NbLign-1)+Profil[i]+j]);
-            }
+
             printf("%10.4e \n", MatProf[i]);
         }
+
 }
