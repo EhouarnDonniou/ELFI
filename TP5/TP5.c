@@ -106,10 +106,10 @@ if (affichage>=2){
     for(int i=0;i<=nbtng;i++){
         printf("  %d : %d, %d\n",i,Profil[i],Profil_true[i]);
     }
-    // printf("diff MatProfil : \n");
-    // for(int i=0;i<LongProfil;i++){
-    //     printf("  %d : %f , %f\n",i,MatProf[i],MatProf_true[i]);
-    // }
+    printf("diff MatProfil : \n");
+    for(int i=0;i<LongProfil;i++){
+        printf("  %d : %f , %f\n",i,MatProf[i],MatProf_true[i]);
+    }
 //affichage du système en profil
 // à revoir tbh
 if(affichage>=3){ 

@@ -71,20 +71,21 @@ void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int Lon
 
     //pas que diagonale
     else{
-        //Diagonale
  
         for(int i=0;i<NbLign;i++){
-           Profil[i]=count+1;
+            MatProf[i]=Matrice[i];
+
+            Profil[i]=count+1;
             if(AdPrCoefLi[i]!=AdPrCoefLi[i+1]){
                 
                 for(int j=AdPrCoefLi[i]; j<AdPrCoefLi[i+1]; j++){
-                    MatProf[NbLign+count+1+NumCol[j]-NumCol[AdPrCoefLi[i]]] = Matrice[NbLign+j];
+                    MatProf[NbLign+count+NumCol[j-1]-NumCol[AdPrCoefLi[i]-1]] = Matrice[NbLign+j-1];
                 }
                 
-                count += 1+i-NumCol[AdPrCoefLi[i]];
+                count += 2+i-NumCol[AdPrCoefLi[i]-1];
             }
             
-            MatProf[i]=Matrice[i];
+            
             
         } 
         Profil[NbLign]=0;
