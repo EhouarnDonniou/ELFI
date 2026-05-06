@@ -105,7 +105,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
                     for(int k=0; k<2 ; k++){
                         int nk = sommets[k]-1;
                         SMbrElem[nk] += VectAret[k];
-
+                        
                             for(int l=0; l<2; l++){
                                 int nl = sommets[l]-1;
                                 MatElem[nk][nl] += MatAret[k][l];
@@ -127,8 +127,8 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
             //boucle sur la liste des num ref Dirichlet homogène
             for (int j=0;j<nbRefD0;j++){
                 if (nrefArEl[i-1]==numRefD0[j]){
-                    NuDElem[sommets[0]-1]=0; NuDElem[sommets[1]-1]=0;
-                    uDElem[sommets[0]-1]=0;  uDElem[sommets[1]-1]=0;
+                    NuDElem[sommets[0]-1]=0.; NuDElem[sommets[1]-1]=0.;
+                    uDElem[sommets[0]-1]=0.;  uDElem[sommets[1]-1]=0.;
                 }
             }
         }
@@ -185,11 +185,11 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
     int q_quad = valq(t);
     //boucle sur les points de quadrature i = 0 -> q-1
     for(int i=0; i<q_quad; i++){
-
         //réinitialisation de la jacobienne à 0.
         for(int j=0; j<2;j++){
-            JFk[j][0]=0;
-            JFk[j][1]=0;
+            JFk[j][0]=0.;
+            JFk[j][1]=0.;
+            fk_x[j]=0.;
         }
         //calculs élémentaires sur le point x_i
         calFbase(t, xquad[i], wx_i);
@@ -211,10 +211,13 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
         //calcul de matelm matrice de l'intérieur en deux parties
         ADWDW(p, dwx_i, JFk_inv, eltdif, AabFk, matelm);
         WW(p, wx_i, eltdif, A00Fk, matelm);
+
         //calcul de Fw(Fk(x_hat)) puis de vectelm second membre de l'intérieur
         float fOmgFk = FOMEGA(fk_x);
         W(p, wx_i, eltdif, fOmgFk, vectelm);
     }
+
+
     free(wx_i); free(fk_x);
     freetab(JFk); freetab(JFk_inv);
     freetab(dwx_i); freetab(AabFk);

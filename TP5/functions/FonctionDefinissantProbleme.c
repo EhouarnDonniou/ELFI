@@ -1,7 +1,6 @@
 #include "../include/headerTP2b.h"
 
 extern int nucas; //numéro de cas (1,2,3)
-extern int nudom; //numéro de domaine (1,2)
 
 /*
 Contient les fonctions : 
@@ -52,23 +51,22 @@ float BN(float *x){
     return 0.;
 }
 
-float FOMEGA(float *x){
+float FOMEGA(float* x){
     const float PI = M_PI;
     float val = 0.;
-
     switch (nucas) {
         case 1 :
-	    val=32.*(x[1]*x[1]+x[0]*x[0]-x[1]-x[0]);
-	    break;
+	        val=32.0*(x[1]*(1-x[1])+x[0]*(1-x[0]));
+	        break;
         case 2 :
-	    val=2.*PI*PI*sin(PI*x[0])*sin(PI*x[1]);
-	    break;
+	        val=2.*PI*PI*sin(PI*x[0])*sin(PI*x[1]);
+	        break;
         case 3 :
-	    val=(1.-2.*PI*PI)cos(PI*x[0])*cos(PI*x[1]);
-	    break;
+	        val=(1.-2.*PI*PI)*cos(PI*x[0])*cos(PI*x[1]);
+	        break;
         default :
-	    printf("*** FOMEGA : exemple non prevu.\n");
-	    break;
+	        printf("*** FOMEGA : exemple non prevu.\n");
+	        break;
   }
   return(val);
 }

@@ -67,7 +67,7 @@ void main(){
             nbtng ,NbCoef ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, &NextAd);
 
 //affichage système assemblé en SMD
-    if (affichage==1){
+    if (affichage>=1){
         affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
     }
 
@@ -83,7 +83,7 @@ void main(){
     dSMDaSMO(&nbtng, NbCoef, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
 //affichage système assemblé en SMO
-    if (affichage==2){
+    if (affichage>=2){
         affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
     }
 

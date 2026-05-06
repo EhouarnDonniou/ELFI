@@ -38,24 +38,23 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
 
     //Boucle sur les éléments K
     for(int k=0;k<nbtel;k++){
-        
         //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
         for(int i=0;i<nbneel;i++){
-            SMbrElem[i]=0;
-            NuDElem[i]=1;
-            uDElem[i]=0;
+            SMbrElem[i]=0.;
+            NuDElem[i]=1.;
+            uDElem[i]=0.;
             for(int j=0; j<nbneel; j++){
-                MatElem[i][j]=0;
+                MatElem[i][j]=0.;
             }
         }
-        
+
         selectPts(nbneel,ngnel[k],coord,coorEl);
 
         cal1Elem(nRefDom, nbRefD0, numRefD0, nbRefD1, numRefD1, nbRefF1, numRefF1, 
                    typeEl, nbneel, coorEl, nbaret, nRefAr[k],
                    MatElem, SMbrElem, NuDElem, uDElem);
 
-        //impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ; //enfait on impcalel (c'est dans les fichiers de test)
+        impCalEl(k+1, typeEl, nbneel, MatElem, SMbrElem, NuDElem, uDElem) ; //enfait on impcalel (c'est dans les fichiers de test)
 
         /* /!\ i et j commencent à 1 et k à 0 /!\ */
         for(int i=1;i<=nbneel;i++){
