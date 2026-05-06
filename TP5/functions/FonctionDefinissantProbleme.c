@@ -8,12 +8,7 @@ Contient les fonctions :
     -A11, A12, A22
     -A00, BN
     -FOMEGA, FN
-    -UD 
-*/
-
-
-/*
---------------------------------------------------------------------------------
+    -UD TP5/input/maillage/d1t1_2-----------------------------------------------
     Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
 
     Ecrit le 11/02/2026

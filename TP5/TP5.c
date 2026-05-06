@@ -17,13 +17,14 @@
 #include "include/headerTP5.h"
 #include "include/forfun.h"
 #include "include/utilitaires.h"
+
 int nucas=1;
 
 void main(){
 //déclaration-init pour la lecture de fichiers
-    char* ficmai = "input/car3x3t_3";
+    char* ficmai = "input/d1t1_2";
     printf("Lecture du fichier %s\n\n",ficmai);
-    char* ficRef = "input/NUMREF.Test";
+    char* ficRef = "input/NUMREF_1";
     printf("Lecture du fichier %s\n\n",ficRef);
     int affichage; int IMPFCH;
     printf("Voulez-vous afficher les résultats ?\n");
