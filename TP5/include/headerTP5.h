@@ -5,3 +5,6 @@
 
 int dSMOaLongPR_nous(int, int*, int*, float*);
 void dSMOaPR_nous(int, int*,int*,float*,int,int*,float*);
+
+float solex(float* coor);
+void CalSol(int NbLign, float** coord, float* UEX);

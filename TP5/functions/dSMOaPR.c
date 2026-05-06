@@ -81,7 +81,6 @@ void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int Lon
                 for(int j=AdPrCoefLi[i]; j<AdPrCoefLi[i+1]; j++){
                     MatProf[NbLign+count+NumCol[j-1]-NumCol[AdPrCoefLi[i]-1]] = Matrice[NbLign+j-1];
                 }
-                
                 count += 2+i-NumCol[AdPrCoefLi[i]-1];
             }
             
@@ -89,6 +88,5 @@ void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int Lon
             
         } 
         Profil[NbLign]=0;
-        
     }
 }

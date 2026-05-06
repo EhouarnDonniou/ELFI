@@ -17,21 +17,21 @@
 #include "include/headerTP5.h"
 #include "include/forfun.h"
 #include "include/utilitaires.h"
-#include "include/dsmoapr.h"
+int nucas=1;
 
 void main(){
 //déclaration-init pour la lecture de fichiers
     char* ficmai = "input/car3x3t_3";
     printf("Lecture du fichier %s\n\n",ficmai);
-    //printf("\nDonner le nom du fichier de maillage : ");
-    //scanf("%s", ficmai); 
-    //printf("tout est lu correctement\n");
     char* ficRef = "input/NUMREF.Test";
     printf("Lecture du fichier %s\n\n",ficRef);
-    int affichage;
+    int affichage; int IMPFCH;
     printf("Voulez-vous afficher les résultats ?\n");
     printf(" Aucun affichage : 0\n Affichage SMD : 1\n Affichage SMD-SMO : 2\n Affichage SMD-SMO-Profile : 3\n");
     scanf("%d", &affichage); 
+    printf("Affichage des résultats finaux en fichier ?\n");
+    printf(" positif : dans un fichier\n  négatif : dans le terminal\n");
+    scanf("%d", &IMPFCH); 
 
 //déclaration des variables géométriques
     float** coord;
@@ -48,9 +48,7 @@ void main(){
 //appel des fonctions de lecture de fichiers pour initialiser les variables associées au maillage/domaine
     int check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
     
-    lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);
-
-    
+    lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);  
 
 //declaration et initialisation des variables relatives au stockage morse désordonné
     float* SecMembre = malloc(nbtng*sizeof(float));
@@ -68,12 +66,12 @@ void main(){
             nbtng ,NbCoef ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, &NextAd);
 
 //affichage système assemblé en SMD
-if (affichage>=1){
-    affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
-}
+    if (affichage>=1){
+        affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
+    }
 
 
-//declaration d    free(Profil_true); free(MatProf_true);es variables relatives au stockage morse ordonné
+//declaration des variables relatives au stockage morse ordonné
     NbCoef = AdPrCoefLi[nbtng-1];
     float* SecMemb0 = malloc(nbtng*sizeof(float));
     int* AdPrCoLi0 = malloc(nbtng*sizeof(int));
@@ -84,9 +82,9 @@ if (affichage>=1){
     dSMDaSMO(&nbtng, NbCoef, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
 //affichage système assemblé en SMO
-if (affichage>=2){
-    affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
-}
+    if (affichage>=2){
+        affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
+    }
 
 //déclaration des variables relatives au stockage profil (nbtng == Nblign)
     NbCoef = AdPrCoLi0[nbtng]-1;
@@ -98,11 +96,20 @@ if (affichage>=2){
     dSMOaPR_nous(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil, MatProf);
    
 //affichage du système en profil
-const int a = 1;
-if(affichage>=3){ 
-    impmpr_(&a,&nbtng, Profil, MatProf, &MatProf[nbtng]);
-}
+    if(affichage>=3){ 
+        impmpr_(&IMPFCH, &nbtng, Profil, MatProf, MatProf+nbtng);
+    }
 
+//Calcul de la solution éléments finis 
+    float eps = 1.0e-10; //seuil de singularité de 
+    float* MatLow = malloc(LongProfil*sizeof(float)); 
+    float* u = malloc(nbtng*sizeof(float)); 
+    ltlpr(&nbtng,Profil,MatProf,MatProf+nbtng,&eps,MatLow,MatLow+nbtng); //facto LLt
+    rsprl(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,u); //descente
+    rspru(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,u); //remontée
+
+
+//    
 
 //libération de la mémoire
     free(numRefD0); free(numRefD1); free(numRefF1);
@@ -113,4 +120,5 @@ if(affichage>=3){
     free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
 
     free(Profil); free(MatProf);
+    free(MatLow); free(u);
 }

@@ -1,5 +1,8 @@
 #include "../include/headerTP2b.h"
 
+extern int nucas; //numéro de cas (1,2,3)
+extern int nudom; //numéro de domaine (1,2)
+
 /*
 Contient les fonctions : 
     -A11, A12, A22
