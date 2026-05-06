@@ -66,7 +66,7 @@ void main(){
             nbtng ,NbCoef ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, &NextAd);
 
 //affichage système assemblé en SMD
-    if (affichage>=1){
+    if (affichage==1){
         affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
     }
 
@@ -82,7 +82,7 @@ void main(){
     dSMDaSMO(&nbtng, NbCoef, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
 //affichage système assemblé en SMO
-    if (affichage>=2){
+    if (affichage==2){
         affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
     }
 
@@ -96,22 +96,29 @@ void main(){
     dSMOaPR_nous(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil, MatProf);
    
 //affichage du système en profil
-    if(affichage>=3){ 
+    if(affichage==3){ 
         impmpr_(&IMPFCH, &nbtng, Profil, MatProf, MatProf+nbtng);
     }
 
 //Calcul de la solution éléments finis 
     float eps = 1.0e-10; //seuil de singularité de 
-    float* MatLow = malloc(LongProfil*sizeof(float)); 
-    float* u = malloc(nbtng*sizeof(float)); 
-    ltlpr(&nbtng,Profil,MatProf,MatProf+nbtng,&eps,MatLow,MatLow+nbtng); //facto LLt
-    rsprl(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,u); //descente
-    rspru(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,u); //remontée
+    float* MatLow = malloc(LongProfil*sizeof(float)); //matrice triangulaire l de A = LLt
+    float* U = malloc(nbtng*sizeof(float)); //vecteur de solution calculée 
+    ltlpr_(&nbtng,Profil,MatProf,MatProf+nbtng,&eps,MatLow,MatLow+nbtng); //facto LLt
+    rsprl_(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,U); //descente
+    rspru_(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,U); //remontée
 
 
-//    
+//Tableau de UEX(I)
+    float* UEX = malloc(nbtng*sizeof(float)); //vecteur de solution calculée 
+    CalSol(nbtng, coord, UEX); //calcul de la solution exacte sur les points du domaine
 
-//libération de la mémoire
+//affichage du système en profil
+    if(affichage==4){ 
+        affsol_(&nbtng,*coord,U,UEX,&IMPFCH);
+    }    
+
+//Libération de la mémoire
     free(numRefD0); free(numRefD1); free(numRefF1);
     freetab(coord); freetab(ngnel); freetab(nRefAr);
 
@@ -120,5 +127,5 @@ void main(){
     free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
 
     free(Profil); free(MatProf);
-    free(MatLow); free(u);
+    free(MatLow); free(U); free(UEX);
 }
