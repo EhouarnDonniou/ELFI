@@ -23,7 +23,7 @@
         NumCol: ColInd, indice colonne de l'element i (Numcol[i]) dans LMat
 
 */
-int dSMOaLongPR_nous(int NbLign, int* AdPrCoLi0, int* NumCol0, float* Matrice0){
+int dSMOaLongPR(int NbLign, int* AdPrCoLi0, int* NumCol0, float* Matrice0){
     int LongProfil = NbLign;
     for(int i=0; i<NbLign-1;i++){
         if(AdPrCoLi0[i]!=AdPrCoLi0[i+1]){
@@ -53,7 +53,7 @@ int dSMOaLongPR_nous(int NbLign, int* AdPrCoLi0, int* NumCol0, float* Matrice0){
         MatProf: Stockage de la Matrice dans un vecteur qui est la matrice en stockage Profil, MatProf = [Diag,LmatProf]
 
 */
-void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int LongProfil,int* Profil,float* MatProf){
+void dSMOaPR(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int LongProfil,int* Profil,float* MatProf){
     //init tout à 0, on aura pas à les "remplir" mais juste à les écraser là où ya des valeurs n-nulles
     for(int i=0;i<LongProfil;i++){
         MatProf[i]=0.;
@@ -71,22 +71,21 @@ void dSMOaPR_nous(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int Lon
 
     //pas que diagonale
     else{
- 
         for(int i=0;i<NbLign;i++){
+            //élément diagonal
             MatProf[i]=Matrice[i];
 
-            Profil[i]=count+1;
+            Profil[i]=count+1; //mise à jour de profil
+
+            //check si la ligne n'est pas vide
             if(AdPrCoefLi[i]!=AdPrCoefLi[i+1]){
-                
                 for(int j=AdPrCoefLi[i]; j<AdPrCoefLi[i+1]; j++){
+                    //placement de l'élément depuis Matrice SMO dans Matrice Profil
                     MatProf[NbLign+count+NumCol[j-1]-NumCol[AdPrCoefLi[i]-1]] = Matrice[NbLign+j-1];
                 }
                 count += 2+i-NumCol[AdPrCoefLi[i]-1];
-            }
-            
-            
-            
+            }    
         } 
-        Profil[NbLign]=0;
+        Profil[NbLign]=0;//dernier élément de Profil est nul
     }
 }

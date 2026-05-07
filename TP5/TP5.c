@@ -21,6 +21,9 @@
 int nucas=1;
 
 void main(){
+
+//boucler les calculs sur les valeurs de h (avec les fichiers différents et tout)
+
 //déclaration-init pour la lecture de fichiers
     char* ficmai = "input/d1t1_2";
     printf("Lecture du fichier %s\n\n",ficmai);
@@ -89,12 +92,12 @@ void main(){
 
 //déclaration des variables relatives au stockage profil (nbtng == Nblign)
     NbCoef = AdPrCoLi0[nbtng]-1;
-    int LongProfil =  dSMOaLongPR_nous(nbtng,AdPrCoLi0,NumCol0,Matrice0);
+    int LongProfil =  dSMOaLongPR(nbtng,AdPrCoLi0,NumCol0,Matrice0);
     int* Profil = malloc(nbtng*sizeof(int));
     float* MatProf = malloc(LongProfil*sizeof(float)); 
 
 //passage SMO->Profile 
-    dSMOaPR_nous(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil, MatProf);
+    dSMOaPR(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil, MatProf);
    
 //affichage du système en profil
     if(affichage==3){ 
