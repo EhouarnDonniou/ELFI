@@ -25,7 +25,7 @@ void main(){
 //boucler les calculs sur les valeurs de h (avec les fichiers différents et tout)
 
 //déclaration-init pour la lecture de fichiers
-    char* ficmai = "input/maillage/d1t1_64";
+    char* ficmai = "input/d1t1_2";
     printf("Lecture du fichier %s\n\n",ficmai);
     char* ficRef = "input/NUMREF_1";
     printf("Lecture du fichier %s\n\n",ficRef);
