@@ -70,9 +70,9 @@ void main(){
             nbtng ,NbCoef ,SecMembre ,NumDLDir ,ValDLDir ,AdPrCoefLi ,Matrice ,NumCol ,AdSuccLi, &NextAd);
 
 //affichage système assemblé en SMD
-    if (affichage>=1){
-        affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
-    }
+    //
+    // affsmd_(&nbtng, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir);
+    // 
 
 
 //declaration des variables relatives au stockage morse ordonné
@@ -86,9 +86,9 @@ void main(){
     dSMDaSMO(&nbtng, NbCoef, AdPrCoefLi, NumCol, AdSuccLi, Matrice, SecMembre, NumDLDir, ValDLDir, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
 
 //affichage système assemblé en SMO
-    if (affichage>=2){
-        affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
-    }
+    // 
+    // affsmo_(&nbtng, AdPrCoLi0, NumCol0, Matrice0, SecMemb0);
+    // 
 
 //déclaration des variables relatives au stockage profil (nbtng == Nblign)
     NbCoef = AdPrCoLi0[nbtng]-1;
@@ -100,9 +100,9 @@ void main(){
     dSMOaPR(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil, MatProf);
    
 //affichage du système en profil
-    if(affichage==3){ 
-        impmpr_(&IMPFCH, &nbtng, Profil, MatProf, MatProf+nbtng);
-    }
+    // 
+    // impmpr_(&IMPFCH, &nbtng, Profil, MatProf, MatProf+nbtng);
+    //
 
 //Calcul de la solution éléments finis 
     float eps = 1.0e-10; //seuil de singularité de 
@@ -118,9 +118,8 @@ void main(){
     CalSol(nbtng, coord, UEX); //calcul de la solution exacte sur les points du domaine
 
 //affichage du système en profil
-    if(affichage==4){ 
-        affsol_(&nbtng,*coord,U,UEX,&IMPFCH);
-    }    
+    affsol_(&nbtng,*coord,U,UEX,&IMPFCH);
+
 
 //Libération de la mémoire
     free(numRefD0); free(numRefD1); free(numRefF1);
