@@ -153,13 +153,19 @@ printf("Lecture du fichier %s\n",buffer2);
     
 
 //Calcul de la solution éléments finis 
-    float eps = 1.0e-10; //seuil de singularité de 
+    float eps = 1.e-10; //seuil de singularité de 
     float* MatLow = malloc(LongProfil*sizeof(float)); //matrice triangulaire l de A = LLt
     float* U = malloc(nbtng*sizeof(float)); //vecteur de solution calculée 
     float* Y = malloc(nbtng*sizeof(float));
+
     ltlpr_(&nbtng,Profil,MatProf,MatProf+nbtng,&eps,MatLow,MatLow+nbtng); //facto LLt
+    printf("passé la facto\n");
+
     rsprl_(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,Y); //descente
+    printf("passé la descente\n");
+
     rspru_(&nbtng,Profil,MatLow,MatLow+nbtng,Y,U); //remontée
+    printf("passé la remontée\n");
 
 
 
@@ -179,7 +185,10 @@ printf("Lecture du fichier %s\n",buffer2);
     free(NumDLDir); free(ValDLDir);
     free(AdPrCoefLi); free(AdSuccLi); free(NumCol); 
 
+    free(SecMemb0); free(Matrice0);
+    free(AdPrCoLi0);free(NumCol0);
+
     free(Profil); free(MatProf);
-    free(MatLow); free(U); free(UEX);
+    free(MatLow); free(U); free(UEX); free(Y);
     }
 }
