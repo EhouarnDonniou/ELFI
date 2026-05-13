@@ -11,10 +11,9 @@ legend('erreur quadratique relative ', 'erreur maximum relative');
 grid
 xlabel('-h')
 title('Courbes de convergences')
-plot(w,z,'o')
-cvquad = polyfit(h,errquad,1);
-cvmax = polyfit(h,errmax,1);
+cvquad = polyfit(log10(h),log(errquad),1);
+cvmax = polyfit(log(h),log(errmax),1);
 ordrecvquad = cvquad(1);
 ordrecvmax = cvmax(1);
-display('Ordre de convergence erreur quadratique relative : ',ordrecvquad)
-display('Ordre de convergence erreur quadratique relative : ',ordrecv)
+display(['Ordre de convergence erreur quadratique relative : ',num2str(ordrecvquad)])
+display(['Ordre de convergence erreur maximum relative : ',num2str(ordrecvmax)])
