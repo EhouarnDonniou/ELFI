@@ -13,7 +13,7 @@
 #include "../include/forfun.h"
 
 void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD1, int nbRefF1, int* numRefF1, float** coord ,int** ngnel ,int** nRefAr ,int typeEl ,int nbtng ,int nbtel ,int nbneel ,int nbaret ,int NbLign ,int NbCoef, float* SecMembre ,int* NumDLDir ,float* ValDLDir ,int* AdPrCoefLi ,float*  Matrice ,int* NumCol ,int* AdSuccLi, int* NextAd){
-    
+
     //initialisation des variables allouées précédement
     *NextAd=1;
     for(int i=0; i<NbLign; i++){

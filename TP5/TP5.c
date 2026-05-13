@@ -18,25 +18,74 @@
 #include "include/forfun.h"
 #include "include/utilitaires.h"
 
-int nucas=1;
+int nucas;
 
 void main(){
-
-//boucler les calculs sur les valeurs de h (avec les fichiers différents et tout)
-
 //déclaration-init pour la lecture de fichiers
-    char* ficmai = "input/d1t1_2";
-    printf("Lecture du fichier %s\n\n",ficmai);
-    char* ficRef = "input/NUMREF_1";
-    printf("Lecture du fichier %s\n\n",ficRef);
-    int affichage; int IMPFCH;
-    printf("Voulez-vous afficher les résultats ?\n");
-    printf(" Aucun affichage : 0\n Affichage SMD : 1\n Affichage SMD-SMO : 2\n Affichage SMD-SMO-Profile : 3\n");
-    scanf("%d", &affichage); 
-    printf("Affichage des résultats finaux en fichier ?\n");
-    printf(" positif : dans un fichier\n  négatif : dans le terminal\n");
-    scanf("%d", &IMPFCH); 
+    char buffer1[100];
+    char buffer2[100];
+    char* ficRef;
+    char* ficmai;
 
+    int IMPFCH;
+    int domaine; 
+    int type;
+
+//demande d'interraction utilisateur
+
+    //input num_domaine
+    printf("\nEntrez le numéro du domaine :\n");
+    scanf("%d", &domaine); 
+    if(domaine==1 || domaine==2){
+        printf("Domaine %d.\n",domaine);
+    }
+    else{
+        printf("Domaine non supporté, veuillez réessayer.");
+        EXIT_FAILURE;
+    }
+
+    //input nucas
+    printf("\nEntrez le numéros du cas voulu (1,2 ou 3) :\n");
+    scanf("%d", &nucas); 
+    switch(nucas){
+        case(1):
+        case(2):
+            ficRef = "input/NUMREF_%d"; break;
+        case(3):
+            ficRef = "input/NUMREF_%d_%d"; break;
+        default : printf("Cas non supporté, veuillez réessayer.");EXIT_FAILURE;
+    }
+    if(nucas==3) sprintf(buffer2, ficRef, nucas,domaine);
+    else sprintf(buffer2, ficRef, nucas);
+
+    //input type_element
+    printf("\nEntrez le type d'élément :\n");
+    printf(" - 1 : quadrangles\n - 2 : triangles\n");
+    scanf("%d", &type); 
+    if(type ==1){
+            ficmai = "input/maillage/d%dq1_%d";
+    }
+    if(type ==2){
+            ficmai = "input/maillage/d%dt1_%d";
+    }
+    else{
+        printf("Type non supporté, veuillez réessayer.");
+        EXIT_FAILURE;
+    }
+
+    //input affichage/fichier
+    printf("\nAffichage des résultats finaux en fichier ?\n");
+    printf(" - positif : dans un fichier\n - négatif : dans le terminal\n");
+    scanf("%d", &IMPFCH); 
+    
+    
+//boucler les calculs sur les valeurs de h (avec les fichiers différents et tout)
+printf("Lecture du fichier %s\n",buffer2);
+    for(int i=2;i<=64;i=i*2){
+        sprintf(buffer1, ficmai, domaine,i);
+        printf("Lecture du fichier %s\n",buffer1);
+        
+        
 //déclaration des variables géométriques
     float** coord;
     int** ngnel; 
@@ -50,9 +99,9 @@ void main(){
     int* numRefF1;
 
 //appel des fonctions de lecture de fichiers pour initialiser les variables associées au maillage/domaine
-    int check = lecfima(ficmai,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
+    int check = lecfima(buffer1,&typeEl,&nbtng,&coord,&nbtel,&ngnel,&nbneel,&nbaret,&nRefAr);
     
-    lecNumRef(ficRef,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);  
+    lecNumRef(buffer2,&nRefDom,&nbRefD0,&nbRefD1,&nbRefF1,&numRefD0,&numRefD1,&numRefF1);  
 
 //declaration et initialisation des variables relatives au stockage morse désordonné
     float* SecMembre = malloc(nbtng*sizeof(float));
@@ -100,17 +149,18 @@ void main(){
     dSMOaPR(nbtng, AdPrCoLi0,NumCol0, Matrice0, LongProfil, Profil, MatProf);
    
 //affichage du système en profil
-    // 
-    // impmpr_(&IMPFCH, &nbtng, Profil, MatProf, MatProf+nbtng);
-    //
+    //impmpr_(&IMPFCH, &nbtng, Profil, MatProf, MatProf+nbtng);
+    
 
 //Calcul de la solution éléments finis 
     float eps = 1.0e-10; //seuil de singularité de 
     float* MatLow = malloc(LongProfil*sizeof(float)); //matrice triangulaire l de A = LLt
     float* U = malloc(nbtng*sizeof(float)); //vecteur de solution calculée 
+    float* Y = malloc(nbtng*sizeof(float));
     ltlpr_(&nbtng,Profil,MatProf,MatProf+nbtng,&eps,MatLow,MatLow+nbtng); //facto LLt
-    rsprl_(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,U); //descente
-    rspru_(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,U); //remontée
+    rsprl_(&nbtng,Profil,MatLow,MatLow+nbtng,SecMemb0,Y); //descente
+    rspru_(&nbtng,Profil,MatLow,MatLow+nbtng,Y,U); //remontée
+
 
 
 //Tableau de UEX(I)
@@ -131,4 +181,5 @@ void main(){
 
     free(Profil); free(MatProf);
     free(MatLow); free(U); free(UEX);
+    }
 }

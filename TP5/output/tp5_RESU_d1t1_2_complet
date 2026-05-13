@@ -42,7 +42,7 @@ Donner le nom du fichier de maillage : /usr/local/ananum/csmef/tp5/maillage/d1t1
  ELEMENT=  5    DE TYPE=21001    NB NOEUDS= 3
  NUDLEL    UDEL      SCMELM      MATELM
       1 0.0000E+00 0.5417E+00 0.5000E+00 
-      0 0.0000E+00 0.3750E+00 0.0000E+00 0.5000E+00 
+      0 0.0000E+00 0.3750E+00 0.0000E+00 0.5000E+00 0.22000E+02
       0 0.0000E+00 0.4167E+00 -.5000E+00 -.5000E+00 0.1000E+01 
 
  ELEMENT=  6    DE TYPE=21001    NB NOEUDS= 3
@@ -115,7 +115,7 @@ Col   9 :    1.00000
  Donner, dans l'intervalle [1,           9 ], les indices min et max des lignes a afficher. Taper q pour arreter.
 q
 Sauvegarde de la S.M.O. dans le fichier SMO
-  NOMBRE DE LIGNES :           9
+  NOMBRE DE LIGNES :           90.22000E+02
   NUMEROS DE LA PREMIERE ET DE LA DERNIERE LIGNE ?
   TAPER Q POUR TERMINER.
 1 9
