@@ -17,13 +17,13 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
     //initialisation des variables allouées précédement
     *NextAd=1;
     for(int i=0; i<NbLign; i++){
-        SecMembre[i]=0;  
-        Matrice[i]=0;    
-        AdPrCoefLi[i]=0; 
+        SecMembre[i]=0.0;  
+        Matrice[i]=0.0;    
+        AdPrCoefLi[i]=0.0; 
         ValDLDir[i]=0;   NumDLDir[i]=i+1; 
     }
     for(int i=0; i<NbCoef; i++){
-        Matrice[NbLign+i]=0; 
+        Matrice[NbLign+i]=0.0; 
         NumCol[i]=0;
         AdSuccLi[i]=0;
     }
@@ -40,11 +40,11 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
     for(int k=0;k<nbtel;k++){
         //Initialisation à 0 de MatElem, SMbrElem, NuDElem et uDElem
         for(int i=0;i<nbneel;i++){
-            SMbrElem[i]=0.;
+            SMbrElem[i]=0.0;
             NuDElem[i]=1.;
-            uDElem[i]=0.;
+            uDElem[i]=0.0;
             for(int j=0; j<nbneel; j++){
-                MatElem[i][j]=0.;
+                MatElem[i][j]=0.0;
             }
         }
 

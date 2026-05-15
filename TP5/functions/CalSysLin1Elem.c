@@ -54,6 +54,12 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
     float** xquad = alloctab(nbquad,2);
     ppquad(typeEl,pdsquad,xquad);
 
+    for(int i=0;i<nbneel;i++){
+        for(int j=0;j<nbneel;j++){
+            MatElem[i][j]=0.0;
+        }
+    }
+
     //cas général, calculs intérieurs à l'élément K actuel
     intElem(typeEl, nbneel, nbaret, xquad, pdsquad, coorEl, MatElem, SMbrElem);
 
@@ -64,6 +70,7 @@ void cal1Elem(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRefD
     float* pdsquad_ar = malloc(3*sizeof(float));
     float** xquad_ar = alloctab(3,2);
     ppquad(3,pdsquad_ar,xquad_ar);
+
 
     //Boucles sur les nbaret arêtes de l'élément actuel
     //Pour prise en compte des conditions au bord
@@ -187,9 +194,9 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
     for(int i=0; i<q_quad; i++){
         //réinitialisation de la jacobienne à 0.
         for(int j=0; j<2;j++){
-            JFk[j][0]=0.;
-            JFk[j][1]=0.;
-            fk_x[j]=0.;
+            JFk[j][0]=0.0;
+            JFk[j][1]=0.0;
+            fk_x[j]=0.0;
         }
         //calculs élémentaires sur le point x_i
         calFbase(t, xquad[i], wx_i);
@@ -203,7 +210,7 @@ void intElem(int t, int p, int q, float** xquad, float* pdsquad, float** aK, flo
 
         //calcul des a_alpha_beta(Fk(x_hat)) et a00(Fk(x_hat))
         AabFk[0][0] = A11(fk_x); AabFk[0][1] = A12(fk_x);
-        AabFk[0][1] = A12(fk_x); AabFk[1][1] = A22(fk_x);
+        AabFk[1][0] = A12(fk_x); AabFk[1][1] = A22(fk_x);
         float A00Fk = A00(fk_x);
         
         float eltdif = pdsquad[i]*detJFk;
