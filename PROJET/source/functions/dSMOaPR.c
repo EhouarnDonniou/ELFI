@@ -1,0 +1,91 @@
+#include "../include/headerTP1.h"
+#include "../include/headerTP2a.h"
+#include "../include/headerTP2b.h"
+#include "../include/headerTP5.h"
+#include "../include/utilitaires.h"
+#include "../include/forfun.h"
+
+/*
+--------------------------------------------------------------------------------
+    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
+
+    Ecrit le 08/04/2026
+--------------------------------------------------------------------------------
+*/
+
+/*
+    Retourne la longueur effective du vecteur stockant la matrice en Profil
+    A partir stockage SMO de la même matrice
+    Arguments:
+        NbLign: Nombre de lignes dans la matrice
+        AdPrcoefLi: FirstAdLi, Position dans Lmat du premier element stocke dans la ligne
+        Matrice: Matrice avec le stockage SMO, Matrice = [Diag, LMat]
+        NumCol: ColInd, indice colonne de l'element i (Numcol[i]) dans LMat
+
+*/
+int dSMOaLongPR(int NbLign, int* AdPrCoLi0, int* NumCol0, float* Matrice0){
+    int LongProfil = NbLign;
+    for(int i=0; i<NbLign-1;i++){
+        if(AdPrCoLi0[i]!=AdPrCoLi0[i+1]){
+            LongProfil += (i+2)-NumCol0[AdPrCoLi0[i]-1];
+        }
+    }
+    return LongProfil;
+}
+
+
+/*
+--------------------------------------------------------------------------------
+    Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI
+
+    Ecrit le 08/04/2026
+--------------------------------------------------------------------------------
+*/
+
+/*
+    Passe du stockage SMO au stockage Profil pour la Matrice
+
+    Arguments:
+        AdPrcoefLi: FirstAdLi, Position dans Lmat du premier element stocke dans la ligne
+        Matrice: Matrice avec le stockage SMO, Matrice = [Diag, Lmat]
+        NumCol: ColInd, indice colonne de l'element i (Numcol[i]) dans LMat
+        Profil: Postion du premier element d'une ligne dans MatProf, seulement compte dans la partie LmatProf
+        MatProf: Stockage de la Matrice dans un vecteur qui est la matrice en stockage Profil, MatProf = [Diag,LmatProf]
+
+*/
+void dSMOaPR(int NbLign, int* AdPrCoefLi,int* NumCol,float* Matrice,int LongProfil,int* Profil,float* MatProf){
+    //init tout à 0, on aura pas à les "remplir" mais juste à les écraser là où ya des valeurs n-nulles
+    for(int i=0;i<LongProfil;i++){
+        MatProf[i]=0.;
+    }
+    int count = 0;
+
+    //la matrice est diagonale 
+    if(LongProfil==NbLign){
+        for(int i=0;i<LongProfil;i++){
+            MatProf[i]=Matrice[i];
+            Profil[i]=1;
+        }
+        Profil[LongProfil]=0;
+    }
+
+    //pas que diagonale
+    else{
+        for(int i=0;i<NbLign;i++){
+            //élément diagonal
+            MatProf[i]=Matrice[i];
+
+            Profil[i]=count+1; //mise à jour de profil
+
+            //check si la ligne n'est pas vide
+            if(AdPrCoefLi[i]!=AdPrCoefLi[i+1]){
+                for(int j=AdPrCoefLi[i]; j<AdPrCoefLi[i+1]; j++){
+                    //placement de l'élément depuis Matrice SMO dans Matrice Profil
+                    MatProf[NbLign+count+NumCol[j-1]-NumCol[AdPrCoefLi[i]-1]] = Matrice[NbLign+j-1];
+                }
+                count += 2+i-NumCol[AdPrCoefLi[i]-1];
+            }    
+        } 
+        Profil[NbLign]=0;//dernier élément de Profil est nul
+    }
+}

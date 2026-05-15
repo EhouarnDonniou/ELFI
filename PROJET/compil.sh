@@ -1,9 +1,9 @@
 clear
-cd functions/fortran/
+cd source/functions/fortran/
 gfortran -c *.f 
 cd ../../
-gcc -g TP3_4.c functions/fortran/*.o functions/*.c -lm -lgfortran -o TP3_4.exe
+gcc -g TP5.c functions/fortran/*.o functions/*.c -lm -lgfortran -o ../TP_ELFI.exe
 cd functions/fortran/
 rm *.o
-cd ../../
-TP3_4.exe
+cd ../../../
+./TP_ELFI.exe
