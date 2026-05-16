@@ -5,6 +5,10 @@
 \numberwithin{equation}{section}
 \usepackage{graphicx}
 \usepackage[french]{babel}
+\usepackage{pgfplotstable}
+\usepackage{booktabs}
+\usepackage{float}
+
 \begin{document}
 \begin{titlepage}
     \centering
@@ -31,17 +35,413 @@
 \section{Résultats}
 \subsection{Domaine 1}
 \subsubsection{Cas 1}
-Cas des quadrangles:
-\begin{figure}
-\includegraphics[width=1\textwidth]{courbe_.png}
+\textbf{\underline{Cas des quadrangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d1_c1_q.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d1_c1_q.png}
+\caption{Courbe des erreurs}
 \end{figure}
 
-Cas des triangles:
+Ordre de convergence erreur quadratique relative : 2.1281
+
+Ordre de convergence erreur maximum relative :  2.1513
+
+\textbf{\underline{Cas des triangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d1_c1_t.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d1_c1_t.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 1.8831
+
+Ordre de convergence erreur maximum relative :  1.8852
 \subsubsection{Cas 2}
+\textbf{\underline{Cas des quadrangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d1_c2_q.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d1_c2_q.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 2.0768
+
+Ordre de convergence erreur maximum relative :  2.0787
+
+\textbf{\underline{Cas des triangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d1_c2_t.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d1_c2_t.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 1.9384
+
+Ordre de convergence erreur maximum relative : 1.9386
 \subsubsection{Cas 3}
+\textbf{\underline{Cas des quadrangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d1_c3_q.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d1_c3_q.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 2.0716
+
+Ordre de convergence erreur maximum relative :  2.0443
+
+\textbf{\underline{Cas des triangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d1_c3_t.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d1_c3_t.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 1.9651
+
+Ordre de convergence erreur maximum relative :  1.53
 \subsection{Domaine 2}
 \subsubsection{Cas 1}
+\textbf{\underline{Cas des quadrangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d2_c1_q.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d2_c1_q.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 0.019038
+
+Ordre de convergence erreur maximum relative :  0
+
+\textbf{\underline{Cas des triangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d2_c1_t.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d2_c1_t.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 0.020847
+
+Ordre de convergence erreur maximum relative :  0
 \subsubsection{Cas 2}
+\textbf{\underline{Cas des quadrangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d2_c2_q.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d2_c2_q.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 1.2058
+
+Ordre de convergence erreur maximum relative :  1.323
+
+\textbf{\underline{Cas des triangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d2_c2_t.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d2_c2_t.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 1.4036
+
+Ordre de convergence erreur maximum relative :  1.5638
 \subsubsection{Cas 3}
+\textbf{\underline{Cas des quadrangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d2_c3_q.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d2_c3_q.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 0.023701
+
+Ordre de convergence erreur maximum relative :  0
+
+\textbf{\underline{Cas des triangles:}}
+
+\begin{table}[H]
+\centering
+
+\pgfplotstabletypeset[
+col sep=space,
+string type,
+columns={0,1,2},
+columns/0/.style={column name=Erreur quadratique relative},
+columns/1/.style={column name=Erreur quadratique maximum},
+columns/2/.style={column name=$h$},
+every head row/.style={
+before row=\toprule,
+after row=\midrule
+},
+every last row/.style={
+after row=\bottomrule
+}
+]{output/tab_err/d2_c3_t.txt}
+
+\caption{Erreurs numériques}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{output/image_rapport/d2_c3_t.png}
+\caption{Courbe des erreurs}
+\end{figure}
+
+Ordre de convergence erreur quadratique relative : 0.023701
+
+Ordre de convergence erreur maximum relative :  0
 \section{Conclusion}
 \end{document}
