@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.13)  16 MAY 2026 14:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.9.13)  17 MAY 2026 22:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -857,7 +857,7 @@ File: output/image_rapport/d2_c3_t.png Graphic file (type png)
 Package pdftex.def Info: output/image_rapport/d2_c3_t.png  used on input line 4
 39.
 (pdftex.def)             Requested size: 345.0pt x 258.74998pt.
- [13 <./output/image_rapport/d2_c3_t.png (PNG copy)>] (rapportELFI.aux)
+ [13 <./output/image_rapport/d2_c3_t.png (PNG copy)>] [14] (rapportELFI.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -878,9 +878,9 @@ ublic/amsfonts/cm/cmcsc10.pfb><C:/Users/damie/AppData/Local/Programs/MiKTeX/fon
 ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/damie/AppData/Local/Programs/M
 iKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/damie/AppData/Local/Pr
 ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-Output written on rapportELFI.pdf (14 pages, 439715 bytes).
+Output written on rapportELFI.pdf (15 pages, 441557 bytes).
 PDF statistics:
- 93 PDF objects out of 1000 (max. 8388607)
+ 96 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  73 words of extra memory for PDF output out of 10000 (max. 10000000)
 
