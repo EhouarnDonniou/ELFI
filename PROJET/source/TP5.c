@@ -44,29 +44,27 @@ void main(){
         ymin = 0.0; ymax = 1.0;
     }
     else if (domaine==2){
-        xmin = 0.0; xmax = 1.0/3.0;
-        ymin = 0.0; ymax = 1.0/3.0;
+        xmin = 0.0; xmax = (float)1./3.;
+        ymin = 0.0; ymax = (float)1./3.;
     }
     else{
         printf("Domaine non supporté, veuillez réessayer.");
         EXIT_FAILURE;
     }
-
+    
     // input nucas
     printf("\nEntrez le numéros du cas voulu (1,2 ou 3) :\n");
     scanf("%d", &nucas); 
     switch(nucas){
         case(1):
         case(2):
-            ficRef = "input/NUMREF_%d"; break;
         case(3):
             ficRef = "input/NUMREF_%d_%d"; break;
         default : 
             printf("Cas non supporté, veuillez réessayer.");
             EXIT_FAILURE;
     }
-    if(nucas==3) sprintf(buffer2, ficRef, nucas,domaine);
-    else sprintf(buffer2, ficRef, nucas);
+    sprintf(buffer2, ficRef,nucas,domaine);
 
     // input type_element
     printf("\nEntrez le type d'élément :\n");

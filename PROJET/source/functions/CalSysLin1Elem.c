@@ -10,7 +10,8 @@ Contient les fonctions :
     -numNaret, selectPts
 */
 
-
+extern float xmin; extern float xmax;
+extern float ymin; extern float ymax;
 /*
 --------------------------------------------------------------------------------
     Ehouarn DONNIOU, Damien MALETTE, Dora PAPAI

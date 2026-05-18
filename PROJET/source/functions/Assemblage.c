@@ -81,6 +81,7 @@ void Assemblage(int nRefDom, int nbRefD0, int* numRefD0, int nbRefD1, int* numRe
             if(NuDElem[i-1]==-1){
                 NumDLDir[I-1] = -I; 
                 ValDLDir[I-1] = uDElem[i-1];
+
             }
             if(NuDElem[i-1]==0){
                 NumDLDir[I-1] = 0; 
